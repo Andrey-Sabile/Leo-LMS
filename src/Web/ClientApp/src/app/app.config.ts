@@ -1,10 +1,11 @@
 import { HTTP_INTERCEPTORS, provideHttpClient, withFetch, withInterceptorsFromDi } from '@angular/common/http';
-import { APP_ID, ApplicationConfig } from '@angular/core';
-import { provideClientHydration } from '@angular/platform-browser';
+import { APP_ID, ApplicationConfig, importProvidersFrom } from '@angular/core';
+import { provideClientHydration, BrowserModule } from '@angular/platform-browser';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideRouter, withComponentInputBinding } from '@angular/router';
 import { AuthorizeInterceptor } from 'src/api-authorization/authorize.interceptor';
 import { routes } from './app.routes';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 export function getBaseUrl() {
     return document.getElementsByTagName('base')[0].href;
@@ -17,9 +18,10 @@ export const appConfig: ApplicationConfig = {
         provideHttpClient(withFetch(), withInterceptorsFromDi()),
         provideAnimations(),
         // provideNgxStripe(environment.stripeSecret),
-        // importProvidersFrom(ModalModule.forRoot()),
+        importProvidersFrom(ModalModule.forRoot()),
         { provide: APP_ID, useValue: 'ng-cli-universal' },
         { provide: HTTP_INTERCEPTORS, useClass: AuthorizeInterceptor, multi: true },
-        { provide: 'BASE_URL', useFactory: getBaseUrl, deps: [] }
+        { provide: 'BASE_URL', useFactory: getBaseUrl, deps: [] },
+        importProvidersFrom(BrowserModule)
     ]
 }
