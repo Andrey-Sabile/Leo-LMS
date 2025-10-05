@@ -1,4 +1,4 @@
-import { Component, TemplateRef, OnInit } from '@angular/core';
+import { Component, TemplateRef, OnInit, inject } from '@angular/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import {
   TodoListsClient, TodoItemsClient,
@@ -17,6 +17,10 @@ import { FormsModule } from '@angular/forms';
   imports: [NgClass, FormsModule, JsonPipe]
 })
 export class TodoComponent implements OnInit {
+  private listsClient = inject(TodoListsClient);
+  private itemsClient = inject(TodoItemsClient);
+  private modalService = inject(BsModalService);
+
   debug = false;
   lists: TodoListDto[];
   priorityLevels: LookupDto[];
@@ -30,11 +34,10 @@ export class TodoComponent implements OnInit {
   deleteListModalRef: BsModalRef;
   itemDetailsModalRef: BsModalRef;
 
-  constructor(
-    private listsClient: TodoListsClient,
-    private itemsClient: TodoItemsClient,
-    private modalService: BsModalService
-  ) { }
+  /** Inserted by Angular inject() migration for backwards compatibility */
+  constructor(...args: unknown[]);
+
+  constructor() { }
 
   ngOnInit(): void {
     this.listsClient.getTodoLists().subscribe(

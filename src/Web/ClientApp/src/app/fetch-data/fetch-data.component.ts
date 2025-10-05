@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { WeatherForecastsClient, WeatherForecast } from '../web-api-client';
 import { DatePipe } from '@angular/common';
 
@@ -9,9 +9,16 @@ import { DatePipe } from '@angular/common';
   imports: [DatePipe],
 })
 export class FetchDataComponent {
+  private client = inject(WeatherForecastsClient);
+
   public forecasts: WeatherForecast[] = [];
 
-  constructor(private client: WeatherForecastsClient) {
+  /** Inserted by Angular inject() migration for backwards compatibility */
+  constructor(...args: unknown[]);
+
+  constructor() {
+    const client = this.client;
+
     client.getWeatherForecasts().subscribe({
       next: result => this.forecasts = result,
       error: error => console.error(error)
