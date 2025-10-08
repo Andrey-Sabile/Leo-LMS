@@ -25,3 +25,6 @@ The solution ships with the Clean Architecture scaffolding templates. From `src/
 dotnet new ca-usecase --name CreateTodoList --feature-name TodoLists --usecase-type command --return-type int
 ```
 Keep generated files aligned with the feature module structure and update corresponding tests in `tests/Application.*`.
+
+When working with Angular, refer to daisyui.instructions.md located in /Users/andreysabile/Dev/LeoLMS/src/Web/ClientApp/docs
+Avoid generating .css or scss files. Use the html file and tailwind as much as possible.
