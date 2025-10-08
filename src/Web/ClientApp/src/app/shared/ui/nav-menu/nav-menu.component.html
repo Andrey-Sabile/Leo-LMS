@@ -15,6 +15,9 @@
           <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
             <a [routerLink]="['/']" (click)="collapse()">Home</a>
           </li>
+          <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            <a [routerLink]="['/calendar']" (click)="collapse()">Calendar</a>
+          </li>
           <li routerLinkActive="active">
             <a [routerLink]="['/counter']" (click)="collapse()">Counter</a>
           </li>
@@ -38,6 +41,10 @@
         <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
           <a [routerLink]="['/']">Home</a>
         </li>
+        <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+          <a [routerLink]="['/calendar']">Calendar</a>
+        </li>
+
         <li>
           <details>
             <summary>References</summary>
