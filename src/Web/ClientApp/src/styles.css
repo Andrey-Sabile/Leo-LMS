@@ -3,7 +3,7 @@
 @import "tailwindcss";
 
 @plugin "daisyui" {
-  themes: silk --default
+  themes: cupcake --default
 }
 
 @plugin "@tailwindcss/typography";
