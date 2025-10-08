@@ -38,20 +38,28 @@
         <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
           <a [routerLink]="['/']">Home</a>
         </li>
-        <li routerLinkActive="active">
-          <a [routerLink]="['/counter']">Counter</a>
-        </li>
-        <li routerLinkActive="active">
-          <a [routerLink]="['/fetch-data']">Fetch data</a>
-        </li>
-        <li routerLinkActive="active">
-          <a [routerLink]="['/todo']">Todo</a>
-        </li>
         <li>
-          <a href="/api" target="_blank" rel="noopener">API</a>
-        </li>
-        <li>
-          <a href="/Identity/Account/Manage">Account</a>
+          <details>
+            <summary>References</summary>
+            <ul class="bg-base-100 rounded-t-none p-2">
+              <li routerLinkActive="active">
+                <a [routerLink]="['/counter']">Counter</a>
+              </li>
+              <li routerLinkActive="active">
+                <a [routerLink]="['/fetch-data']">Fetch data</a>
+              </li>
+              <li routerLinkActive="active">
+                <a [routerLink]="['/todo']">Todo</a>
+              </li>
+              <li>
+                <a href="/api" target="_blank" rel="noopener">API</a>
+              </li>
+              <li>
+                <a href="/Identity/Account/Manage">Account</a>
+              </li>
+
+            </ul>
+          </details>
         </li>
       </ul>
     </div>
