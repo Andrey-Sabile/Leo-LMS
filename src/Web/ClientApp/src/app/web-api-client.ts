@@ -15,6 +15,252 @@ import { HttpClient, HttpHeaders, HttpResponse, HttpResponseBase } from '@angula
 
 export const API_BASE_URL = new InjectionToken<string>('API_BASE_URL');
 
+export interface ICalendarEventsClient {
+    getCalendarEventsWithPagination(start: Date | null | undefined, end: Date | null | undefined, status: CalendarEventStatus | null | undefined, type: EventType | null | undefined, scope: EventScope | null | undefined, classId: number | null | undefined, subjectId: number | null | undefined, pageNumber: number, pageSize: number): Observable<PaginatedListOfCalendarEventBriefDto>;
+    createCalendarEvent(command: CreateCalendarEventCommand): Observable<number>;
+    updateCalendarEvent(id: number, command: UpdateCalendarEventCommand): Observable<void>;
+    deleteCalendarEvent(id: number): Observable<void>;
+}
+
+@Injectable({
+    providedIn: 'root'
+})
+export class CalendarEventsClient implements ICalendarEventsClient {
+    private http: HttpClient;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        this.http = http;
+        this.baseUrl = baseUrl ?? "";
+    }
+
+    getCalendarEventsWithPagination(start: Date | null | undefined, end: Date | null | undefined, status: CalendarEventStatus | null | undefined, type: EventType | null | undefined, scope: EventScope | null | undefined, classId: number | null | undefined, subjectId: number | null | undefined, pageNumber: number, pageSize: number): Observable<PaginatedListOfCalendarEventBriefDto> {
+        let url_ = this.baseUrl + "/api/CalendarEvents?";
+        if (start !== undefined && start !== null)
+            url_ += "Start=" + encodeURIComponent(start ? "" + start.toISOString() : "") + "&";
+        if (end !== undefined && end !== null)
+            url_ += "End=" + encodeURIComponent(end ? "" + end.toISOString() : "") + "&";
+        if (status !== undefined && status !== null)
+            url_ += "Status=" + encodeURIComponent("" + status) + "&";
+        if (type !== undefined && type !== null)
+            url_ += "Type=" + encodeURIComponent("" + type) + "&";
+        if (scope !== undefined && scope !== null)
+            url_ += "Scope=" + encodeURIComponent("" + scope) + "&";
+        if (classId !== undefined && classId !== null)
+            url_ += "ClassId=" + encodeURIComponent("" + classId) + "&";
+        if (subjectId !== undefined && subjectId !== null)
+            url_ += "SubjectId=" + encodeURIComponent("" + subjectId) + "&";
+        if (pageNumber === undefined || pageNumber === null)
+            throw new Error("The parameter 'pageNumber' must be defined and cannot be null.");
+        else
+            url_ += "PageNumber=" + encodeURIComponent("" + pageNumber) + "&";
+        if (pageSize === undefined || pageSize === null)
+            throw new Error("The parameter 'pageSize' must be defined and cannot be null.");
+        else
+            url_ += "PageSize=" + encodeURIComponent("" + pageSize) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetCalendarEventsWithPagination(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetCalendarEventsWithPagination(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<PaginatedListOfCalendarEventBriefDto>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<PaginatedListOfCalendarEventBriefDto>;
+        }));
+    }
+
+    protected processGetCalendarEventsWithPagination(response: HttpResponseBase): Observable<PaginatedListOfCalendarEventBriefDto> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = PaginatedListOfCalendarEventBriefDto.fromJS(resultData200);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    createCalendarEvent(command: CreateCalendarEventCommand): Observable<number> {
+        let url_ = this.baseUrl + "/api/CalendarEvents";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(command);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processCreateCalendarEvent(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processCreateCalendarEvent(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<number>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<number>;
+        }));
+    }
+
+    protected processCreateCalendarEvent(response: HttpResponseBase): Observable<number> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 201) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result201: any = null;
+            let resultData201 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+                result201 = resultData201 !== undefined ? resultData201 : <any>null;
+    
+            return _observableOf(result201);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    updateCalendarEvent(id: number, command: UpdateCalendarEventCommand): Observable<void> {
+        let url_ = this.baseUrl + "/api/CalendarEvents/{id}";
+        if (id === undefined || id === null)
+            throw new Error("The parameter 'id' must be defined.");
+        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(command);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json",
+            })
+        };
+
+        return this.http.request("put", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processUpdateCalendarEvent(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processUpdateCalendarEvent(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<void>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<void>;
+        }));
+    }
+
+    protected processUpdateCalendarEvent(response: HttpResponseBase): Observable<void> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return _observableOf(null as any);
+            }));
+        } else if (status === 400) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("A server side error occurred.", status, _responseText, _headers);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    deleteCalendarEvent(id: number): Observable<void> {
+        let url_ = this.baseUrl + "/api/CalendarEvents/{id}";
+        if (id === undefined || id === null)
+            throw new Error("The parameter 'id' must be defined.");
+        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+            })
+        };
+
+        return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processDeleteCalendarEvent(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processDeleteCalendarEvent(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<void>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<void>;
+        }));
+    }
+
+    protected processDeleteCalendarEvent(response: HttpResponseBase): Observable<void> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return _observableOf(null as any);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+}
+
 export interface ITodoItemsClient {
     getTodoItemsWithPagination(listId: number, pageNumber: number, pageSize: number): Observable<PaginatedListOfTodoItemBriefDto>;
     createTodoItem(command: CreateTodoItemCommand): Observable<number>;
@@ -602,6 +848,300 @@ export class WeatherForecastsClient implements IWeatherForecastsClient {
         }
         return _observableOf(null as any);
     }
+}
+
+export class PaginatedListOfCalendarEventBriefDto implements IPaginatedListOfCalendarEventBriefDto {
+    items?: CalendarEventBriefDto[];
+    pageNumber?: number;
+    totalPages?: number;
+    totalCount?: number;
+    hasPreviousPage?: boolean;
+    hasNextPage?: boolean;
+
+    constructor(data?: IPaginatedListOfCalendarEventBriefDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            if (Array.isArray(_data["items"])) {
+                this.items = [] as any;
+                for (let item of _data["items"])
+                    this.items!.push(CalendarEventBriefDto.fromJS(item));
+            }
+            this.pageNumber = _data["pageNumber"];
+            this.totalPages = _data["totalPages"];
+            this.totalCount = _data["totalCount"];
+            this.hasPreviousPage = _data["hasPreviousPage"];
+            this.hasNextPage = _data["hasNextPage"];
+        }
+    }
+
+    static fromJS(data: any): PaginatedListOfCalendarEventBriefDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new PaginatedListOfCalendarEventBriefDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        if (Array.isArray(this.items)) {
+            data["items"] = [];
+            for (let item of this.items)
+                data["items"].push(item.toJSON());
+        }
+        data["pageNumber"] = this.pageNumber;
+        data["totalPages"] = this.totalPages;
+        data["totalCount"] = this.totalCount;
+        data["hasPreviousPage"] = this.hasPreviousPage;
+        data["hasNextPage"] = this.hasNextPage;
+        return data;
+    }
+}
+
+export interface IPaginatedListOfCalendarEventBriefDto {
+    items?: CalendarEventBriefDto[];
+    pageNumber?: number;
+    totalPages?: number;
+    totalCount?: number;
+    hasPreviousPage?: boolean;
+    hasNextPage?: boolean;
+}
+
+export class CalendarEventBriefDto implements ICalendarEventBriefDto {
+    id?: number;
+    title?: string;
+    description?: string;
+    status?: CalendarEventStatus | undefined;
+    type?: EventType | undefined;
+    scope?: EventScope | undefined;
+    start?: Date;
+    end?: Date;
+    classId?: number | undefined;
+    subjectId?: number | undefined;
+
+    constructor(data?: ICalendarEventBriefDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.title = _data["title"];
+            this.description = _data["description"];
+            this.status = _data["status"];
+            this.type = _data["type"];
+            this.scope = _data["scope"];
+            this.start = _data["start"] ? new Date(_data["start"].toString()) : <any>undefined;
+            this.end = _data["end"] ? new Date(_data["end"].toString()) : <any>undefined;
+            this.classId = _data["classId"];
+            this.subjectId = _data["subjectId"];
+        }
+    }
+
+    static fromJS(data: any): CalendarEventBriefDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new CalendarEventBriefDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["title"] = this.title;
+        data["description"] = this.description;
+        data["status"] = this.status;
+        data["type"] = this.type;
+        data["scope"] = this.scope;
+        data["start"] = this.start ? this.start.toISOString() : <any>undefined;
+        data["end"] = this.end ? this.end.toISOString() : <any>undefined;
+        data["classId"] = this.classId;
+        data["subjectId"] = this.subjectId;
+        return data;
+    }
+}
+
+export interface ICalendarEventBriefDto {
+    id?: number;
+    title?: string;
+    description?: string;
+    status?: CalendarEventStatus | undefined;
+    type?: EventType | undefined;
+    scope?: EventScope | undefined;
+    start?: Date;
+    end?: Date;
+    classId?: number | undefined;
+    subjectId?: number | undefined;
+}
+
+export enum CalendarEventStatus {
+    Draft = 0,
+    Cancelled = 1,
+    Scheduled = 2,
+}
+
+export enum EventType {
+    Exam = 0,
+    Holiday = 1,
+    Announcement = 2,
+}
+
+export enum EventScope {
+    School = 0,
+    Class = 1,
+    Subject = 2,
+}
+
+export class CreateCalendarEventCommand implements ICreateCalendarEventCommand {
+    title?: string;
+    description?: string;
+    start?: Date;
+    end?: Date;
+    status?: CalendarEventStatus | undefined;
+    type?: EventType | undefined;
+    scope?: EventScope | undefined;
+    classId?: number | undefined;
+    subjectId?: number | undefined;
+
+    constructor(data?: ICreateCalendarEventCommand) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.title = _data["title"];
+            this.description = _data["description"];
+            this.start = _data["start"] ? new Date(_data["start"].toString()) : <any>undefined;
+            this.end = _data["end"] ? new Date(_data["end"].toString()) : <any>undefined;
+            this.status = _data["status"];
+            this.type = _data["type"];
+            this.scope = _data["scope"];
+            this.classId = _data["classId"];
+            this.subjectId = _data["subjectId"];
+        }
+    }
+
+    static fromJS(data: any): CreateCalendarEventCommand {
+        data = typeof data === 'object' ? data : {};
+        let result = new CreateCalendarEventCommand();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["title"] = this.title;
+        data["description"] = this.description;
+        data["start"] = this.start ? this.start.toISOString() : <any>undefined;
+        data["end"] = this.end ? this.end.toISOString() : <any>undefined;
+        data["status"] = this.status;
+        data["type"] = this.type;
+        data["scope"] = this.scope;
+        data["classId"] = this.classId;
+        data["subjectId"] = this.subjectId;
+        return data;
+    }
+}
+
+export interface ICreateCalendarEventCommand {
+    title?: string;
+    description?: string;
+    start?: Date;
+    end?: Date;
+    status?: CalendarEventStatus | undefined;
+    type?: EventType | undefined;
+    scope?: EventScope | undefined;
+    classId?: number | undefined;
+    subjectId?: number | undefined;
+}
+
+export class UpdateCalendarEventCommand implements IUpdateCalendarEventCommand {
+    id?: number;
+    title?: string;
+    description?: string;
+    start?: Date;
+    end?: Date;
+    status?: CalendarEventStatus | undefined;
+    type?: EventType | undefined;
+    scope?: EventScope | undefined;
+    classId?: number | undefined;
+    subjectId?: number | undefined;
+
+    constructor(data?: IUpdateCalendarEventCommand) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.title = _data["title"];
+            this.description = _data["description"];
+            this.start = _data["start"] ? new Date(_data["start"].toString()) : <any>undefined;
+            this.end = _data["end"] ? new Date(_data["end"].toString()) : <any>undefined;
+            this.status = _data["status"];
+            this.type = _data["type"];
+            this.scope = _data["scope"];
+            this.classId = _data["classId"];
+            this.subjectId = _data["subjectId"];
+        }
+    }
+
+    static fromJS(data: any): UpdateCalendarEventCommand {
+        data = typeof data === 'object' ? data : {};
+        let result = new UpdateCalendarEventCommand();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["title"] = this.title;
+        data["description"] = this.description;
+        data["start"] = this.start ? this.start.toISOString() : <any>undefined;
+        data["end"] = this.end ? this.end.toISOString() : <any>undefined;
+        data["status"] = this.status;
+        data["type"] = this.type;
+        data["scope"] = this.scope;
+        data["classId"] = this.classId;
+        data["subjectId"] = this.subjectId;
+        return data;
+    }
+}
+
+export interface IUpdateCalendarEventCommand {
+    id?: number;
+    title?: string;
+    description?: string;
+    start?: Date;
+    end?: Date;
+    status?: CalendarEventStatus | undefined;
+    type?: EventType | undefined;
+    scope?: EventScope | undefined;
+    classId?: number | undefined;
+    subjectId?: number | undefined;
 }
 
 export class PaginatedListOfTodoItemBriefDto implements IPaginatedListOfTodoItemBriefDto {
