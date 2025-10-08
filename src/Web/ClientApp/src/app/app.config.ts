@@ -3,7 +3,7 @@ import { APP_ID, ApplicationConfig, importProvidersFrom } from '@angular/core';
 import { provideClientHydration, BrowserModule } from '@angular/platform-browser';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideRouter, withComponentInputBinding } from '@angular/router';
-import { AuthorizeInterceptor } from 'src/api-authorization/authorize.interceptor';
+import { AuthorizeInterceptor } from '@app/core/auth/authorize.interceptor';
 import { routes } from './app.routes';
 
 export function getBaseUrl() {

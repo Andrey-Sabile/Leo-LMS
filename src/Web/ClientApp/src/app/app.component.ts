@@ -1,13 +1,10 @@
 import { Component } from '@angular/core';
-import { NavMenuComponent } from './nav-menu/nav-menu.component';
-import { RouterOutlet } from '@angular/router';
+import { AppShellComponent } from '@app/core/layout/app-shell/app-shell.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  templateUrl: './app.component.html',
-  imports: [NavMenuComponent, RouterOutlet]
+  imports: [AppShellComponent],
+  template: '<app-shell></app-shell>'
 })
-export class AppComponent {
-  title = 'app';
-}
+export class AppComponent {}

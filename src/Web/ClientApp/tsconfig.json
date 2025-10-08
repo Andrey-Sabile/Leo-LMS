@@ -19,7 +19,27 @@
       "es2018",
       "dom"
     ],
-    "useDefineForClassFields": false
+    "useDefineForClassFields": false,
+    "paths": {
+      "@app/*": [
+        "src/app/*"
+      ],
+      "@app/core/*": [
+        "src/app/core/*"
+      ],
+      "@app/features/*": [
+        "src/app/features/*"
+      ],
+      "@app/shared/*": [
+        "src/app/shared/*"
+      ],
+      "@app/data-access/*": [
+        "src/app/data-access/*"
+      ],
+      "@app/state/*": [
+        "src/app/state/*"
+      ]
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

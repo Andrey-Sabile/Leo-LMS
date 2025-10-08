@@ -4,7 +4,7 @@ import {
   TodoListDto, TodoItemDto, LookupDto,
   CreateTodoListCommand, UpdateTodoListCommand,
   CreateTodoItemCommand, UpdateTodoItemCommand
-} from '../web-api-client';
+} from '@app/data-access/api/api-client';
 import { JsonPipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 

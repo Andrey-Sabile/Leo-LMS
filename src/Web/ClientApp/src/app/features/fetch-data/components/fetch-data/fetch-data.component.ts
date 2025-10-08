@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { WeatherForecastsClient, WeatherForecast } from '../web-api-client';
+import { WeatherForecastsClient, WeatherForecast } from '@app/data-access/api/api-client';
 import { DatePipe } from '@angular/common';
 
 @Component({
