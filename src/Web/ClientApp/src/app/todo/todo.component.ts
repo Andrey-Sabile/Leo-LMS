@@ -11,7 +11,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-todo-component',
   templateUrl: './todo.component.html',
-  styleUrls: ['./todo.component.scss'],
+  styleUrls: ['./todo.component.css'],
   standalone: true,
   imports: [FormsModule, JsonPipe]
 })
