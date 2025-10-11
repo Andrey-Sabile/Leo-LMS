@@ -16,6 +16,7 @@ export class CalendarComponent {
   private readonly defaultViewMode = 'week';
   private readonly pageSize = 100;
   readonly viewMode = signal<CalendarViewMode>(this.defaultViewMode);
+  readonly referenceDate = signal(new Date());
   readonly weekEvents = signal<CalendarEventBriefDto[]>([]);
   readonly viewModeLabel = computed(() => {
     switch (this.viewMode()) {
@@ -27,11 +28,31 @@ export class CalendarComponent {
         return 'Week';
     }
   });
+  readonly currentDateRange = computed(() =>
+    this.resolveDateRange(this.viewMode(), this.referenceDate())
+  );
+  readonly currentRangeLabel = computed(() => {
+    const mode = this.viewMode();
+    const range = this.currentDateRange();
+
+    switch (mode) {
+      case 'day': {
+        return this.formatDate(range.start, { month: 'short', day: 'numeric', year: 'numeric' });
+      }
+      case 'month': {
+        return this.formatDate(range.start, { month: 'long', year: 'numeric' });
+      }
+      default: {
+        const startLabel = this.formatDate(range.start, { month: 'short', day: 'numeric' });
+        const endLabel = this.formatDate(range.end, { month: 'short', day: 'numeric' });
+        return `${startLabel} – ${endLabel}`;
+      }
+    }
+  });
 
   private readonly refreshEventsEffect = effect(
     () => {
-      const mode = this.viewMode();
-      const range = this.resolveDateRange(mode, new Date());
+      const range = this.currentDateRange();
       this.loadCalendarEvents(range);
     },
     { allowSignalWrites: true }
@@ -39,6 +60,66 @@ export class CalendarComponent {
 
   setViewMode(mode: CalendarViewMode): void {
     this.viewMode.set(mode);
+    this.referenceDate.set(new Date());
+  }
+
+  goToNextRange(): void {
+    const mode = this.viewMode();
+    const currentReference = this.referenceDate();
+    let nextReference: Date;
+
+    switch (mode) {
+      case 'day': {
+        nextReference = this.startOfDay(new Date(currentReference));
+        nextReference.setDate(nextReference.getDate() + 1);
+        break;
+      }
+      case 'month': {
+        nextReference = this.startOfDay(
+          new Date(currentReference.getFullYear(), currentReference.getMonth() + 1, 1)
+        );
+        break;
+      }
+      default: {
+        nextReference = this.startOfWeek(new Date(currentReference));
+        nextReference.setDate(nextReference.getDate() + 7);
+        break;
+      }
+    }
+
+    this.referenceDate.set(nextReference);
+  }
+
+  goToPreviousRange(): void {
+    const mode = this.viewMode();
+    const currentReference = this.referenceDate();
+    let previousReference: Date;
+
+    switch (mode) {
+      case 'day': {
+        previousReference = this.startOfDay(new Date(currentReference));
+        previousReference.setDate(previousReference.getDate() - 1);
+        break;
+      }
+      case 'month': {
+        previousReference = this.startOfDay(
+          new Date(currentReference.getFullYear(), currentReference.getMonth(), 1)
+        );
+        previousReference.setMonth(previousReference.getMonth() - 1);
+        break;
+      }
+      default: {
+        previousReference = this.startOfWeek(new Date(currentReference));
+        previousReference.setDate(previousReference.getDate() - 7);
+        break;
+      }
+    }
+
+    this.referenceDate.set(previousReference);
+  }
+
+  goToToday(): void {
+    this.referenceDate.set(new Date());
   }
 
   private loadCalendarEvents(range: CalendarDateRange): void {
@@ -106,7 +187,11 @@ export class CalendarComponent {
     result.setDate(result.getDate() + 6);
     return this.endOfDay(result);
   }
+
+  private formatDate(date: Date, options: Intl.DateTimeFormatOptions): string {
+    return new Intl.DateTimeFormat('en-US', options).format(date);
+  }
 }
 
 type CalendarViewMode = 'day' | 'week' | 'month';
-type CalendarDateRange = { start: Date; end: Date };
+export type CalendarDateRange = { start: Date; end: Date };

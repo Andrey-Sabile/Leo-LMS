@@ -1,5 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { CalendarEventBriefDto } from '@app/data-access/api/api-client';
+import type { CalendarDateRange } from '../calendar.component';
 
 /**
  * Basic shape for calendar events used by the week view.
@@ -13,4 +15,6 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CalendarWeekViewComponent {
+  @Input({ required: true }) dateRange!: CalendarDateRange;
+  @Input({ required: true }) events!: CalendarEventBriefDto[];
 }

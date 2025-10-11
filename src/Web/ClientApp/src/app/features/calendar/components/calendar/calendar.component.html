@@ -5,6 +5,14 @@
         <h1 class="text-3xl font-semibold">Calendar</h1>
       </div>
 
+      <div class="join">
+        <button type="button" class="join-item btn" (click)="goToPreviousRange()">«</button>
+        <button type="button" class="join-item btn" (click)="goToToday()">
+          {{ currentRangeLabel() }}
+        </button>
+        <button type="button" class="join-item btn" (click)="goToNextRange()">»</button>
+      </div>
+
       <div class="flex flex-wrap gap-2">
         <div class="dropdown dropdown-start">
           <button type="button" tabindex="0" role="button" class="btn">
@@ -34,7 +42,7 @@
     }
     @case ('week') {
     <div class="rounded-box border border-base-200 bg-base-100 p-4">
-      <app-calendar-week-view></app-calendar-week-view>
+      <app-calendar-week-view [dateRange]="currentDateRange()" [events]="weekEvents()"></app-calendar-week-view>
     </div>
     }
     @case ('month') {
