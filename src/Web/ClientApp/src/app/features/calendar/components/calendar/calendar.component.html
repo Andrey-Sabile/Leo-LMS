@@ -1,26 +1,46 @@
-<section class="min-h-screen px-6 py-8">
+<section class="px-6 py-8">
   <div class="mx-auto max-w-6xl space-y-6">
-    <header class="flex items-center justify-between">
+    <header class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
       <div>
-        <h1 class="text-2xl font-semibold text-slate-900">Calendar</h1>
-        <p class="mt-1 text-sm text-slate-500">
-          Overview of upcoming classes, meetings, and reminders.
-        </p>
+        <h1 class="text-3xl font-semibold">Calendar</h1>
       </div>
-
-      <div class="flex items-center gap-2">
-        <button type="button"
-          class="inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-medium text-slate-700 shadow-sm transition hover:border-slate-300 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
-          <span>Today</span>
-        </button>
-
-        <button type="button"
-          class="inline-flex items-center gap-2 rounded-lg bg-indigo-600 px-3 py-2 text-sm font-medium text-white shadow transition hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
-          <span>Add Event</span>
-        </button>
+      <div class="flex flex-wrap gap-2">
+        <div class="dropdown dropdown-start">
+          <button type="button" tabindex="0" role="button" class="btn">
+            {{ viewModeLabel() }}
+          </button>
+          <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box shadow">
+            <li>
+              <button type="button" (click)="setViewMode('day')">Day</button>
+            </li>
+            <li>
+              <button type="button" (click)="setViewMode('week')">Week</button>
+            </li>
+            <li>
+              <button type="button" (click)="setViewMode('month')">Month</button>
+            </li>
+          </ul>
+        </div>
+        <button type="button" class="btn btn-primary btn-sm">Add Event</button>
       </div>
     </header>
 
-    <app-calendar-week-view [weekStart]="weekStart" [events]="demoEvents"></app-calendar-week-view>
+    @switch (viewMode()) {
+    @case ('day') {
+    <div class="alert alert-info">
+      <span>Day view is under construction.</span>
+    </div>
+    }
+    @case ('week') {
+    <div class="rounded-box border border-base-200 bg-base-100 p-4">
+      <app-calendar-week-view></app-calendar-week-view>
+    </div>
+    }
+    @case ('month') {
+    <div class="alert alert-info">
+      <span>Month view is under construction.</span>
+    </div>
+    }
+    }
   </div>
 </section>
