@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, effect, inject, signal } from '@angular/core';
 import { CalendarWeekViewComponent } from './week-view/calendar-week-view.component';
+import type { WeekViewVm, DayVm, EventVm } from './week-view/week-view.models';
 import { CalendarEventBriefDto, CalendarEventsClient } from '@app/data-access/api/api-client';
 
 @Component({
@@ -50,6 +51,10 @@ export class CalendarComponent {
     }
   });
 
+  readonly weekVm = computed<WeekViewVm>(() =>
+    this.toWeekVm(this.currentDateRange(), this.calendarEvents())
+  );
+
   private readonly refreshEventsEffect = effect(
     () => {
       const range = this.currentDateRange();
@@ -92,6 +97,40 @@ export class CalendarComponent {
         next: result => this.calendarEvents.set(result.items),
         error: error => console.error(error),
       });
+  }
+  private toWeekVm(
+    range: CalendarDateRange,
+    events: CalendarEventBriefDto[]
+  ): WeekViewVm {
+    const days: DayVm[] = [];
+    const formatter = new Intl.DateTimeFormat('en-US', {
+      weekday: 'short',
+      month: 'short',
+      day: 'numeric',
+    });
+
+    for (let i = 0; i < 7; i++) {
+      const date = this.addDays(range.start, i);
+      const dayStart = this.startOfDay(date);
+      const dayEnd = this.endOfDay(date);
+      const dayEvents: EventVm[] = events
+        .filter(e => !!e.start && e.start! >= dayStart && e.start! <= dayEnd)
+        .map((e, idx) => ({
+          id:
+            e.id != null
+              ? String(e.id)
+              : `${e.title ?? 'event'}-${e.start?.toISOString() ?? idx}`,
+          title: e.title ?? 'Untitled',
+          start: e.start!,
+          end: e.end ?? e.start!,
+          timeLabel: this.formatTimeRange(e.start!, e.end ?? e.start!),
+        }))
+        .sort((a, b) => a.start.getTime() - b.start.getTime());
+
+      days.push({ date, label: formatter.format(date), events: dayEvents });
+    }
+
+    return { days };
   }
   private resolveDateRange(mode: CalendarViewMode, reference: Date): CalendarDateRange {
     switch (mode) {
@@ -171,6 +210,17 @@ export class CalendarComponent {
   }
   private formatDate(date: Date, options: Intl.DateTimeFormatOptions): string {
     return new Intl.DateTimeFormat('en-US', options).format(date);
+  }
+  private formatTime(date: Date): string {
+    return new Intl.DateTimeFormat('en-US', {
+      hour: 'numeric',
+      minute: '2-digit',
+    }).format(date);
+  }
+  private formatTimeRange(start: Date, end: Date): string {
+    const startLabel = this.formatTime(start);
+    const endLabel = this.formatTime(end);
+    return start.getTime() === end.getTime() ? startLabel : `${startLabel} – ${endLabel}`;
   }
 }
 
