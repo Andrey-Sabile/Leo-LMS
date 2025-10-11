@@ -1,7 +1,7 @@
 ---
 description: daisyUI 5
 alwaysApply: true
-applyTo: "**"
+applyTo: "**/*.html"
 ---
 
 # daisyUI 5
