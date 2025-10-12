@@ -1,0 +1,177 @@
+<dialog class="modal" [open]="open()">
+  <div class="modal-box space-y-6">
+    <header class="space-y-1">
+      <h2 class="text-xl font-semibold">Create Event</h2>
+      <p class="text-sm text-base-content/70">
+        Fill out the details below to add a new calendar entry.
+      </p>
+    </header>
+    <form class="space-y-4" [formGroup]="createEventForm" (ngSubmit)="submitCreateEvent()">
+      <div class="form-control">
+        <label class="label">
+          <span class="label-text">Title</span>
+        </label>
+        <input
+          type="text"
+          formControlName="title"
+          class="input input-bordered w-full"
+          placeholder="Enter event title"
+          [class.input-error]="hasControlError('title')"
+          [disabled]="isSubmitting()"
+        />
+        @if (hasControlError('title', 'required')) {
+        <p class="mt-1 text-sm text-error">Title is required.</p>
+        }
+      </div>
+
+      <div class="form-control">
+        <label class="label">
+          <span class="label-text">Description</span>
+        </label>
+        <textarea
+          formControlName="description"
+          class="textarea textarea-bordered w-full"
+          rows="3"
+          placeholder="Provide a brief description"
+          [class.textarea-error]="hasControlError('description')"
+          [disabled]="isSubmitting()"
+        ></textarea>
+        @if (hasControlError('description', 'required')) {
+        <p class="mt-1 text-sm text-error">Description is required.</p>
+        }
+      </div>
+
+      <div class="grid gap-4 md:grid-cols-2">
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text">Start</span>
+          </label>
+          <input
+            type="datetime-local"
+            formControlName="start"
+            class="input input-bordered w-full"
+            [class.input-error]="hasControlError('start') || isTimeRangeInvalid"
+            [disabled]="isSubmitting()"
+          />
+          @if (hasControlError('start', 'required')) {
+          <p class="mt-1 text-sm text-error">Start date and time is required.</p>
+          }
+        </div>
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text">End</span>
+          </label>
+          <input
+            type="datetime-local"
+            formControlName="end"
+            class="input input-bordered w-full"
+            [class.input-error]="hasControlError('end') || isTimeRangeInvalid"
+            [disabled]="isSubmitting()"
+          />
+          @if (hasControlError('end', 'required')) {
+          <p class="mt-1 text-sm text-error">End date and time is required.</p>
+          } @if (isTimeRangeInvalid) {
+          <p class="mt-1 text-sm text-error">Start must be earlier than end.</p>
+          }
+        </div>
+      </div>
+
+      <div class="grid gap-4 md:grid-cols-2">
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text">Status</span>
+          </label>
+          <select
+            formControlName="status"
+            class="select select-bordered w-full"
+            [disabled]="isSubmitting()"
+          >
+            <option [ngValue]="null">No status</option>
+            @for (status of statusOptions; track status.value) {
+            <option [ngValue]="status.value">{{ status.label }}</option>
+            }
+          </select>
+        </div>
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text">Type</span>
+          </label>
+          <select formControlName="type" class="select select-bordered w-full" [disabled]="isSubmitting()">
+            <option [ngValue]="null">No type</option>
+            @for (option of typeOptions; track option.value) {
+            <option [ngValue]="option.value">{{ option.label }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div class="form-control">
+        <label class="label">
+          <span class="label-text">Scope</span>
+        </label>
+        <select formControlName="scope" class="select select-bordered w-full" [disabled]="isSubmitting()">
+          @for (option of scopeOptions; track option.label) {
+          <option [ngValue]="option.value">{{ option.label }}</option>
+          }
+        </select>
+      </div>
+
+      @if (selectedScope === eventScope.Class || selectedScope === eventScope.Subject) {
+      <div class="grid gap-4 md:grid-cols-2">
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text">Class ID</span>
+          </label>
+          <input
+            type="number"
+            formControlName="classId"
+            class="input input-bordered w-full"
+            placeholder="Enter class identifier"
+            [class.input-error]="hasControlError('classId')"
+            min="1"
+            [disabled]="isSubmitting()"
+          />
+          @if (hasControlError('classId', 'required')) {
+          <p class="mt-1 text-sm text-error">Class ID is required for class events.</p>
+          } @else if (hasControlError('classId', 'positiveInteger')) {
+          <p class="mt-1 text-sm text-error">Class ID must be a positive number.</p>
+          }
+        </div>
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text">Subject ID</span>
+          </label>
+          <input
+            type="number"
+            formControlName="subjectId"
+            class="input input-bordered w-full"
+            placeholder="Enter subject identifier"
+            [class.input-error]="hasControlError('subjectId')"
+            min="1"
+            [disabled]="isSubmitting()"
+          />
+          @if (hasControlError('subjectId', 'required')) {
+          <p class="mt-1 text-sm text-error">Subject ID is required for subject events.</p>
+          } @else if (hasControlError('subjectId', 'positiveInteger')) {
+          <p class="mt-1 text-sm text-error">Subject ID must be a positive number.</p>
+          }
+        </div>
+      </div>
+      }
+
+      @if (errorMessage()) {
+      <p class="rounded-md border border-error/40 bg-error/10 px-3 py-2 text-sm text-error">
+        {{ errorMessage() }}
+      </p>
+      }
+
+      <div class="modal-action">
+        <button type="button" class="btn" (click)="onDismiss()" [disabled]="isSubmitting()">Cancel</button>
+        <button type="submit" class="btn btn-primary" [disabled]="isSubmitting()">Save Event</button>
+      </div>
+    </form>
+  </div>
+  <form method="dialog" class="modal-backdrop" (submit)="onDismiss()">
+    <button>close</button>
+  </form>
+</dialog>

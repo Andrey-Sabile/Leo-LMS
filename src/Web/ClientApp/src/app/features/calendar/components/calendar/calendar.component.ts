@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, computed, effect, inject, signal } 
 import { CalendarDayViewComponent } from './day-view/calendar-day-view.component';
 import { CalendarWeekViewComponent } from './week-view/calendar-week-view.component';
 import { CalendarMonthViewComponent } from './month-view/calendar-month-view.component';
+import { CreateCalendarEventModalComponent } from './create-calendar-event-modal.component';
 import type { WeekViewVm, DayVm, EventVm, MonthViewVm } from './calendar-view.models';
 import { CalendarEventBriefDto, CalendarEventsClient } from '@app/data-access/api/api-client';
 
@@ -11,7 +12,12 @@ export type CalendarDateRange = { start: Date; end: Date };
 @Component({
   selector: 'app-calendar',
   standalone: true,
-  imports: [CalendarDayViewComponent, CalendarMonthViewComponent, CalendarWeekViewComponent],
+  imports: [
+    CalendarDayViewComponent,
+    CalendarMonthViewComponent,
+    CalendarWeekViewComponent,
+    CreateCalendarEventModalComponent,
+  ],
   templateUrl: './calendar.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -150,6 +156,16 @@ export class CalendarComponent {
 
   closeCreateEventModal(): void {
     this.isCreateEventModalOpen.set(false);
+  }
+
+  handleEventCreated(event: CalendarEventBriefDto): void {
+    this.calendarEvents.update(events => {
+      const filtered = events.filter(existing => existing.id !== event.id);
+      const next = [...filtered, event];
+      return this.sortEventsByStart(next);
+    });
+
+    this.closeCreateEventModal();
   }
 
   private resetReferenceDate(): void {
@@ -314,5 +330,13 @@ export class CalendarComponent {
     const startLabel = this.formatTime(start);
     const endLabel = this.formatTime(end);
     return start.getTime() === end.getTime() ? startLabel : `${startLabel} – ${endLabel}`;
+  }
+
+  private sortEventsByStart(events: CalendarEventBriefDto[]): CalendarEventBriefDto[] {
+    return [...events].sort((first, second) => {
+      const firstStart = first.start ? first.start.getTime() : Number.MAX_SAFE_INTEGER;
+      const secondStart = second.start ? second.start.getTime() : Number.MAX_SAFE_INTEGER;
+      return firstStart - secondStart;
+    });
   }
 }

@@ -50,20 +50,10 @@
 
   </div>
 
-  <dialog class="modal" [open]="isCreateEventModalOpen()">
-    <div class="modal-box space-y-4">
-      <header>
-        <h2 class="text-xl font-semibold">Create Event</h2>
-      </header>
-      <div>
-        <p class="text-sm text-base-content/70">Event form coming soon.</p>
-      </div>
-      <div class="modal-action">
-        <button type="button" class="btn" (click)="closeCreateEventModal()">Cancel</button>
-      </div>
-    </div>
-    <form method="dialog" class="modal-backdrop" (submit)="closeCreateEventModal()">
-      <button>close</button>
-    </form>
-  </dialog>
+  <app-create-calendar-event-modal
+    [open]="isCreateEventModalOpen()"
+    [initialRange]="currentDateRange()"
+    (eventCreated)="handleEventCreated($event)"
+    (dismissed)="closeCreateEventModal()"
+  ></app-create-calendar-event-modal>
 </section>
