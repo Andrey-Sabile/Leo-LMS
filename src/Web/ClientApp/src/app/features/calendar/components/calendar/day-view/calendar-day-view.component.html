@@ -1,0 +1,19 @@
+<div class="space-y-4 rounded-box border border-base-200 p-4">
+  <div>
+    <div class="text-lg font-semibold">{{ vm().label }}</div>
+    <div class="text-sm text-base-content/60">{{ vm().date | date: 'fullDate' }}</div>
+  </div>
+
+  <div class="divide-y divide-base-200">
+    @if (vm().events.length === 0) {
+    <div class="py-2 text-sm text-base-content/60">No events</div>
+    } @else {
+    @for (evt of vm().events; track evt.id) {
+    <div class="py-2">
+      <div class="text-xs text-base-content/60">{{ evt.timeLabel }}</div>
+      <div class="font-medium">{{ evt.title }}</div>
+    </div>
+    }
+    }
+  </div>
+</div>
