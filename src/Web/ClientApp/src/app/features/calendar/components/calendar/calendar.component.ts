@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed, effect, inject, signal } from '@angular/core';
 import { CalendarDayViewComponent } from './day-view/calendar-day-view.component';
 import { CalendarWeekViewComponent } from './week-view/calendar-week-view.component';
-import type { WeekViewVm, DayVm, EventVm } from './calendar-view.models';
+import type { WeekViewVm, DayVm, EventVm, MonthViewVm } from './calendar-view.models';
 import { CalendarEventBriefDto, CalendarEventsClient } from '@app/data-access/api/api-client';
 
 type CalendarViewMode = 'day' | 'week' | 'month';
@@ -166,6 +166,14 @@ export class CalendarComponent {
     this.toDayVm(this.currentDateRange(), this.calendarEvents())
   );
 
+  readonly monthVm = computed<MonthViewVm>(() => {
+    if (this.viewMode() !== 'month') {
+      return { weeks: [] };
+    }
+
+    return this.toMonthVm(this.currentDateRange(), this.calendarEvents());
+  });
+
   private toWeekVm(range: CalendarDateRange, events: CalendarEventBriefDto[]): WeekViewVm {
     const days: DayVm[] = [];
     const formatter = new Intl.DateTimeFormat('en-US', {
@@ -196,7 +204,36 @@ export class CalendarComponent {
       date,
       label: formatter.format(date),
       events: this.toDayEvents(date, events),
+      isCurrentMonth: true,
+      isToday: this.isSameDay(date, new Date()),
     };
+  }
+
+  private toMonthVm(range: CalendarDateRange, events: CalendarEventBriefDto[]): MonthViewVm {
+    const monthStart = this.startOfDay(new Date(range.start));
+    const firstVisibleDate = this.startOfWeek(monthStart);
+    const dayLabelFormatter = new Intl.DateTimeFormat('en-US', {
+      day: 'numeric',
+    });
+    const currentMonth = monthStart.getMonth();
+    const today = new Date();
+
+    const weeks = Array.from({ length: 6 }, (_, weekIndex) => {
+      const days = Array.from({ length: 7 }, (_, dayIndex) => {
+        const date = this.addDays(firstVisibleDate, weekIndex * 7 + dayIndex);
+        return {
+          date,
+          label: dayLabelFormatter.format(date),
+          events: this.toDayEvents(date, events),
+          isCurrentMonth: date.getMonth() === currentMonth,
+          isToday: this.isSameDay(date, today),
+        };
+      });
+
+      return { index: weekIndex, days };
+    });
+
+    return { weeks };
   }
 
   private toDayEvents(date: Date, events: CalendarEventBriefDto[]): EventVm[] {
@@ -239,6 +276,15 @@ export class CalendarComponent {
         return this.addDays(this.startOfWeek(reference), 7 * direction);
     }
   }
+
+  private isSameDay(first: Date, second: Date): boolean {
+    return (
+      first.getFullYear() === second.getFullYear() &&
+      first.getMonth() === second.getMonth() &&
+      first.getDate() === second.getDate()
+    );
+  }
+
   private addDays(reference: Date, amount: number): Date {
     const result = new Date(reference);
     result.setDate(result.getDate() + amount);
