@@ -267,18 +267,70 @@ export class CalendarComponent {
     const dayEnd = this.endOfDay(date);
 
     return events
-      .filter(event => !!event.start && event.start! >= dayStart && event.start! <= dayEnd)
-      .map((event, idx) => ({
-        id:
-          event.id != null
-            ? String(event.id)
-            : `${event.title ?? 'event'}-${event.start?.toISOString() ?? idx}`,
-        title: event.title ?? 'Untitled',
-        start: event.start!,
-        end: event.end ?? event.start!,
-        timeLabel: this.formatTimeRange(event.start!, event.end ?? event.start!),
-      }))
+      .filter(event => {
+        if (!event.start) {
+          return false;
+        }
+
+        const eventStart = event.start;
+        const eventEnd = event.end ?? event.start;
+        return eventStart <= dayEnd && eventEnd >= dayStart;
+      })
+      .map((event, idx) => {
+        const eventStart = event.start!;
+        const eventEnd = event.end ?? event.start!;
+        const startsToday = this.isEventStartingOnDay(eventStart, dayStart, dayEnd);
+        const endsToday = this.isEventEndingOnDay(eventEnd, dayStart, dayEnd);
+        const isMultiDay = this.isMultiDayEvent(eventStart, eventEnd);
+
+        return {
+          id:
+            event.id != null
+              ? String(event.id)
+              : `${event.title ?? 'event'}-${event.start?.toISOString() ?? idx}`,
+          title: event.title ?? 'Untitled',
+          start: eventStart,
+          end: eventEnd,
+          timeLabel: this.resolveEventTimeLabel(eventStart, eventEnd, startsToday, endsToday),
+          isMultiDay,
+          isStart: startsToday,
+          isEnd: endsToday,
+          isContinuation: !startsToday,
+        };
+      })
       .sort((a, b) => a.start.getTime() - b.start.getTime());
+  }
+  private resolveEventTimeLabel(
+    eventStart: Date,
+    eventEnd: Date,
+    startsToday: boolean,
+    endsToday: boolean
+  ): string {
+    if (startsToday && endsToday) {
+      return this.formatTimeRange(eventStart, eventEnd);
+    }
+
+    if (startsToday) {
+      return `Starts ${this.formatTime(eventStart)}`;
+    }
+
+    if (endsToday) {
+      return `Ends ${this.formatTime(eventEnd)}`;
+    }
+
+    return '';
+  }
+
+  private isEventStartingOnDay(eventStart: Date, dayStart: Date, dayEnd: Date): boolean {
+    return eventStart >= dayStart && eventStart <= dayEnd;
+  }
+
+  private isEventEndingOnDay(eventEnd: Date, dayStart: Date, dayEnd: Date): boolean {
+    return eventEnd >= dayStart && eventEnd <= dayEnd;
+  }
+
+  private isMultiDayEvent(eventStart: Date, eventEnd: Date): boolean {
+    return this.startOfDay(eventStart).getTime() !== this.startOfDay(eventEnd).getTime();
   }
 
   private shiftReferenceDate(direction: 1 | -1): void {

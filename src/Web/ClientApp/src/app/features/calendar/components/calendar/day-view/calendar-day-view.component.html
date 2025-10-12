@@ -10,7 +10,11 @@
     } @else {
     @for (evt of vm().events; track evt.id) {
     <div class="py-2">
+      @if (evt.timeLabel) {
       <div class="text-xs text-base-content/60">{{ evt.timeLabel }}</div>
+      } @else if (evt.isContinuation && !evt.isEnd) {
+      <div class="text-xs text-base-content/60 italic">Continues</div>
+      }
       <div class="font-medium">{{ evt.title }}</div>
     </div>
     }

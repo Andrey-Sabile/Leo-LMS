@@ -16,7 +16,11 @@
         } @else {
         @for (evt of day.events; track evt.id) {
         <div class="p-3">
+          @if (evt.timeLabel) {
           <div class="text-xs text-base-content/60">{{ evt.timeLabel }}</div>
+          } @else if (evt.isContinuation && !evt.isEnd) {
+          <div class="text-xs text-base-content/60 italic">Continues</div>
+          }
           <div class="font-medium">{{ evt.title }}</div>
         </div>
         }

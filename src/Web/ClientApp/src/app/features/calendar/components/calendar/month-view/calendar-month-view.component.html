@@ -27,9 +27,15 @@
         } @else {
         @for (evt of day.events | slice:0:3; track evt.id) {
         <div class="rounded-box bg-base-200/60 p-2">
+          @if (evt.timeLabel) {
           <div class="text-[0.7rem] uppercase tracking-wide text-base-content/60">
             {{ evt.timeLabel }}
           </div>
+          } @else if (evt.isContinuation && !evt.isEnd) {
+          <div class="text-[0.7rem] uppercase tracking-wide text-base-content/60 italic">
+            Continues
+          </div>
+          }
           <div class="text-sm font-medium text-base-content">{{ evt.title }}</div>
         </div>
         }

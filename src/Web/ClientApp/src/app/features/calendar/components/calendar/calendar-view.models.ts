@@ -25,4 +25,8 @@ export interface EventVm {
   start: Date;
   end: Date;
   timeLabel: string;
+  isMultiDay: boolean;
+  isStart: boolean;
+  isEnd: boolean;
+  isContinuation: boolean;
 }
