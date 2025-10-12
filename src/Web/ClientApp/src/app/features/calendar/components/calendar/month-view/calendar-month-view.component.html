@@ -1,0 +1,47 @@
+<div class="flex h-full flex-col gap-3">
+  <div class="grid grid-cols-7 gap-4 sticky top-0 z-10 bg-base-100 py-2">
+    @for (label of weekdayLabels; track label) {
+    <div class="text-sm font-semibold uppercase text-base-content/70">{{ label }}</div>
+    }
+  </div>
+
+  <div class="grid flex-1 grid-cols-7 gap-4">
+    @for (week of vm().weeks; track week.index) {
+    @for (day of week.days; track day.date) {
+    <div
+      class="rounded-box border border-base-200 bg-base-100 p-3 transition-shadow"
+      [class.opacity-50]="!day.isCurrentMonth"
+      [class.border-primary]="day.isToday"
+      [class.shadow-lg]="day.isToday"
+    >
+      <div class="mb-2 flex items-center justify-between text-sm font-semibold">
+        <span>{{ day.label }}</span>
+        @if (day.isToday) {
+        <span class="badge badge-primary badge-sm">Today</span>
+        }
+      </div>
+
+      <div class="space-y-2">
+        @if (day.events.length === 0) {
+        <div class="text-xs text-base-content/60">No events</div>
+        } @else {
+        @for (evt of day.events | slice:0:3; track evt.id) {
+        <div class="rounded-box bg-base-200/60 p-2">
+          <div class="text-[0.7rem] uppercase tracking-wide text-base-content/60">
+            {{ evt.timeLabel }}
+          </div>
+          <div class="text-sm font-medium text-base-content">{{ evt.title }}</div>
+        </div>
+        }
+        @if (day.events.length > 3) {
+        <div class="text-xs font-medium text-primary">
+          +{{ day.events.length - 3 }} more
+        </div>
+        }
+        }
+      </div>
+    </div>
+    }
+    }
+  </div>
+</div>
