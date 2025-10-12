@@ -34,22 +34,19 @@
       </div>
     </header>
 
-    @switch (viewMode()) {
-    @case ('day') {
-    <div class="alert alert-info">
-      <span>Day view is under construction.</span>
-    </div>
-    }
-    @case ('week') {
     <div class="rounded-box border border-base-200 bg-base-100 p-4">
+      @switch (viewMode()) {
+      @case ('day') {
+      <span>Day view is under construction.</span>
+      }
+      @case ('week') {
       <app-calendar-week-view [vm]="weekVm()"></app-calendar-week-view>
-    </div>
-    }
-    @case ('month') {
-    <div class="alert alert-info">
+      }
+      @case ('month') {
       <span>Month view is under construction.</span>
+      }
+      }
     </div>
-    }
-    }
+
   </div>
 </section>
