@@ -22,6 +22,7 @@ export class CalendarComponent {
   readonly viewMode = signal<CalendarViewMode>(this.defaultViewMode);
   readonly referenceDate = signal(new Date());
   readonly calendarEvents = signal<CalendarEventBriefDto[]>([]);
+  readonly isCreateEventModalOpen = signal(false);
   readonly viewModeLabel = computed(() => {
     switch (this.viewMode()) {
       case 'day':
@@ -141,6 +142,14 @@ export class CalendarComponent {
   setViewMode(mode: CalendarViewMode): void {
     this.viewMode.set(mode);
     this.resetReferenceDate();
+  }
+
+  openCreateEventModal(): void {
+    this.isCreateEventModalOpen.set(true);
+  }
+
+  closeCreateEventModal(): void {
+    this.isCreateEventModalOpen.set(false);
   }
 
   private resetReferenceDate(): void {
