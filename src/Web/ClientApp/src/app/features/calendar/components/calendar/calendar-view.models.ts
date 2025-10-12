@@ -15,4 +15,3 @@ export interface EventVm {
   end: Date;
   timeLabel: string;
 }
-
