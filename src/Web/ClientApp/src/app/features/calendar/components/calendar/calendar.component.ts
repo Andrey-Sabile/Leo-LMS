@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed, effect, inject, signal } from '@angular/core';
+import { CalendarDayViewComponent } from './day-view/calendar-day-view.component';
 import { CalendarWeekViewComponent } from './week-view/calendar-week-view.component';
-import type { WeekViewVm, DayVm, EventVm } from './week-view/week-view.models';
+import type { WeekViewVm, DayVm, EventVm } from './calendar-view.models';
 import { CalendarEventBriefDto, CalendarEventsClient } from '@app/data-access/api/api-client';
 
 type CalendarViewMode = 'day' | 'week' | 'month';
@@ -9,7 +10,7 @@ export type CalendarDateRange = { start: Date; end: Date };
 @Component({
   selector: 'app-calendar',
   standalone: true,
-  imports: [CalendarWeekViewComponent],
+  imports: [CalendarDayViewComponent, CalendarWeekViewComponent],
   templateUrl: './calendar.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

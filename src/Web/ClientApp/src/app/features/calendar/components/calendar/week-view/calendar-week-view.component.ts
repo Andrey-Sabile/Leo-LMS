@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
-import type { WeekViewVm } from './week-view.models';
+import type { WeekViewVm } from '../calendar-view.models';
 
 @Component({
   selector: 'app-calendar-week-view',
