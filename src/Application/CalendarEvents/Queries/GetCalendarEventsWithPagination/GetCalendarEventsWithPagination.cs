@@ -41,16 +41,21 @@ public class GetCalendarEventsWithPaginationQueryHandler : IRequestHandler<GetCa
     {
         var query = _context.CalendarEvents.AsQueryable();
 
-        if (request.Start.HasValue)
+        if (request.Start.HasValue && request.End.HasValue)
         {
             var start = request.Start.Value;
-            query = query.Where(e => e.TimeRange.Start >= start);
+            var end = request.End.Value;
+            query = query.Where(e => e.TimeRange.Start <= end && e.TimeRange.End >= start);
         }
-
-        if (request.End.HasValue)
+        else if (request.Start.HasValue)
+        {
+            var start = request.Start.Value;
+            query = query.Where(e => e.TimeRange.End >= start);
+        }
+        else if (request.End.HasValue)
         {
             var end = request.End.Value;
-            query = query.Where(e => e.TimeRange.End <= end);
+            query = query.Where(e => e.TimeRange.Start <= end);
         }
 
         if (request.Status.HasValue)
