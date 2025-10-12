@@ -26,5 +26,8 @@ dotnet new ca-usecase --name CreateTodoList --feature-name TodoLists --usecase-t
 ```
 Keep generated files aligned with the feature module structure and update corresponding tests in `tests/Application.*`.
 
-When working with Angular, refer to daisyui.instructions.md located in /Users/andreysabile/Dev/LeoLMS/src/Web/ClientApp/docs
+When working with HTML files, refer to daisyui.instructions.md located in /Users/andreysabile/Dev/LeoLMS/src/Web/ClientApp/docs
+
+When working with Angular files, refer to angular.instructions.md located in /Users/andreysabile/Dev/LeoLMS/src/Web/ClientApp/docs
+
 Avoid generating .css or scss files. Use the html file and tailwind as much as possible.
