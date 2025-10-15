@@ -1,7 +1,3 @@
-using System;
-using LeoLMS.Domain.Enums;
-using LeoLMS.Domain.ValueObjects;
-
 namespace LeoLMS.Domain.Entities;
 
 public class CalendarEvent : BaseAuditableEntity
