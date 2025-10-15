@@ -10,5 +10,9 @@ public interface IApplicationDbContext
 
     DbSet<CalendarEvent> CalendarEvents { get; }
 
+    DbSet<Student> Students { get; }
+
+    DbSet<Guardian> Guardians { get; }
+
     Task<int> SaveChangesAsync(CancellationToken cancellationToken);
 }
