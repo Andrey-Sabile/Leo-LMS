@@ -1,29 +1,48 @@
 <div class="space-y-3">
   <div class="grid grid-cols-1 gap-2 md:grid-cols-7">
-    @for (day of vm().days; track day.date) {
-    <div class="text-sm font-medium text-base-content/80 md:text-center">
-      {{ day.label }}
+    @for (column of dayColumns(); track column.day.date) {
+    <div class="text-sm font-semibold text-base-content/80 md:text-center">
+      {{ column.day.label }}
     </div>
     }
   </div>
 
   <div class="grid grid-cols-1 gap-4 md:grid-cols-7">
-    @for (day of vm().days; track day.date) {
-    <div class="rounded-box border border-base-200">
+    @for (column of dayColumns(); track column.day.date) {
+    <div
+      class="flex max-h-[36rem] flex-col overflow-y-auto rounded-box border border-base-200"
+      [class.border-primary]="column.isToday"
+      [class.shadow-lg]="column.isToday"
+    >
       <div class="divide-y divide-base-200">
-        @if (day.events.length === 0) {
-        <div class="p-3 text-sm text-base-content/60">No events</div>
-        } @else {
-        @for (evt of day.events; track evt.id) {
-        <div class="p-3">
-          @if (evt.timeLabel) {
-          <div class="text-xs text-base-content/60">{{ evt.timeLabel }}</div>
-          } @else if (evt.isContinuation && !evt.isEnd) {
-          <div class="text-xs text-base-content/60 italic">Continues</div>
-          }
-          <div class="font-medium">{{ evt.title }}</div>
+        @for (slot of column.hourSlots; track slot.hour) {
+        <div class="flex gap-3 p-3" [class.bg-base-200]="slot.isCurrentHour">
+          <div class="w-14 shrink-0 text-xs font-medium text-base-content/60">{{ slot.label }}</div>
+          <div class="flex-1 space-y-2">
+            @if (slot.events.length === 0) {
+            <div class="text-xs text-base-content/40">—</div>
+            } @else {
+            @for (entry of slot.events; track entry.event.id) {
+            <div class="rounded-box bg-base-200/60 p-2">
+              @if (entry.startsInSlot) {
+              <div class="text-[0.7rem] text-base-content/60">
+                {{
+                  entry.event.timeLabel || ('Starts ' + (entry.event.start | date: 'shortTime'))
+                }}
+              </div>
+              } @else if (!entry.endsInSlot) {
+              <div class="text-[0.7rem] italic text-base-content/60">Continues</div>
+              } @else {
+              <div class="text-[0.7rem] text-base-content/60">
+                Ends {{ entry.event.end | date: 'shortTime' }}
+              </div>
+              }
+              <div class="text-sm font-medium text-base-content">{{ entry.event.title }}</div>
+            </div>
+            }
+            }
+          </div>
         </div>
-        }
         }
       </div>
     </div>
