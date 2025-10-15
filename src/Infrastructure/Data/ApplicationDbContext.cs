@@ -17,6 +17,10 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>, IApplica
 
     public DbSet<CalendarEvent> CalendarEvents => Set<CalendarEvent>();
 
+    public DbSet<Student> Students => Set<Student>();
+
+    public DbSet<Guardian> Guardians => Set<Guardian>();
+
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
