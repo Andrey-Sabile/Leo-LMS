@@ -1,5 +1,6 @@
 ﻿using LeoLMS.Application.Guardians.Commands.CreateGuardian;
 using LeoLMS.Application.Guardians.Commands.UpdateGuardian;
+using LeoLMS.Application.Guardians.Queries.GetGuardians;
 using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace LeoLMS.Web.Endpoints;
@@ -8,8 +9,16 @@ public class Guardians : EndpointGroupBase
 {
     public override void Map(RouteGroupBuilder groupBuilder)
     {
+        groupBuilder.MapGet(GetGuardians).RequireAuthorization();
         groupBuilder.MapPost(CreateGuardian).RequireAuthorization();
         groupBuilder.MapPut(UpdateGuardian, "{id}").RequireAuthorization();
+    }
+
+    public async Task<Ok<GuardiansVm>> GetGuardians(ISender sender)
+    {
+        var vm = await sender.Send(new GetGuardiansQuery());
+
+        return TypedResults.Ok(vm);
     }
 
     public async Task<Created<int>> CreateGuardian(ISender sender, CreateGuardianCommand command)
