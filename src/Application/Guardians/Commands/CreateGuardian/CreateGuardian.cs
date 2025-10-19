@@ -55,14 +55,15 @@ public class CreateGuardianCommandHandler : IRequestHandler<CreateGuardianComman
             request.Country
         );
 
-        var entity = Student.Create(
+        var entity = Guardian.Create(
             request.FirstName,
             request.LastName,
             request.Email,
-            address
-        );
+            request.PhoneNumber,
+            [],
+            address);
 
-        _context.Students.Add(entity);
+        _context.Guardians.Add(entity);
 
         await _context.SaveChangesAsync(cancellationToken);
 
