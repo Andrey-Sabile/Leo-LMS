@@ -14,12 +14,11 @@ public class Student : BaseAuditableEntity
         string firstName,
         string lastName,
         string email,
-        IList<Guardian> guardians,
         Address address
     )
     {
         var student = new Student();
-        student.SetDetails(firstName, lastName, email, guardians, address);
+        student.SetDetails(firstName, lastName, email, address);
         return student;
     }
 
@@ -31,27 +30,25 @@ public class Student : BaseAuditableEntity
         Address address
     )
     {
-        SetDetails(firstName, lastName, email, guardians, address);
+        SetDetails(firstName, lastName, email, address);
     }
 
     private void SetDetails(
         string firstName,
         string lastName,
         string email,
-        IList<Guardian> guardians,
         Address address
     )
     {
-        ValidateFields(firstName, lastName, email, address, guardians);
+        ValidateFields(firstName, lastName, email, address);
 
         FirstName = firstName;
         LastName = lastName;
         Email = email;
-        Guardians = guardians;
         Address = address;
     }
 
-    private static void ValidateFields(string firstName, string lastName, string email, Address address, IList<Guardian> guardians)
+    private static void ValidateFields(string firstName, string lastName, string email, Address address)
     {
         if (string.IsNullOrWhiteSpace(firstName))
             throw new ArgumentException("FirstName is required.", nameof(firstName));
@@ -63,8 +60,6 @@ public class Student : BaseAuditableEntity
             throw new ArgumentException("email is required.", nameof(email));
 
         ArgumentNullException.ThrowIfNull(address);
-
-        ArgumentNullException.ThrowIfNull(guardians);
     }
 
     // Soft Delete

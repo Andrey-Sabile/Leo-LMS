@@ -25,6 +25,17 @@ public class Guardian : BaseAuditableEntity
         return guardian;
     }
 
+    public void UpdateDetails(
+        string firstName,
+        string lastName,
+        string email,
+        int phoneNumber,
+        IList<Student> students,
+        Address address)
+    {
+        SetDetails(firstName, lastName, email, phoneNumber, students, address);
+    }
+
     private void SetDetails(
         string firstName,
         string lastName,

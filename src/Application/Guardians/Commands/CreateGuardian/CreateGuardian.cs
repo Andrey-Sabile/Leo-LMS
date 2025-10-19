@@ -1,9 +1,31 @@
 ﻿using LeoLMS.Application.Common.Interfaces;
+using LeoLMS.Domain.Entities;
+using LeoLMS.Domain.ValueObjects;
 
 namespace LeoLMS.Application.Guardians.Commands.CreateGuardian;
 
 public record CreateGuardianCommand : IRequest<int>
 {
+    public string FirstName { get; init; } = string.Empty;
+
+    public string LastName { get; init; } = string.Empty;
+
+    public string Email { get; init; } = string.Empty;
+
+    public int PhoneNumber { get; init; }
+
+    public string Street1 { get; init; } = string.Empty;
+
+    public string Street2 { get; init; } = string.Empty;
+
+    public string City { get; init; } = string.Empty;
+
+    public string State { get; init; } = string.Empty;
+
+    public int PostalCode { get; init; }
+
+    public string Country { get; init; } = string.Empty;
+
 }
 
 public class CreateGuardianCommandValidator : AbstractValidator<CreateGuardianCommand>
@@ -24,6 +46,26 @@ public class CreateGuardianCommandHandler : IRequestHandler<CreateGuardianComman
 
     public async Task<int> Handle(CreateGuardianCommand request, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        var address = Address.Create(
+            request.Street1,
+            request.Street2,
+            request.City,
+            request.State,
+            request.PostalCode,
+            request.Country
+        );
+
+        var entity = Student.Create(
+            request.FirstName,
+            request.LastName,
+            request.Email,
+            address
+        );
+
+        _context.Students.Add(entity);
+
+        await _context.SaveChangesAsync(cancellationToken);
+
+        return entity.Id;
     }
 }
