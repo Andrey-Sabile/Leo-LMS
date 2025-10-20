@@ -50,10 +50,6 @@
 
   </div>
 
-  <app-create-calendar-event-modal
-    [open]="isCreateEventModalOpen()"
-    [initialRange]="currentDateRange()"
-    (eventCreated)="handleEventCreated($event)"
-    (dismissed)="closeCreateEventModal()"
-  ></app-create-calendar-event-modal>
+  <app-create-calendar-event-modal [open]="isCreateEventModalOpen()" [initialRange]="currentDateRange()"
+    (eventCreated)="handleEventCreated($event)" (dismissed)="closeCreateEventModal()"></app-create-calendar-event-modal>
 </section>
