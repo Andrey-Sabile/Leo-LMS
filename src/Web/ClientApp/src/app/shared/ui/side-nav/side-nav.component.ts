@@ -16,14 +16,6 @@ type NavLink = {
   imports: [RouterLink, RouterLinkActive, NgFor]
 })
 export class SideNavComponent {
-  private static instanceCounter = 0;
-  private readonly instanceId = ++SideNavComponent.instanceCounter;
-
-  protected readonly panelId = `side-nav-panel-${this.instanceId}`;
-  protected readonly toggleId = `${this.panelId}-toggle`;
-
-  protected isSidebarOpen = false;
-
   protected readonly navLinks: readonly NavLink[] = [
     {
       label: 'Home',
@@ -75,19 +67,4 @@ export class SideNavComponent {
     }
   ];
 
-  toggleSidebar(): void {
-    this.isSidebarOpen = !this.isSidebarOpen;
-  }
-
-  closeSidebar(): void {
-    this.isSidebarOpen = false;
-  }
-
-  handleNavigation(): void {
-    if (typeof window !== 'undefined' && window.matchMedia('(min-width: 1024px)').matches) {
-      return;
-    }
-
-    this.closeSidebar();
-  }
 }

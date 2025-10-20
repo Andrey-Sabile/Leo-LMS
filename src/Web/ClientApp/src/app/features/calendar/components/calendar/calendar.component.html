@@ -6,16 +6,16 @@
       </div>
 
       <div class="join">
-        <button type="button" class="join-item btn" (click)="goToPreviousRange()">«</button>
-        <button type="button" class="join-item btn" (click)="goToToday()">
+        <button type="button" class="join-item btn bg-base-100" (click)="goToPreviousRange()">«</button>
+        <button type="button" class="join-item btn bg-base-100" (click)="goToToday()">
           {{ currentRangeLabel() }}
         </button>
-        <button type="button" class="join-item btn" (click)="goToNextRange()">»</button>
+        <button type="button" class="join-item btn bg-base-100" (click)="goToNextRange()">»</button>
       </div>
 
       <div class="flex flex-wrap gap-2">
         <div class="dropdown dropdown-start">
-          <button type="button" tabindex="0" role="button" class="btn">
+          <button type="button" tabindex="0" role="button" class="btn bg-base-100">
             {{ viewModeLabel() }}
           </button>
           <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box shadow">

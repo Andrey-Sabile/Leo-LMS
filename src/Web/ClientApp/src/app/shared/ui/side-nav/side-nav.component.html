@@ -1,38 +1,44 @@
-<div class="drawer lg:drawer-open" [class.drawer-open]="isSidebarOpen">
-  <input
-    aria-hidden="true"
-    type="checkbox"
-    class="drawer-toggle"
-    [checked]="isSidebarOpen"
-    [attr.id]="toggleId"
-    [attr.aria-controls]="panelId"
-    tabindex="-1"
-  />
-
-  <div class="drawer-content flex min-h-screen flex-col bg-base-100">
-    <div class="flex items-center justify-between border-b border-base-200 px-4 py-3 lg:hidden">
-      <h2 class="text-sm font-semibold uppercase tracking-wide text-base-content/60">
-        Navigation
-      </h2>
-      <button
-        type="button"
-        class="btn btn-ghost btn-sm gap-2"
-        (click)="toggleSidebar()"
-        [attr.aria-expanded]="isSidebarOpen"
-        [attr.aria-controls]="panelId"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="size-4"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          stroke-width="1.5"
-        >
-          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
-        <span class="font-medium">Menu</span>
-      </button>
+<div class="drawer drawer-open">
+  <input id="sidebar-drawer" type="checkbox" class="drawer-toggle" />
+  <div class="drawer-content flex flex-col">
+    <div class="navbar bg-base-100">
+      <div class="flex-1">
+      </div>
+      <div class="flex-none">
+        <ul class="menu menu-horizontal px-1">
+          <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            <a [routerLink]="['/']">Home</a>
+          </li>
+          <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            <a [routerLink]="['/calendar']">Calendar</a>
+          </li>
+          <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            <a [routerLink]="['/student-directory']">Student Directory</a>
+          </li>
+          <li>
+            <details>
+              <summary>References</summary>
+              <ul class="bg-base-100 rounded-t-none p-2">
+                <li routerLinkActive="active">
+                  <a [routerLink]="['/counter']">Counter</a>
+                </li>
+                <li routerLinkActive="active">
+                  <a [routerLink]="['/fetch-data']">Fetch data</a>
+                </li>
+                <li routerLinkActive="active">
+                  <a [routerLink]="['/todo']">Todo</a>
+                </li>
+                <li>
+                  <a href="/api" target="_blank" rel="noopener">API</a>
+                </li>
+                <li>
+                  <a href="/Identity/Account/Manage">Account</a>
+                </li>
+              </ul>
+            </details>
+          </li>
+        </ul>
+      </div>
     </div>
 
     <div class="flex flex-1 flex-col">
@@ -40,34 +46,19 @@
     </div>
   </div>
 
-  <div class="drawer-side z-40">
-    <label class="drawer-overlay" aria-label="Close navigation panel" (click)="closeSidebar()"></label>
+  <div class="drawer-side is-drawer-close:overflow-visible">
+    <label for="sidebar-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
+    <div class="is-drawer-close:w-14 is-drawer-open:w-64 bg-base-100 flex flex-col items-start min-h-full">
+      <a class="btn btn-ghost text-xl font-semibold" [routerLink]="['/']">Leo</a>
 
-    <nav
-      class="flex min-h-full w-72 flex-col bg-base-200/90 backdrop-blur lg:w-64"
-      [attr.id]="panelId"
-    >
-      <div class="px-6 pt-6 pb-4 text-sm font-semibold uppercase tracking-wide text-base-content/60">
-        Main Menu
-      </div>
-
-      <ul class="menu gap-1 px-2 pb-6 text-base-content">
-        <li
-          *ngFor="let item of navLinks"
-          routerLinkActive="active"
-          [routerLinkActiveOptions]="{ exact: item.exact ?? false }"
-        >
-          <a [routerLink]="item.route" (click)="handleNavigation()" class="rounded-lg">
+      <ul class="menu w-full grow">
+        <li *ngFor="let item of navLinks" routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: item.exact ?? false }">
+          <a [routerLink]="item.route" class="rounded-lg">
             <span class="flex items-center gap-3">
               <span class="flex h-9 w-9 items-center justify-center rounded-lg bg-base-100 text-base-content">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="currentColor"
-                  class="size-5"
-                >
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                  stroke="currentColor" class="size-5">
                   <ng-container *ngFor="let path of item.iconPaths">
                     <path [attr.d]="path" stroke-linecap="round" stroke-linejoin="round"></path>
                   </ng-container>
@@ -79,9 +70,6 @@
         </li>
       </ul>
 
-      <div class="mt-auto border-t border-base-300 px-6 py-4 text-xs text-base-content/70">
-        Signed in as <span class="font-medium">Teacher</span>
-      </div>
-    </nav>
+    </div>
   </div>
 </div>
