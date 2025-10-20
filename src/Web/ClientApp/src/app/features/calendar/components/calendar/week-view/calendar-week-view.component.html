@@ -9,11 +9,8 @@
 
   <div class="grid grid-cols-1 gap-4 md:grid-cols-7">
     @for (column of dayColumns(); track column.day.date) {
-    <div
-      class="flex max-h-[36rem] flex-col overflow-y-auto rounded-box border border-base-200"
-      [class.border-primary]="column.isToday"
-      [class.shadow-lg]="column.isToday"
-    >
+    <div class="flex max-h-[36rem] flex-col overflow-y-auto rounded-box border border-base-200"
+      [class.border-primary]="column.isToday" [class.shadow-lg]="column.isToday">
       <div class="divide-y divide-base-200">
         @for (slot of column.hourSlots; track slot.hour) {
         <div class="flex gap-3 p-3" [class.bg-base-200]="slot.isCurrentHour">
@@ -27,7 +24,7 @@
               @if (entry.startsInSlot) {
               <div class="text-[0.7rem] text-base-content/60">
                 {{
-                  entry.event.timeLabel || ('Starts ' + (entry.event.start | date: 'shortTime'))
+                entry.event.timeLabel || ('Starts ' + (entry.event.start | date: 'shortTime'))
                 }}
               </div>
               } @else if (!entry.endsInSlot) {
