@@ -1,5 +1,6 @@
 ﻿using LeoLMS.Domain.Constants;
 using LeoLMS.Domain.Entities;
+using LeoLMS.Infrastructure.Data.Seed;
 using LeoLMS.Infrastructure.Identity;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
@@ -27,13 +28,20 @@ public class ApplicationDbContextInitialiser
     private readonly ApplicationDbContext _context;
     private readonly UserManager<ApplicationUser> _userManager;
     private readonly RoleManager<IdentityRole> _roleManager;
+    private readonly IEnumerable<IEndpointSeedContributor> _seedContributors;
 
-    public ApplicationDbContextInitialiser(ILogger<ApplicationDbContextInitialiser> logger, ApplicationDbContext context, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
+    public ApplicationDbContextInitialiser(
+        ILogger<ApplicationDbContextInitialiser> logger,
+        ApplicationDbContext context,
+        UserManager<ApplicationUser> userManager,
+        RoleManager<IdentityRole> roleManager,
+        IEnumerable<IEndpointSeedContributor> seedContributors)
     {
         _logger = logger;
         _context = context;
         _userManager = userManager;
         _roleManager = roleManager;
+        _seedContributors = seedContributors;
     }
 
     public async Task InitialiseAsync()
@@ -82,7 +90,7 @@ public class ApplicationDbContextInitialiser
             await _userManager.CreateAsync(administrator, "Administrator1!");
             if (!string.IsNullOrWhiteSpace(administratorRole.Name))
             {
-                await _userManager.AddToRolesAsync(administrator, new [] { administratorRole.Name });
+                await _userManager.AddToRolesAsync(administrator, new[] { administratorRole.Name });
             }
         }
 
@@ -103,6 +111,19 @@ public class ApplicationDbContextInitialiser
             });
 
             await _context.SaveChangesAsync();
+        }
+
+        foreach (var contributor in _seedContributors)
+        {
+            try
+            {
+                await contributor.SeedAsync(_context);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Failed to execute seed contributor for endpoint '{EndpointName}'.", contributor.EndpointName);
+                throw;
+            }
         }
     }
 }

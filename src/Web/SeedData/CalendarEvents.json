@@ -1,0 +1,1033 @@
+{
+  "events": [
+    {
+      "title": "Semester Kickoff Assembly",
+      "description": "All staff and students gather in the auditorium to launch the term.",
+      "start": "2024-09-02T08:30:00+00:00",
+      "end": "2024-09-02T10:00:00+00:00",
+      "status": "Scheduled",
+      "type": "Announcement",
+      "scope": "School"
+    },
+    {
+      "title": "Year 10 Mathematics Midterm",
+      "description": "Proctored exam covering units 1-4.",
+      "start": "2024-10-15T09:00:00+00:00",
+      "end": "2024-10-15T11:00:00+00:00",
+      "status": "Scheduled",
+      "type": "Exam",
+      "scope": "Class",
+      "classId": 10
+    },
+    {
+      "title": "Computer Science Project Showcase",
+      "description": "Subject-specific showcase for parents and guardians.",
+      "start": "2024-11-20T17:00:00+00:00",
+      "end": "2024-11-20T19:00:00+00:00",
+      "status": "Scheduled",
+      "type": "Announcement",
+      "scope": "Subject",
+      "classId": 10,
+      "subjectId": 3
+    },
+    {
+      "title": "Autumn Learning Session 001",
+      "description": "Focused workshop held in October 2025.",
+      "start": "2025-10-01T08:00:00+00:00",
+      "end": "2025-10-01T09:45:00+00:00",
+      "status": "Scheduled",
+      "type": "Announcement",
+      "scope": "School"
+    },
+    {
+      "title": "Autumn Learning Session 002",
+      "description": "Focused workshop held in October 2025.",
+      "start": "2025-10-02T10:00:00+00:00",
+      "end": "2025-10-02T11:45:00+00:00",
+      "status": "Draft",
+      "type": "Exam",
+      "scope": "Class",
+      "classId": 2
+    },
+    {
+      "title": "Autumn Learning Session 003",
+      "description": "Focused workshop held in October 2025.",
+      "start": "2025-10-03T12:00:00+00:00",
+      "end": "2025-10-03T13:45:00+00:00",
+      "status": "Scheduled",
+      "type": "Holiday",
+      "scope": "Subject",
+      "classId": 3,
+      "subjectId": 3
+    },
+    {
+      "title": "Autumn Learning Session 004",
+      "description": "Focused workshop held in October 2025.",
+      "start": "2025-10-04T14:00:00+00:00",
+      "end": "2025-10-04T15:45:00+00:00",
+      "status": "Cancelled",
+      "type": "Announcement",
+      "scope": "School"
+    },
+    {
+      "title": "Autumn Learning Session 005",
+      "description": "Focused workshop held in October 2025.",
+      "start": "2025-10-05T08:00:00+00:00",
+      "end": "2025-10-05T09:45:00+00:00",
+      "status": "Scheduled",
+      "type": "Exam",
+      "scope": "Class",
+      "classId": 5
+    },
+    {
+      "title": "Autumn Learning Session 006",
+      "description": "Focused workshop held in October 2025.",
+      "start": "2025-10-06T10:00:00+00:00",
+      "end": "2025-10-06T11:45:00+00:00",
+      "status": "Draft",
+      "type": "Holiday",
+      "scope": "Subject",
+      "classId": 6,
+      "subjectId": 6
+    },
+    {
+      "title": "Autumn Learning Session 007",
+      "description": "Focused workshop held in October 2025.",
+      "start": "2025-10-07T12:00:00+00:00",
+      "end": "2025-10-07T13:45:00+00:00",
+      "status": "Scheduled",
+      "type": "Announcement",
+      "scope": "School"
+    },
+    {
+      "title": "Autumn Learning Session 008",
+      "description": "Focused workshop held in October 2025.",
+      "start": "2025-10-08T14:00:00+00:00",
+      "end": "2025-10-08T15:45:00+00:00",
+      "status": "Cancelled",
+      "type": "Exam",
+      "scope": "Class",
+      "classId": 8
+    },
+    {
+      "title": "Autumn Learning Session 009",
+      "description": "Focused workshop held in October 2025.",
+      "start": "2025-10-09T08:00:00+00:00",
+      "end": "2025-10-09T09:45:00+00:00",
+      "status": "Scheduled",
+      "type": "Holiday",
+      "scope": "Subject",
+      "classId": 9,
+      "subjectId": 2
+    },
+    {
+      "title": "Autumn Learning Session 010",
+      "description": "Focused workshop held in October 2025.",
+      "start": "2025-10-10T10:00:00+00:00",
+      "end": "2025-10-10T11:45:00+00:00",
+      "status": "Draft",
+      "type": "Announcement",
+      "scope": "School"
+    },
+    {
+      "title": "Autumn Learning Session 011",
+      "description": "Focused workshop held in October 2025.",
+      "start": "2025-10-11T12:00:00+00:00",
+      "end": "2025-10-11T13:45:00+00:00",
+      "status": "Scheduled",
+      "type": "Exam",
+      "scope": "Class",
+      "classId": 11
+    },
+    {
+      "title": "Autumn Learning Session 012",
+      "description": "Focused workshop held in October 2025.",
+      "start": "2025-10-12T14:00:00+00:00",
+      "end": "2025-10-12T15:45:00+00:00",
+      "status": "Cancelled",
+      "type": "Holiday",
+      "scope": "Subject",
+      "classId": 12,
+      "subjectId": 5
+    },
+    {
+      "title": "Autumn Learning Session 013",
+      "description": "Focused workshop held in October 2025.",
+      "start": "2025-10-13T08:00:00+00:00",
+      "end": "2025-10-13T09:45:00+00:00",
+      "status": "Scheduled",
+      "type": "Announcement",
+      "scope": "School"
+    },
+    {
+      "title": "Autumn Learning Session 014",
+      "description": "Focused workshop held in October 2025.",
+      "start": "2025-10-14T10:00:00+00:00",
+      "end": "2025-10-14T11:45:00+00:00",
+      "status": "Draft",
+      "type": "Exam",
+      "scope": "Class",
+      "classId": 2
+    },
+    {
+      "title": "Autumn Learning Session 015",
+      "description": "Focused workshop held in October 2025.",
+      "start": "2025-10-15T12:00:00+00:00",
+      "end": "2025-10-15T13:45:00+00:00",
+      "status": "Scheduled",
+      "type": "Holiday",
+      "scope": "Subject",
+      "classId": 3,
+      "subjectId": 1
+    },
+    {
+      "title": "Autumn Learning Session 016",
+      "description": "Focused workshop held in October 2025.",
+      "start": "2025-10-16T14:00:00+00:00",
+      "end": "2025-10-16T15:45:00+00:00",
+      "status": "Cancelled",
+      "type": "Announcement",
+      "scope": "School"
+    },
+    {
+      "title": "Autumn Learning Session 017",
+      "description": "Focused workshop held in October 2025.",
+      "start": "2025-10-17T08:00:00+00:00",
+      "end": "2025-10-17T09:45:00+00:00",
+      "status": "Scheduled",
+      "type": "Exam",
+      "scope": "Class",
+      "classId": 5
+    },
+    {
+      "title": "Autumn Learning Session 018",
+      "description": "Focused workshop held in October 2025.",
+      "start": "2025-10-18T10:00:00+00:00",
+      "end": "2025-10-18T11:45:00+00:00",
+      "status": "Draft",
+      "type": "Holiday",
+      "scope": "Subject",
+      "classId": 6,
+      "subjectId": 4
+    },
+    {
+      "title": "Autumn Learning Session 019",
+      "description": "Focused workshop held in October 2025.",
+      "start": "2025-10-19T12:00:00+00:00",
+      "end": "2025-10-19T13:45:00+00:00",
+      "status": "Scheduled",
+      "type": "Announcement",
+      "scope": "School"
+    },
+    {
+      "title": "Autumn Learning Session 020",
+      "description": "Focused workshop held in October 2025.",
+      "start": "2025-10-20T14:00:00+00:00",
+      "end": "2025-10-20T15:45:00+00:00",
+      "status": "Cancelled",
+      "type": "Exam",
+      "scope": "Class",
+      "classId": 8
+    },
+    {
+      "title": "Autumn Learning Session 021",
+      "description": "Focused workshop held in October 2025.",
+      "start": "2025-10-21T08:00:00+00:00",
+      "end": "2025-10-21T09:45:00+00:00",
+      "status": "Scheduled",
+      "type": "Holiday",
+      "scope": "Subject",
+      "classId": 9,
+      "subjectId": 7
+    },
+    {
+      "title": "Autumn Learning Session 022",
+      "description": "Focused workshop held in October 2025.",
+      "start": "2025-10-22T10:00:00+00:00",
+      "end": "2025-10-22T11:45:00+00:00",
+      "status": "Draft",
+      "type": "Announcement",
+      "scope": "School"
+    },
+    {
+      "title": "Autumn Learning Session 023",
+      "description": "Focused workshop held in October 2025.",
+      "start": "2025-10-23T12:00:00+00:00",
+      "end": "2025-10-23T13:45:00+00:00",
+      "status": "Scheduled",
+      "type": "Exam",
+      "scope": "Class",
+      "classId": 11
+    },
+    {
+      "title": "Autumn Learning Session 024",
+      "description": "Focused workshop held in October 2025.",
+      "start": "2025-10-24T14:00:00+00:00",
+      "end": "2025-10-24T15:45:00+00:00",
+      "status": "Cancelled",
+      "type": "Holiday",
+      "scope": "Subject",
+      "classId": 12,
+      "subjectId": 3
+    },
+    {
+      "title": "Autumn Learning Session 025",
+      "description": "Focused workshop held in October 2025.",
+      "start": "2025-10-25T08:00:00+00:00",
+      "end": "2025-10-25T09:45:00+00:00",
+      "status": "Scheduled",
+      "type": "Announcement",
+      "scope": "School"
+    },
+    {
+      "title": "Autumn Learning Session 026",
+      "description": "Focused workshop held in October 2025.",
+      "start": "2025-10-26T10:00:00+00:00",
+      "end": "2025-10-26T11:45:00+00:00",
+      "status": "Draft",
+      "type": "Exam",
+      "scope": "Class",
+      "classId": 2
+    },
+    {
+      "title": "Autumn Learning Session 027",
+      "description": "Focused workshop held in October 2025.",
+      "start": "2025-10-27T12:00:00+00:00",
+      "end": "2025-10-27T13:45:00+00:00",
+      "status": "Scheduled",
+      "type": "Holiday",
+      "scope": "Subject",
+      "classId": 3,
+      "subjectId": 6
+    },
+    {
+      "title": "Autumn Learning Session 028",
+      "description": "Focused workshop held in October 2025.",
+      "start": "2025-10-28T14:00:00+00:00",
+      "end": "2025-10-28T15:45:00+00:00",
+      "status": "Cancelled",
+      "type": "Announcement",
+      "scope": "School"
+    },
+    {
+      "title": "Autumn Learning Session 029",
+      "description": "Focused workshop held in October 2025.",
+      "start": "2025-10-29T08:00:00+00:00",
+      "end": "2025-10-29T09:45:00+00:00",
+      "status": "Scheduled",
+      "type": "Exam",
+      "scope": "Class",
+      "classId": 5
+    },
+    {
+      "title": "Autumn Learning Session 030",
+      "description": "Focused workshop held in October 2025.",
+      "start": "2025-10-30T10:00:00+00:00",
+      "end": "2025-10-30T11:45:00+00:00",
+      "status": "Draft",
+      "type": "Holiday",
+      "scope": "Subject",
+      "classId": 6,
+      "subjectId": 2
+    },
+    {
+      "title": "Autumn Learning Session 031",
+      "description": "Focused workshop held in October 2025.",
+      "start": "2025-10-31T12:00:00+00:00",
+      "end": "2025-10-31T13:45:00+00:00",
+      "status": "Scheduled",
+      "type": "Announcement",
+      "scope": "School"
+    },
+    {
+      "title": "Autumn Learning Session 032",
+      "description": "Focused workshop held in October 2025.",
+      "start": "2025-10-01T14:00:00+00:00",
+      "end": "2025-10-01T15:45:00+00:00",
+      "status": "Cancelled",
+      "type": "Exam",
+      "scope": "Class",
+      "classId": 8
+    },
+    {
+      "title": "Autumn Learning Session 033",
+      "description": "Focused workshop held in October 2025.",
+      "start": "2025-10-02T08:00:00+00:00",
+      "end": "2025-10-02T09:45:00+00:00",
+      "status": "Scheduled",
+      "type": "Holiday",
+      "scope": "Subject",
+      "classId": 9,
+      "subjectId": 5
+    },
+    {
+      "title": "Autumn Learning Session 034",
+      "description": "Focused workshop held in October 2025.",
+      "start": "2025-10-03T10:00:00+00:00",
+      "end": "2025-10-03T11:45:00+00:00",
+      "status": "Draft",
+      "type": "Announcement",
+      "scope": "School"
+    },
+    {
+      "title": "Autumn Learning Session 035",
+      "description": "Focused workshop held in October 2025.",
+      "start": "2025-10-04T12:00:00+00:00",
+      "end": "2025-10-04T13:45:00+00:00",
+      "status": "Scheduled",
+      "type": "Exam",
+      "scope": "Class",
+      "classId": 11
+    },
+    {
+      "title": "Autumn Learning Session 036",
+      "description": "Focused workshop held in October 2025.",
+      "start": "2025-10-05T14:00:00+00:00",
+      "end": "2025-10-05T15:45:00+00:00",
+      "status": "Cancelled",
+      "type": "Holiday",
+      "scope": "Subject",
+      "classId": 12,
+      "subjectId": 1
+    },
+    {
+      "title": "Autumn Learning Session 037",
+      "description": "Focused workshop held in October 2025.",
+      "start": "2025-10-06T08:00:00+00:00",
+      "end": "2025-10-06T09:45:00+00:00",
+      "status": "Scheduled",
+      "type": "Announcement",
+      "scope": "School"
+    },
+    {
+      "title": "Autumn Learning Session 038",
+      "description": "Focused workshop held in October 2025.",
+      "start": "2025-10-07T10:00:00+00:00",
+      "end": "2025-10-07T11:45:00+00:00",
+      "status": "Draft",
+      "type": "Exam",
+      "scope": "Class",
+      "classId": 2
+    },
+    {
+      "title": "Autumn Learning Session 039",
+      "description": "Focused workshop held in October 2025.",
+      "start": "2025-10-08T12:00:00+00:00",
+      "end": "2025-10-08T13:45:00+00:00",
+      "status": "Scheduled",
+      "type": "Holiday",
+      "scope": "Subject",
+      "classId": 3,
+      "subjectId": 4
+    },
+    {
+      "title": "Autumn Learning Session 040",
+      "description": "Focused workshop held in October 2025.",
+      "start": "2025-10-09T14:00:00+00:00",
+      "end": "2025-10-09T15:45:00+00:00",
+      "status": "Cancelled",
+      "type": "Announcement",
+      "scope": "School"
+    },
+    {
+      "title": "Autumn Learning Session 041",
+      "description": "Focused workshop held in October 2025.",
+      "start": "2025-10-10T08:00:00+00:00",
+      "end": "2025-10-10T09:45:00+00:00",
+      "status": "Scheduled",
+      "type": "Exam",
+      "scope": "Class",
+      "classId": 5
+    },
+    {
+      "title": "Autumn Learning Session 042",
+      "description": "Focused workshop held in October 2025.",
+      "start": "2025-10-11T10:00:00+00:00",
+      "end": "2025-10-11T11:45:00+00:00",
+      "status": "Draft",
+      "type": "Holiday",
+      "scope": "Subject",
+      "classId": 6,
+      "subjectId": 7
+    },
+    {
+      "title": "Autumn Learning Session 043",
+      "description": "Focused workshop held in October 2025.",
+      "start": "2025-10-12T12:00:00+00:00",
+      "end": "2025-10-12T13:45:00+00:00",
+      "status": "Scheduled",
+      "type": "Announcement",
+      "scope": "School"
+    },
+    {
+      "title": "Autumn Learning Session 044",
+      "description": "Focused workshop held in October 2025.",
+      "start": "2025-10-13T14:00:00+00:00",
+      "end": "2025-10-13T15:45:00+00:00",
+      "status": "Cancelled",
+      "type": "Exam",
+      "scope": "Class",
+      "classId": 8
+    },
+    {
+      "title": "Autumn Learning Session 045",
+      "description": "Focused workshop held in October 2025.",
+      "start": "2025-10-14T08:00:00+00:00",
+      "end": "2025-10-14T09:45:00+00:00",
+      "status": "Scheduled",
+      "type": "Holiday",
+      "scope": "Subject",
+      "classId": 9,
+      "subjectId": 3
+    },
+    {
+      "title": "Autumn Learning Session 046",
+      "description": "Focused workshop held in October 2025.",
+      "start": "2025-10-15T10:00:00+00:00",
+      "end": "2025-10-15T11:45:00+00:00",
+      "status": "Draft",
+      "type": "Announcement",
+      "scope": "School"
+    },
+    {
+      "title": "Autumn Learning Session 047",
+      "description": "Focused workshop held in October 2025.",
+      "start": "2025-10-16T12:00:00+00:00",
+      "end": "2025-10-16T13:45:00+00:00",
+      "status": "Scheduled",
+      "type": "Exam",
+      "scope": "Class",
+      "classId": 11
+    },
+    {
+      "title": "Autumn Learning Session 048",
+      "description": "Focused workshop held in October 2025.",
+      "start": "2025-10-17T14:00:00+00:00",
+      "end": "2025-10-17T15:45:00+00:00",
+      "status": "Cancelled",
+      "type": "Holiday",
+      "scope": "Subject",
+      "classId": 12,
+      "subjectId": 6
+    },
+    {
+      "title": "Autumn Learning Session 049",
+      "description": "Focused workshop held in October 2025.",
+      "start": "2025-10-18T08:00:00+00:00",
+      "end": "2025-10-18T09:45:00+00:00",
+      "status": "Scheduled",
+      "type": "Announcement",
+      "scope": "School"
+    },
+    {
+      "title": "Autumn Learning Session 050",
+      "description": "Focused workshop held in October 2025.",
+      "start": "2025-10-19T10:00:00+00:00",
+      "end": "2025-10-19T11:45:00+00:00",
+      "status": "Draft",
+      "type": "Exam",
+      "scope": "Class",
+      "classId": 2
+    },
+    {
+      "title": "Autumn Learning Session 051",
+      "description": "Focused workshop held in November 2025.",
+      "start": "2025-11-01T12:00:00+00:00",
+      "end": "2025-11-01T13:45:00+00:00",
+      "status": "Scheduled",
+      "type": "Holiday",
+      "scope": "Subject",
+      "classId": 3,
+      "subjectId": 2
+    },
+    {
+      "title": "Autumn Learning Session 052",
+      "description": "Focused workshop held in November 2025.",
+      "start": "2025-11-02T14:00:00+00:00",
+      "end": "2025-11-02T15:45:00+00:00",
+      "status": "Cancelled",
+      "type": "Announcement",
+      "scope": "School"
+    },
+    {
+      "title": "Autumn Learning Session 053",
+      "description": "Focused workshop held in November 2025.",
+      "start": "2025-11-03T08:00:00+00:00",
+      "end": "2025-11-03T09:45:00+00:00",
+      "status": "Scheduled",
+      "type": "Exam",
+      "scope": "Class",
+      "classId": 5
+    },
+    {
+      "title": "Autumn Learning Session 054",
+      "description": "Focused workshop held in November 2025.",
+      "start": "2025-11-04T10:00:00+00:00",
+      "end": "2025-11-04T11:45:00+00:00",
+      "status": "Draft",
+      "type": "Holiday",
+      "scope": "Subject",
+      "classId": 6,
+      "subjectId": 5
+    },
+    {
+      "title": "Autumn Learning Session 055",
+      "description": "Focused workshop held in November 2025.",
+      "start": "2025-11-05T12:00:00+00:00",
+      "end": "2025-11-05T13:45:00+00:00",
+      "status": "Scheduled",
+      "type": "Announcement",
+      "scope": "School"
+    },
+    {
+      "title": "Autumn Learning Session 056",
+      "description": "Focused workshop held in November 2025.",
+      "start": "2025-11-06T14:00:00+00:00",
+      "end": "2025-11-06T15:45:00+00:00",
+      "status": "Cancelled",
+      "type": "Exam",
+      "scope": "Class",
+      "classId": 8
+    },
+    {
+      "title": "Autumn Learning Session 057",
+      "description": "Focused workshop held in November 2025.",
+      "start": "2025-11-07T08:00:00+00:00",
+      "end": "2025-11-07T09:45:00+00:00",
+      "status": "Scheduled",
+      "type": "Holiday",
+      "scope": "Subject",
+      "classId": 9,
+      "subjectId": 1
+    },
+    {
+      "title": "Autumn Learning Session 058",
+      "description": "Focused workshop held in November 2025.",
+      "start": "2025-11-08T10:00:00+00:00",
+      "end": "2025-11-08T11:45:00+00:00",
+      "status": "Draft",
+      "type": "Announcement",
+      "scope": "School"
+    },
+    {
+      "title": "Autumn Learning Session 059",
+      "description": "Focused workshop held in November 2025.",
+      "start": "2025-11-09T12:00:00+00:00",
+      "end": "2025-11-09T13:45:00+00:00",
+      "status": "Scheduled",
+      "type": "Exam",
+      "scope": "Class",
+      "classId": 11
+    },
+    {
+      "title": "Autumn Learning Session 060",
+      "description": "Focused workshop held in November 2025.",
+      "start": "2025-11-10T14:00:00+00:00",
+      "end": "2025-11-10T15:45:00+00:00",
+      "status": "Cancelled",
+      "type": "Holiday",
+      "scope": "Subject",
+      "classId": 12,
+      "subjectId": 4
+    },
+    {
+      "title": "Autumn Learning Session 061",
+      "description": "Focused workshop held in November 2025.",
+      "start": "2025-11-11T08:00:00+00:00",
+      "end": "2025-11-11T09:45:00+00:00",
+      "status": "Scheduled",
+      "type": "Announcement",
+      "scope": "School"
+    },
+    {
+      "title": "Autumn Learning Session 062",
+      "description": "Focused workshop held in November 2025.",
+      "start": "2025-11-12T10:00:00+00:00",
+      "end": "2025-11-12T11:45:00+00:00",
+      "status": "Draft",
+      "type": "Exam",
+      "scope": "Class",
+      "classId": 2
+    },
+    {
+      "title": "Autumn Learning Session 063",
+      "description": "Focused workshop held in November 2025.",
+      "start": "2025-11-13T12:00:00+00:00",
+      "end": "2025-11-13T13:45:00+00:00",
+      "status": "Scheduled",
+      "type": "Holiday",
+      "scope": "Subject",
+      "classId": 3,
+      "subjectId": 7
+    },
+    {
+      "title": "Autumn Learning Session 064",
+      "description": "Focused workshop held in November 2025.",
+      "start": "2025-11-14T14:00:00+00:00",
+      "end": "2025-11-14T15:45:00+00:00",
+      "status": "Cancelled",
+      "type": "Announcement",
+      "scope": "School"
+    },
+    {
+      "title": "Autumn Learning Session 065",
+      "description": "Focused workshop held in November 2025.",
+      "start": "2025-11-15T08:00:00+00:00",
+      "end": "2025-11-15T09:45:00+00:00",
+      "status": "Scheduled",
+      "type": "Exam",
+      "scope": "Class",
+      "classId": 5
+    },
+    {
+      "title": "Autumn Learning Session 066",
+      "description": "Focused workshop held in November 2025.",
+      "start": "2025-11-16T10:00:00+00:00",
+      "end": "2025-11-16T11:45:00+00:00",
+      "status": "Draft",
+      "type": "Holiday",
+      "scope": "Subject",
+      "classId": 6,
+      "subjectId": 3
+    },
+    {
+      "title": "Autumn Learning Session 067",
+      "description": "Focused workshop held in November 2025.",
+      "start": "2025-11-17T12:00:00+00:00",
+      "end": "2025-11-17T13:45:00+00:00",
+      "status": "Scheduled",
+      "type": "Announcement",
+      "scope": "School"
+    },
+    {
+      "title": "Autumn Learning Session 068",
+      "description": "Focused workshop held in November 2025.",
+      "start": "2025-11-18T14:00:00+00:00",
+      "end": "2025-11-18T15:45:00+00:00",
+      "status": "Cancelled",
+      "type": "Exam",
+      "scope": "Class",
+      "classId": 8
+    },
+    {
+      "title": "Autumn Learning Session 069",
+      "description": "Focused workshop held in November 2025.",
+      "start": "2025-11-19T08:00:00+00:00",
+      "end": "2025-11-19T09:45:00+00:00",
+      "status": "Scheduled",
+      "type": "Holiday",
+      "scope": "Subject",
+      "classId": 9,
+      "subjectId": 6
+    },
+    {
+      "title": "Autumn Learning Session 070",
+      "description": "Focused workshop held in November 2025.",
+      "start": "2025-11-20T10:00:00+00:00",
+      "end": "2025-11-20T11:45:00+00:00",
+      "status": "Draft",
+      "type": "Announcement",
+      "scope": "School"
+    },
+    {
+      "title": "Autumn Learning Session 071",
+      "description": "Focused workshop held in November 2025.",
+      "start": "2025-11-21T12:00:00+00:00",
+      "end": "2025-11-21T13:45:00+00:00",
+      "status": "Scheduled",
+      "type": "Exam",
+      "scope": "Class",
+      "classId": 11
+    },
+    {
+      "title": "Autumn Learning Session 072",
+      "description": "Focused workshop held in November 2025.",
+      "start": "2025-11-22T14:00:00+00:00",
+      "end": "2025-11-22T15:45:00+00:00",
+      "status": "Cancelled",
+      "type": "Holiday",
+      "scope": "Subject",
+      "classId": 12,
+      "subjectId": 2
+    },
+    {
+      "title": "Autumn Learning Session 073",
+      "description": "Focused workshop held in November 2025.",
+      "start": "2025-11-23T08:00:00+00:00",
+      "end": "2025-11-23T09:45:00+00:00",
+      "status": "Scheduled",
+      "type": "Announcement",
+      "scope": "School"
+    },
+    {
+      "title": "Autumn Learning Session 074",
+      "description": "Focused workshop held in November 2025.",
+      "start": "2025-11-24T10:00:00+00:00",
+      "end": "2025-11-24T11:45:00+00:00",
+      "status": "Draft",
+      "type": "Exam",
+      "scope": "Class",
+      "classId": 2
+    },
+    {
+      "title": "Autumn Learning Session 075",
+      "description": "Focused workshop held in November 2025.",
+      "start": "2025-11-25T12:00:00+00:00",
+      "end": "2025-11-25T13:45:00+00:00",
+      "status": "Scheduled",
+      "type": "Holiday",
+      "scope": "Subject",
+      "classId": 3,
+      "subjectId": 5
+    },
+    {
+      "title": "Autumn Learning Session 076",
+      "description": "Focused workshop held in November 2025.",
+      "start": "2025-11-26T14:00:00+00:00",
+      "end": "2025-11-26T15:45:00+00:00",
+      "status": "Cancelled",
+      "type": "Announcement",
+      "scope": "School"
+    },
+    {
+      "title": "Autumn Learning Session 077",
+      "description": "Focused workshop held in November 2025.",
+      "start": "2025-11-27T08:00:00+00:00",
+      "end": "2025-11-27T09:45:00+00:00",
+      "status": "Scheduled",
+      "type": "Exam",
+      "scope": "Class",
+      "classId": 5
+    },
+    {
+      "title": "Autumn Learning Session 078",
+      "description": "Focused workshop held in November 2025.",
+      "start": "2025-11-28T10:00:00+00:00",
+      "end": "2025-11-28T11:45:00+00:00",
+      "status": "Draft",
+      "type": "Holiday",
+      "scope": "Subject",
+      "classId": 6,
+      "subjectId": 1
+    },
+    {
+      "title": "Autumn Learning Session 079",
+      "description": "Focused workshop held in November 2025.",
+      "start": "2025-11-29T12:00:00+00:00",
+      "end": "2025-11-29T13:45:00+00:00",
+      "status": "Scheduled",
+      "type": "Announcement",
+      "scope": "School"
+    },
+    {
+      "title": "Autumn Learning Session 080",
+      "description": "Focused workshop held in November 2025.",
+      "start": "2025-11-30T14:00:00+00:00",
+      "end": "2025-11-30T15:45:00+00:00",
+      "status": "Cancelled",
+      "type": "Exam",
+      "scope": "Class",
+      "classId": 8
+    },
+    {
+      "title": "Autumn Learning Session 081",
+      "description": "Focused workshop held in November 2025.",
+      "start": "2025-11-01T08:00:00+00:00",
+      "end": "2025-11-01T09:45:00+00:00",
+      "status": "Scheduled",
+      "type": "Holiday",
+      "scope": "Subject",
+      "classId": 9,
+      "subjectId": 4
+    },
+    {
+      "title": "Autumn Learning Session 082",
+      "description": "Focused workshop held in November 2025.",
+      "start": "2025-11-02T10:00:00+00:00",
+      "end": "2025-11-02T11:45:00+00:00",
+      "status": "Draft",
+      "type": "Announcement",
+      "scope": "School"
+    },
+    {
+      "title": "Autumn Learning Session 083",
+      "description": "Focused workshop held in November 2025.",
+      "start": "2025-11-03T12:00:00+00:00",
+      "end": "2025-11-03T13:45:00+00:00",
+      "status": "Scheduled",
+      "type": "Exam",
+      "scope": "Class",
+      "classId": 11
+    },
+    {
+      "title": "Autumn Learning Session 084",
+      "description": "Focused workshop held in November 2025.",
+      "start": "2025-11-04T14:00:00+00:00",
+      "end": "2025-11-04T15:45:00+00:00",
+      "status": "Cancelled",
+      "type": "Holiday",
+      "scope": "Subject",
+      "classId": 12,
+      "subjectId": 7
+    },
+    {
+      "title": "Autumn Learning Session 085",
+      "description": "Focused workshop held in November 2025.",
+      "start": "2025-11-05T08:00:00+00:00",
+      "end": "2025-11-05T09:45:00+00:00",
+      "status": "Scheduled",
+      "type": "Announcement",
+      "scope": "School"
+    },
+    {
+      "title": "Autumn Learning Session 086",
+      "description": "Focused workshop held in November 2025.",
+      "start": "2025-11-06T10:00:00+00:00",
+      "end": "2025-11-06T11:45:00+00:00",
+      "status": "Draft",
+      "type": "Exam",
+      "scope": "Class",
+      "classId": 2
+    },
+    {
+      "title": "Autumn Learning Session 087",
+      "description": "Focused workshop held in November 2025.",
+      "start": "2025-11-07T12:00:00+00:00",
+      "end": "2025-11-07T13:45:00+00:00",
+      "status": "Scheduled",
+      "type": "Holiday",
+      "scope": "Subject",
+      "classId": 3,
+      "subjectId": 3
+    },
+    {
+      "title": "Autumn Learning Session 088",
+      "description": "Focused workshop held in November 2025.",
+      "start": "2025-11-08T14:00:00+00:00",
+      "end": "2025-11-08T15:45:00+00:00",
+      "status": "Cancelled",
+      "type": "Announcement",
+      "scope": "School"
+    },
+    {
+      "title": "Autumn Learning Session 089",
+      "description": "Focused workshop held in November 2025.",
+      "start": "2025-11-09T08:00:00+00:00",
+      "end": "2025-11-09T09:45:00+00:00",
+      "status": "Scheduled",
+      "type": "Exam",
+      "scope": "Class",
+      "classId": 5
+    },
+    {
+      "title": "Autumn Learning Session 090",
+      "description": "Focused workshop held in November 2025.",
+      "start": "2025-11-10T10:00:00+00:00",
+      "end": "2025-11-10T11:45:00+00:00",
+      "status": "Draft",
+      "type": "Holiday",
+      "scope": "Subject",
+      "classId": 6,
+      "subjectId": 6
+    },
+    {
+      "title": "Autumn Learning Session 091",
+      "description": "Focused workshop held in November 2025.",
+      "start": "2025-11-11T12:00:00+00:00",
+      "end": "2025-11-11T13:45:00+00:00",
+      "status": "Scheduled",
+      "type": "Announcement",
+      "scope": "School"
+    },
+    {
+      "title": "Autumn Learning Session 092",
+      "description": "Focused workshop held in November 2025.",
+      "start": "2025-11-12T14:00:00+00:00",
+      "end": "2025-11-12T15:45:00+00:00",
+      "status": "Cancelled",
+      "type": "Exam",
+      "scope": "Class",
+      "classId": 8
+    },
+    {
+      "title": "Autumn Learning Session 093",
+      "description": "Focused workshop held in November 2025.",
+      "start": "2025-11-13T08:00:00+00:00",
+      "end": "2025-11-13T09:45:00+00:00",
+      "status": "Scheduled",
+      "type": "Holiday",
+      "scope": "Subject",
+      "classId": 9,
+      "subjectId": 2
+    },
+    {
+      "title": "Autumn Learning Session 094",
+      "description": "Focused workshop held in November 2025.",
+      "start": "2025-11-14T10:00:00+00:00",
+      "end": "2025-11-14T11:45:00+00:00",
+      "status": "Draft",
+      "type": "Announcement",
+      "scope": "School"
+    },
+    {
+      "title": "Autumn Learning Session 095",
+      "description": "Focused workshop held in November 2025.",
+      "start": "2025-11-15T12:00:00+00:00",
+      "end": "2025-11-15T13:45:00+00:00",
+      "status": "Scheduled",
+      "type": "Exam",
+      "scope": "Class",
+      "classId": 11
+    },
+    {
+      "title": "Autumn Learning Session 096",
+      "description": "Focused workshop held in November 2025.",
+      "start": "2025-11-16T14:00:00+00:00",
+      "end": "2025-11-16T15:45:00+00:00",
+      "status": "Cancelled",
+      "type": "Holiday",
+      "scope": "Subject",
+      "classId": 12,
+      "subjectId": 5
+    },
+    {
+      "title": "Autumn Learning Session 097",
+      "description": "Focused workshop held in November 2025.",
+      "start": "2025-11-17T08:00:00+00:00",
+      "end": "2025-11-17T09:45:00+00:00",
+      "status": "Scheduled",
+      "type": "Announcement",
+      "scope": "School"
+    },
+    {
+      "title": "Autumn Learning Session 098",
+      "description": "Focused workshop held in November 2025.",
+      "start": "2025-11-18T10:00:00+00:00",
+      "end": "2025-11-18T11:45:00+00:00",
+      "status": "Draft",
+      "type": "Exam",
+      "scope": "Class",
+      "classId": 2
+    },
+    {
+      "title": "Autumn Learning Session 099",
+      "description": "Focused workshop held in November 2025.",
+      "start": "2025-11-19T12:00:00+00:00",
+      "end": "2025-11-19T13:45:00+00:00",
+      "status": "Scheduled",
+      "type": "Holiday",
+      "scope": "Subject",
+      "classId": 3,
+      "subjectId": 1
+    },
+    {
+      "title": "Autumn Learning Session 100",
+      "description": "Focused workshop held in November 2025.",
+      "start": "2025-11-20T14:00:00+00:00",
+      "end": "2025-11-20T15:45:00+00:00",
+      "status": "Cancelled",
+      "type": "Announcement",
+      "scope": "School"
+    }
+  ]
+}

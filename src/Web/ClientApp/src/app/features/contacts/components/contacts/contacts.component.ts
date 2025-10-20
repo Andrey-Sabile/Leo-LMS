@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, effect, inject, signal } from '@angular/core';
-import { GuardiansClient, StudentsClient, StudentDto } from '@app/data-access/api/api-client';
+import { StudentDirectoryClient, StudentDirectoryListItemDto } from '@app/data-access/api/api-client';
 
 @Component({
   selector: 'app-contacts',
@@ -9,8 +9,8 @@ import { GuardiansClient, StudentsClient, StudentDto } from '@app/data-access/ap
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ContactsComponent {
-  private studentsClient = inject(StudentsClient);
-  readonly students = signal<StudentDto[]>([]);
+  private readonly studentDirectoryClient = inject(StudentDirectoryClient);
+  readonly students = signal<StudentDirectoryListItemDto[]>([]);
 
   private readonly refreshStudentsEffect = effect(
     () => {
@@ -20,9 +20,10 @@ export class ContactsComponent {
   );
 
   private loadStudents(): void {
-    this.studentsClient.getStudents()
+    this.studentDirectoryClient
+      .getStudentDirectoryPage(null, 1, 25)
       .subscribe({
-        next: result => this.students.set(result.students),
+        next: result => this.students.set(result.items ?? []),
         error: error => console.error(error),
       });
   }

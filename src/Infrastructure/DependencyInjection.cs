@@ -1,6 +1,8 @@
 ﻿using LeoLMS.Application.Common.Interfaces;
 using LeoLMS.Domain.Constants;
 using LeoLMS.Infrastructure.Data;
+using LeoLMS.Infrastructure.Data.Seed;
+using LeoLMS.Infrastructure.Data.Seed.Contributors;
 using LeoLMS.Infrastructure.Data.Interceptors;
 using LeoLMS.Infrastructure.Identity;
 using Microsoft.AspNetCore.Identity;
@@ -30,6 +32,12 @@ public static class DependencyInjection
 
 
         builder.Services.AddScoped<IApplicationDbContext>(provider => provider.GetRequiredService<ApplicationDbContext>());
+
+        builder.Services.Configure<SeedDataOptions>(builder.Configuration.GetSection("SeedData"));
+
+        builder.Services.AddSingleton<ISeedDataReader, FileSeedDataReader>();
+        builder.Services.AddScoped<IEndpointSeedContributor, StudentDirectorySeedContributor>();
+        builder.Services.AddScoped<IEndpointSeedContributor, CalendarEventsSeedContributor>();
 
         builder.Services.AddScoped<ApplicationDbContextInitialiser>();
 
