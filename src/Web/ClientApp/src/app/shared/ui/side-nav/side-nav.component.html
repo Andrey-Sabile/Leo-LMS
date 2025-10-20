@@ -37,7 +37,7 @@
 
   <div class="drawer-side is-drawer-close:overflow-visible">
     <label for="sidebar-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
-    <div class="is-drawer-close:w-14 is-drawer-open:w-64 bg-base-100 flex flex-col items-center min-h-full">
+    <div class="is-drawer-close:w-14 is-drawer-open:w-64 bg-base-100 flex flex-col min-h-full">
       <a class="btn btn-ghost text-xl font-semibold mt-4" [routerLink]="['/']">Leo</a>
       <ul class="menu w-full grow p-4 mt-6">
         <li *ngFor="let item of navLinks" routerLinkActive="active"
