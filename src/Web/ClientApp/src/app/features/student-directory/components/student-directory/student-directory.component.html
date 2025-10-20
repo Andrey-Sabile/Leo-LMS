@@ -1,0 +1,127 @@
+<section class="px-6 py-8">
+  <div class="mx-auto max-w-6xl space-y-6">
+    <header class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+      <div>
+        <h1 class="text-3xl font-semibold">Student Directory</h1>
+      </div>
+    </header>
+
+    <input
+      type="search"
+      class="w-full rounded-xl border border-base-300 bg-base-100 px-4 py-3 text-sm outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20"
+      placeholder="Search students"
+      [value]="searchQuery()"
+      (input)="onSearchChange(($any($event.target)).value ?? '')" />
+
+    <div class="grid gap-6 lg:grid-cols-[22rem,1fr]">
+      <aside class="rounded-2xl border border-base-200 bg-base-100 shadow-sm">
+        <div class="flex items-center justify-between px-4 py-3">
+          <h2 class="text-xs font-semibold uppercase tracking-wide text-base-content/80">Students</h2>
+          <span class="text-xs text-base-content/60">{{ students().length }}</span>
+        </div>
+        <div class="border-t border-base-200"></div>
+        <ul class="max-h-[32rem] space-y-1 overflow-y-auto py-2">
+          @if (isLoading()) {
+            <li class="px-4 py-3 text-sm text-base-content/60">Loading students…</li>
+          } @else if (!students().length) {
+            <li class="px-4 py-3 text-sm text-base-content/60">No students found.</li>
+          } @else {
+            @for (student of students(); track student.id ?? student.email ?? student) {
+              <li>
+                <button
+                  type="button"
+                  class="flex w-full items-center gap-3 rounded-xl px-4 py-3 text-left transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 hover:bg-base-200"
+                  (click)="selectStudent(student)"
+                  [class.bg-base-200]="isStudentSelected(student)"
+                  [class.text-primary]="isStudentSelected(student)"
+                  [class.shadow-sm]="isStudentSelected(student)">
+                  <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary/10 text-sm font-semibold text-primary">
+                    {{ getStudentInitials(student) }}
+                  </div>
+                  <div class="min-w-0 flex-1">
+                    <p class="text-sm font-medium leading-5">{{ student.firstName }} {{ student.lastName }}</p>
+                    @if (student.email) {
+                      <p class="truncate text-xs text-base-content/60">{{ student.email }}</p>
+                    }
+                  </div>
+                  <span class="shrink-0 text-lg text-base-content/40">&rsaquo;</span>
+                </button>
+              </li>
+            }
+          }
+        </ul>
+      </aside>
+
+      <section class="rounded-2xl border border-base-200 bg-base-100 shadow-sm">
+        @let student = selectedStudent();
+        @if (isLoading() && !student) {
+          <div class="space-y-4 p-6">
+            <div class="h-6 w-1/3 animate-pulse rounded bg-base-200"></div>
+            <div class="h-4 w-1/2 animate-pulse rounded bg-base-200"></div>
+            <div class="h-48 animate-pulse rounded bg-base-200"></div>
+          </div>
+        } @else if (!student) {
+          <div class="flex h-full min-h-[16rem] flex-col items-center justify-center gap-2 p-6 text-center">
+            <div class="flex h-12 w-12 items-center justify-center rounded-full bg-base-200 text-lg text-base-content/50">?</div>
+            <p class="text-base font-semibold">Select a student</p>
+            <p class="max-w-sm text-sm text-base-content/60">Choose a student from the list to view their contact details and guardian information.</p>
+          </div>
+        } @else {
+          <div class="space-y-6 p-6">
+            <div class="flex flex-wrap items-start gap-4">
+              <div class="flex h-14 w-14 items-center justify-center rounded-full bg-primary/10 text-lg font-semibold text-primary">
+                {{ getStudentInitials(student) }}
+              </div>
+              <div class="min-w-0 flex-1">
+                <h2 class="text-2xl font-semibold">{{ selectedStudentFullName() }}</h2>
+                @if (student.email) {
+                  <a class="mt-1 inline-flex items-center gap-2 text-sm text-primary hover:text-primary/80" href="mailto:{{ student.email }}">
+                    {{ student.email }}
+                  </a>
+                }
+              </div>
+            </div>
+
+            <div class="rounded-xl border border-base-200 bg-base-200/40 p-4">
+              <h3 class="text-xs font-semibold uppercase tracking-wide text-base-content/60">Address</h3>
+              <div class="mt-2 space-y-1 text-sm">
+                @if (!getAddressLines(student.address).length) {
+                  <p class="text-base-content/60">No address on file.</p>
+                } @else {
+                  @for (line of getAddressLines(student.address); track line) {
+                    <p>{{ line }}</p>
+                  }
+                }
+              </div>
+            </div>
+
+            @if (student.guardians?.length) {
+              <div class="space-y-3">
+                <h3 class="text-xs font-semibold uppercase tracking-wide text-base-content/60">Guardians</h3>
+                @for (guardian of student.guardians ?? []; track guardian.id ?? guardian.email ?? guardian) {
+                  <div class="rounded-xl border border-base-200 bg-base-200/40 p-4">
+                    <p class="text-sm font-semibold">{{ guardian.firstName }} {{ guardian.lastName }}</p>
+                    <div class="mt-2 space-y-1 text-sm text-base-content/70">
+                      @if (guardian.email) {
+                        <a class="inline-flex items-center gap-2 text-primary hover:text-primary/80" href="mailto:{{ guardian.email }}">
+                          {{ guardian.email }}
+                        </a>
+                      }
+                      @if (guardian.phoneNumber !== undefined && guardian.phoneNumber !== null) {
+                        <p>Phone: {{ guardian.phoneNumber }}</p>
+                      }
+                    </div>
+                  </div>
+                }
+              </div>
+            } @else {
+              <div class="rounded-xl border border-dashed border-base-200 bg-base-200/20 p-4 text-sm text-base-content/60">
+                No guardian information available.
+              </div>
+            }
+          </div>
+        }
+      </section>
+    </div>
+  </div>
+</section>
