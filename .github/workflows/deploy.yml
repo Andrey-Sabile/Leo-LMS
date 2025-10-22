@@ -1,0 +1,201 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - "v*"
+
+concurrency:
+  group: production-deploy
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Build and package
+    runs-on: ubuntu-latest
+    env:
+      DOTNET_NOLOGO: true
+      DOTNET_CLI_TELEMETRY_OPTOUT: true
+      CI: "true"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 9.0.100
+          cache: true
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: src/Web/ClientApp/package-lock.json
+
+      - name: Restore .NET dependencies
+        run: dotnet restore
+
+      - name: Build solution
+        run: dotnet build --configuration Release --no-restore
+
+      - name: Run .NET tests
+        run: dotnet test --configuration Release --no-build --logger "trx;LogFileName=test-results.trx" --results-directory artifacts/TestResults --filter "FullyQualifiedName!~AcceptanceTests"
+
+      - name: Install Angular dependencies
+        working-directory: src/Web/ClientApp
+        run: npm ci
+
+      - name: Run Angular tests
+        working-directory: src/Web/ClientApp
+        run: npm run test -- --watch=false --browsers=ChromeHeadless
+
+      - name: Build Angular application
+        working-directory: src/Web/ClientApp
+        run: npm run build -- --configuration production
+
+      - name: Publish Web project
+        run: dotnet publish src/Web/Web.csproj -c Release -r linux-x64 --self-contained false -o publish/
+
+      - name: Create deployment archive
+        run: |
+          mkdir -p artifacts/deploy
+          (cd publish && zip -r ../artifacts/deploy/app.zip .)
+
+      - name: Upload deployment artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: beanstalk-bundle
+          path: artifacts/deploy/app.zip
+          if-no-files-found: error
+
+  db-migrate:
+    name: Apply database migrations
+    runs-on: ubuntu-latest
+    needs: build
+    env:
+      ASPNETCORE_ENVIRONMENT: Production
+      ConnectionStrings__LeoLMSDb: ${{ secrets.DB_CONNECTION_STRING }}
+      DOTNET_NOLOGO: true
+      DOTNET_CLI_TELEMETRY_OPTOUT: true
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 9.0.100
+          cache: true
+
+      - name: Restore .NET dependencies
+        run: dotnet restore
+
+      - name: Install EF Core tools
+        run: dotnet tool install --global dotnet-ef
+
+      - name: Run migrations
+        run: dotnet ef database update --project src/Infrastructure/Infrastructure.csproj --startup-project src/Web/Web.csproj --context ApplicationDbContext --verbose
+
+  deploy:
+    name: Deploy to Elastic Beanstalk
+    runs-on: ubuntu-latest
+    needs:
+      - build
+      - db-migrate
+    environment:
+      name: production
+    outputs:
+      version-label: ${{ steps.deploy.outputs.version-label }}
+      environment-url: ${{ steps.deploy.outputs.environment-url }}
+    env:
+      EB_APP_NAME: ${{ secrets.EB_APP_NAME }}
+      EB_ENV_NAME: ${{ secrets.EB_ENV_NAME }}
+      EB_S3_BUCKET: ${{ secrets.EB_S3_BUCKET }}
+      EB_ENV_URL: ${{ secrets.EB_ENV_URL }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download deployment artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: beanstalk-bundle
+          path: dist
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Deploy bundle
+        id: deploy
+        run: |
+          set -euo pipefail
+
+          if [ -z "${EB_APP_NAME}" ] || [ -z "${EB_ENV_NAME}" ] || [ -z "${EB_S3_BUCKET}" ]; then
+            echo "Elastic Beanstalk configuration secrets are missing." >&2
+            exit 1
+          fi
+
+          VERSION_LABEL="leolms-${GITHUB_RUN_NUMBER}-${GITHUB_SHA::7}"
+          S3_KEY="deployments/${VERSION_LABEL}.zip"
+
+          aws s3 cp dist/app.zip "s3://${EB_S3_BUCKET}/${S3_KEY}"
+
+          aws elasticbeanstalk create-application-version \
+            --application-name "${EB_APP_NAME}" \
+            --version-label "${VERSION_LABEL}" \
+            --description "GitHub Actions build ${GITHUB_RUN_NUMBER} (${GITHUB_SHA})" \
+            --source-bundle S3Bucket=${EB_S3_BUCKET},S3Key=${S3_KEY}
+
+          aws elasticbeanstalk update-environment \
+            --environment-name "${EB_ENV_NAME}" \
+            --version-label "${VERSION_LABEL}"
+
+          echo "version-label=${VERSION_LABEL}" >> "${GITHUB_OUTPUT}"
+
+          if [ -n "${EB_ENV_URL}" ]; then
+            if [[ "${EB_ENV_URL}" == http* ]]; then
+              echo "environment-url=${EB_ENV_URL}" >> "${GITHUB_OUTPUT}"
+            else
+              echo "environment-url=https://${EB_ENV_URL}" >> "${GITHUB_OUTPUT}"
+            fi
+          fi
+
+      - name: Capture environment diagnostics
+        if: failure()
+        run: |
+          set -euo pipefail
+          aws elasticbeanstalk request-environment-info --environment-name "${EB_ENV_NAME}" --info-type tail
+          sleep 60
+          aws elasticbeanstalk retrieve-environment-info --environment-name "${EB_ENV_NAME}" --info-type tail || true
+
+  post-deploy-smoke:
+    name: Post-deploy smoke tests
+    runs-on: ubuntu-latest
+    needs: deploy
+    if: ${{ needs.deploy.result == 'success' }}
+    env:
+      BASE_URL: ${{ needs.deploy.outputs.environment-url != '' && needs.deploy.outputs.environment-url || secrets.EB_ENV_URL }}
+    steps:
+      - name: Validate environment URL
+        run: |
+          if [ -z "${BASE_URL}" ]; then
+            echo "Set EB_ENV_URL secret or ensure deploy job emits environment URL." >&2
+            exit 1
+          fi
+
+      - name: Health endpoint check
+        run: |
+          curl --fail --retry 5 --retry-delay 10 "${BASE_URL%/}/health"
+
+      - name: Landing page check
+        run: |
+          curl --fail --retry 5 --retry-delay 10 --head "${BASE_URL%/}/"
+

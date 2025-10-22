@@ -1,0 +1,134 @@
+name: CI
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  api-build-test:
+    name: API build and test
+    runs-on: ubuntu-latest
+    env:
+      DOTNET_NOLOGO: true
+      DOTNET_CLI_TELEMETRY_OPTOUT: true
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 9.0.100
+          cache: true
+
+      - name: Install PostgreSQL client
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y postgresql-client
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Prepare artifact directories
+        run: mkdir -p artifacts/logs artifacts/TestResults
+
+      - name: Build
+        run: dotnet build --configuration Release --no-restore /bl:artifacts/logs/msbuild.binlog
+
+      - name: Test
+        run: dotnet test --configuration Release --no-build --logger "trx;LogFileName=test-results.trx" --results-directory artifacts/TestResults --filter "FullyQualifiedName!~AcceptanceTests"
+
+      - name: Upload diagnostic artifacts
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dotnet-diagnostics
+          path: |
+            artifacts/logs
+            artifacts/TestResults
+
+  client-build-test:
+    name: Angular build and test
+    runs-on: ubuntu-latest
+    env:
+      CI: "true"
+    defaults:
+      run:
+        working-directory: src/Web/ClientApp
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: src/Web/ClientApp/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run unit tests
+        run: npm run test -- --watch=false --browsers=ChromeHeadless --code-coverage
+
+      - name: Build production bundle
+        run: npm run build -- --configuration production
+
+      - name: Upload Angular dist on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: angular-artifacts
+          path: dist/
+
+  db-validate:
+    name: Database validation
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_DB: leolms
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    env:
+      ASPNETCORE_ENVIRONMENT: Development
+      ConnectionStrings__LeoLMSDb: Host=127.0.0.1;Port=5432;Database=leolms;Username=postgres;Password=postgres;
+      DOTNET_NOLOGO: true
+      DOTNET_CLI_TELEMETRY_OPTOUT: true
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 9.0.100
+          cache: true
+
+      - name: Install EF Core tools
+        run: dotnet tool install --global dotnet-ef
+
+      - name: Wait for database
+        run: |
+          for i in {1..10}; do
+            if pg_isready -h 127.0.0.1 -p 5432 -U postgres; then
+              exit 0
+            fi
+            sleep 5
+          done
+          exit 1
+        env:
+          PGPASSWORD: postgres
+
+      - name: Apply EF Core migrations
+        run: dotnet ef database update --project src/Infrastructure/Infrastructure.csproj --startup-project src/Web/Web.csproj --context ApplicationDbContext --verbose
