@@ -27,7 +27,6 @@ jobs:
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 9.0.100
-          cache: true
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -89,7 +88,6 @@ jobs:
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 9.0.100
-          cache: true
 
       - name: Restore .NET dependencies
         run: dotnet restore
@@ -198,4 +196,3 @@ jobs:
       - name: Landing page check
         run: |
           curl --fail --retry 5 --retry-delay 10 --head "${BASE_URL%/}/"
-
