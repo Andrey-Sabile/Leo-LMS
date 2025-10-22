@@ -48,23 +48,15 @@ export class SideNavComponent {
       ]
     },
     {
-      label: 'Counter',
-      route: '/counter',
+      label: 'Todo',
+      route: '/todo',
       iconPaths: [
         'M6 9h12',
         'M6 15h12',
         'M9 6v12'
       ]
     },
-    {
-      label: 'Fetch Data',
-      route: '/fetch-data',
-      iconPaths: [
-        'M4 6h16',
-        'M4 12h16',
-        'M4 18h16'
-      ]
-    }
+
   ];
 
 }
