@@ -30,7 +30,6 @@ public class CreateStudentCommandValidator : AbstractValidator<CreateStudentComm
 {
     public CreateStudentCommandValidator()
     {
-
     }
 }
 

@@ -1,12 +1,7 @@
-﻿using System.Linq;
-using AutoMapper;
-using AutoMapper.QueryableExtensions;
-using LeoLMS.Application.Common.Interfaces;
+﻿using LeoLMS.Application.Common.Interfaces;
 using LeoLMS.Application.Common.Mappings;
 using LeoLMS.Application.Common.Models;
 using LeoLMS.Application.Common.Security;
-using MediatR;
-using Microsoft.EntityFrameworkCore;
 
 namespace LeoLMS.Application.StudentDirectory.Queries.GetStudentDirectoryPage;
 
