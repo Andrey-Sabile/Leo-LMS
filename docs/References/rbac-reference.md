@@ -14,6 +14,13 @@
 - `src/Application/Common/Behaviours/AuthorizationBehaviour.cs`: MediatR pipeline behavior that enforces `[Authorize]` metadata by ensuring the user is authenticated, belongs to specified roles, and satisfies referenced policies.
 - Example usage: `src/Application/TodoLists/Commands/PurgeTodoLists/PurgeTodoLists.cs` is decorated with `[Authorize(Roles = Roles.Administrator)]` and `[Authorize(Policy = Policies.CanPurge)]`, so only admins fulfilling the policy can execute the purge command.
 
+## General RBAC pattern
+1. **Define the contract**: add or update entries in `Roles` and `Policies` so role names and policy identifiers stay consistent across layers.
+2. **Wire infrastructure**: update `Infrastructure.DependencyInjection` to seed roles, register new policies, and pair them with the required roles or custom `IAuthorizationHandler`s.
+3. **Expose identity**: rely on `IdentityService` and the `IUser` abstraction (`CurrentUser`) to surface the caller's id, roles, and policy evaluation to the application layer.
+4. **Secure the use case**: decorate the relevant MediatR request with `[Authorize(Roles = …, Policy = …)]`; the `AuthorizationBehaviour` enforces both role and policy checks before the handler runs.
+5. **Validate the workflow**: cover the new configuration with integration tests and extend seeding/bootstrapping scripts so environments know about the newly declared roles and policies.
+
 ## Extending RBAC
 - Add new roles to `Roles` and seed them via Identity to surface them throughout the system.
 - Register additional policies in `DependencyInjection.AddInfrastructureServices`, mapping them to roles or custom `IAuthorizationHandler`s as needed.

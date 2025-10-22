@@ -21,6 +21,8 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>, IApplica
 
     public DbSet<Guardian> Guardians => Set<Guardian>();
 
+    public DbSet<Teacher> Teachers => Set<Teacher>();
+
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);

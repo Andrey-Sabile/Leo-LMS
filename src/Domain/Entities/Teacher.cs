@@ -9,17 +9,19 @@ public class Teacher : BaseAuditableEntity
     public string Email { get; private set; } = null!;
     public int PhoneNumber { get; private set; }
     public Address Address { get; private set; } = null!;
+    public IList<Classroom> Classrooms { get; private set; } = [];
 
     public static Teacher Create(
         string firstName,
         string lastName,
         string email,
         int phoneNumber,
-        Address address
+        Address address,
+        IList<Classroom> classrooms
     )
     {
         var teacher = new Teacher();
-        teacher.SetDetails(firstName, lastName, email, phoneNumber, address);
+        teacher.SetDetails(firstName, lastName, email, phoneNumber, address, classrooms);
         return teacher;
     }
 
@@ -28,10 +30,11 @@ public class Teacher : BaseAuditableEntity
         string lastName,
         string email,
         int phoneNumber,
-        Address address
+        Address address,
+        IList<Classroom> classrooms
     )
     {
-        SetDetails(firstName, lastName, email, phoneNumber, address);
+        SetDetails(firstName, lastName, email, phoneNumber, address, classrooms);
     }
 
     private void SetDetails(
@@ -39,19 +42,21 @@ public class Teacher : BaseAuditableEntity
         string lastName,
         string email,
         int phoneNumber,
-        Address address
+        Address address,
+        IList<Classroom> classrooms
     )
     {
-        ValidateFields(firstName, lastName, email, address);
+        ValidateFields(firstName, lastName, email, address, classrooms);
 
         FirstName = firstName;
         LastName = lastName;
         Email = email;
         PhoneNumber = phoneNumber;
         Address = address;
+        Classrooms = classrooms;
     }
 
-    private static void ValidateFields(string firstName, string lastName, string email, Address address)
+    private static void ValidateFields(string firstName, string lastName, string email, Address address, IList<Classroom> classrooms)
     {
         if (string.IsNullOrWhiteSpace(firstName))
             throw new ArgumentException("FirstName is required.", nameof(firstName));
@@ -63,10 +68,6 @@ public class Teacher : BaseAuditableEntity
             throw new ArgumentException("email is required.", nameof(email));
 
         ArgumentNullException.ThrowIfNull(address);
+        ArgumentNullException.ThrowIfNull(classrooms);
     }
-
-    // Soft Delete
-
-    // Guard against removal of final guardian? not sure if we should implement it here
-
 }
