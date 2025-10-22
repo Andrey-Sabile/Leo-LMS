@@ -40,22 +40,18 @@
     <div class="is-drawer-close:w-14 is-drawer-open:w-64 bg-base-100 flex flex-col min-h-full">
       <a class="btn btn-ghost text-xl font-semibold mt-4" [routerLink]="['/']">Leo</a>
       <ul class="menu w-full grow p-4 mt-6">
-        <li *ngFor="let item of navLinks" routerLinkActive="active"
-          [routerLinkActiveOptions]="{ exact: item.exact ?? false }">
+        @for (item of navLinks; track item.route) {
+        <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: item.exact ?? false }">
           <a [routerLink]="item.route" class="rounded-lg">
             <span class="flex items-center gap-3">
               <span class="flex h-9 w-9 items-center justify-center rounded-lg bg-base-100 text-base-content">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                  stroke="currentColor" class="size-5">
-                  <ng-container *ngFor="let path of item.iconPaths">
-                    <path [attr.d]="path" stroke-linecap="round" stroke-linejoin="round"></path>
-                  </ng-container>
-                </svg>
+                <ng-icon [name]="item.iconPaths"></ng-icon>
               </span>
               <span class="font-medium">{{ item.label }}</span>
             </span>
           </a>
         </li>
+        }
       </ul>
     </div>
   </div>
