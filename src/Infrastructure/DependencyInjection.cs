@@ -39,6 +39,7 @@ public static class DependencyInjection
         builder.Services.AddScoped<IEndpointSeedContributor, StudentDirectorySeedContributor>();
         builder.Services.AddScoped<IEndpointSeedContributor, CalendarEventsSeedContributor>();
         builder.Services.AddScoped<IEndpointSeedContributor, TodoListsSeedContributor>();
+        builder.Services.AddScoped<IEndpointSeedContributor, TeachersSeedContributor>();
 
         builder.Services.AddScoped<ApplicationDbContextInitialiser>();
 
