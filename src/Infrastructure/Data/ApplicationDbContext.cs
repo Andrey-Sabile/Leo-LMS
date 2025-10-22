@@ -23,6 +23,10 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>, IApplica
 
     public DbSet<Teacher> Teachers => Set<Teacher>();
 
+    public DbSet<Subject> Subjects => Set<Subject>();
+
+    public DbSet<Classroom> Classrooms => Set<Classroom>();
+
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);

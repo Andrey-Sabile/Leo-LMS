@@ -16,5 +16,9 @@ public interface IApplicationDbContext
 
     DbSet<Teacher> Teachers { get; }
 
+    DbSet<Subject> Subjects { get; }
+
+    DbSet<Classroom> Classrooms { get; }
+
     Task<int> SaveChangesAsync(CancellationToken cancellationToken);
 }
