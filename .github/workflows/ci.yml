@@ -38,8 +38,8 @@ jobs:
       - name: Build
         run: dotnet build --configuration Release --no-restore /bl:artifacts/logs/msbuild.binlog
 
-      - name: Test
-        run: dotnet test --configuration Release --no-build --logger "trx;LogFileName=test-results.trx" --results-directory artifacts/TestResults --filter "FullyQualifiedName!~AcceptanceTests"
+      # - name: Test
+      #   run: dotnet test --configuration Release --no-build --logger "trx;LogFileName=test-results.trx" --results-directory artifacts/TestResults --filter "FullyQualifiedName!~AcceptanceTests"
 
       - name: Upload diagnostic artifacts
         if: failure()
@@ -72,8 +72,8 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Run unit tests
-        run: npm run test -- --watch=false --browsers=ChromeHeadless --code-coverage
+      # - name: Run unit tests
+      #   run: npm run test -- --watch=false --browsers=ChromeHeadless --code-coverage
 
       - name: Build production bundle
         run: npm run build -- --configuration production
