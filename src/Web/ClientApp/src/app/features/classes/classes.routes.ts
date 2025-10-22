@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { ClassesComponent } from './classes.component';
+import { ClassesComponent } from './components/classes/classes.component';
 
 export const CLASSES_ROUTES: Routes = [
     {
