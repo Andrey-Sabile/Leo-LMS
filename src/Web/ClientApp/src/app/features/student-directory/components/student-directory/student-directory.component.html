@@ -7,48 +7,39 @@
     </header>
 
     <input type="search"
-      class="w-full rounded-xl border border-base-300 bg-base-100 px-4 py-3 text-sm outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20"
+      class="w-full rounded-xl border border-base-300 bg-base-100 px-4 py-3 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
       placeholder="Search students" [value]="searchQuery()"
       (input)="onSearchChange(($any($event.target)).value ?? '')" />
 
     <div class="grid gap-6 md:grid-cols-2">
-      <aside class="rounded-2xl border border-base-200 bg-base-100 shadow-sm">
-        <div class="flex items-center justify-between px-4 py-3">
-          <h2 class="text-xs font-semibold uppercase tracking-wide text-base-content/80">Students</h2>
-          <span class="text-xs text-base-content/60">{{ students().length }}</span>
-        </div>
-        <div class="border-t border-base-200"></div>
-        <ul class="max-h-[32rem] space-y-1 overflow-y-auto py-2">
+      <div class="card bg-base-100 card-border border-base-300 max-h-[32rem] overflow-y-auto">
+        <ul class="list p-4">
           @if (isLoading()) {
           <li class="px-4 py-3 text-sm text-base-content/60">Loading students…</li>
           } @else if (!students().length) {
           <li class="px-4 py-3 text-sm text-base-content/60">No students found.</li>
           } @else {
           @for (student of students(); track student.id ?? student.email ?? student) {
-          <li>
-            <button type="button"
-              class="flex w-full items-center gap-3 rounded-xl px-4 py-3 text-left transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 hover:bg-base-200"
-              (click)="selectStudent(student)" [class.bg-base-200]="isStudentSelected(student)"
-              [class.text-primary]="isStudentSelected(student)" [class.shadow-sm]="isStudentSelected(student)">
-              <div
-                class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary/10 text-sm font-semibold text-primary">
-                {{ getStudentInitials(student) }}
+
+          <li class="list-row flex-row gap-4 hover:bg-base-200 hover:cursor-pointer" (click)="selectStudent(student)"
+            [class.bg-base-200]="isStudentSelected(student)">
+            <div class="avatar avatar-placeholder">
+              <div class="bg-primary text-black w-12 rounded-full">
+                {{ getStudentInitials(student)}}
               </div>
-              <div class="min-w-0 flex-1">
-                <p class="text-sm font-medium leading-5">{{ student.firstName }} {{ student.lastName }}</p>
-                @if (student.email) {
-                <p class="truncate text-xs text-base-content/60">{{ student.email }}</p>
-                }
-              </div>
-              <span class="shrink-0 text-lg text-base-content/40">&rsaquo;</span>
-            </button>
+            </div>
+            <div>
+              <p class="text-sm font-medium">{{ student.firstName }} {{ student.lastName }}</p>
+              @if (student.email) { <p class="truncate text-xs text-base-content/60">{{ student.email }}</p> }
+            </div>
+            <span class="shirnk-0 text-lg text-base-content/40">&rsaquo;</span>
           </li>
           }
           }
         </ul>
-      </aside>
+      </div>
 
-      <section class="rounded-2xl border border-base-200 bg-base-100 shadow-sm">
+      <div class="card bg-base-100 card-border border-base-300">
         @let student = selectedStudent();
         @if (isLoading() && !student) {
         <div class="space-y-4 p-6">
@@ -65,25 +56,26 @@
             and guardian information.</p>
         </div>
         } @else {
-        <div class="space-y-6 p-6">
-          <div class="flex flex-wrap items-start gap-4">
-            <div
-              class="flex h-14 w-14 items-center justify-center rounded-full bg-primary/10 text-lg font-semibold text-primary">
-              {{ getStudentInitials(student) }}
+        <div class="card-body">
+          <div class="card-title">
+            <div class="avatar avatar-placeholder">
+              <div class="bg-primary text-black w-16 rounded-full">
+                {{ getStudentInitials(student) }}
+              </div>
             </div>
-            <div class="min-w-0 flex-1">
-              <h2 class="text-2xl font-semibold">{{ selectedStudentFullName() }}</h2>
+
+            <div>
+              <p class="text-2xl font-semibold">{{ selectedStudentFullName() }}</p>
               @if (student.email) {
-              <a class="mt-1 inline-flex items-center gap-2 text-sm text-primary hover:text-primary/80"
-                href="mailto:{{ student.email }}">
+              <a class="text-sm text-base-content/60" href="mailto:{{ student.email }}">
                 {{ student.email }}
               </a>
               }
             </div>
           </div>
 
+          <h3 class="text-xs font-semibold uppercase tracking-wide text-base-content/60 mt-4">Address</h3>
           <div class="rounded-xl border border-base-200 bg-base-200/40 p-4">
-            <h3 class="text-xs font-semibold uppercase tracking-wide text-base-content/60">Address</h3>
             <div class="mt-2 space-y-1 text-sm">
               @if (!getAddressLines(student.address).length) {
               <p class="text-base-content/60">No address on file.</p>
@@ -96,14 +88,14 @@
           </div>
 
           @if (student.guardians?.length) {
-          <div class="space-y-3">
+          <div class="space-y-3 mt-4">
             <h3 class="text-xs font-semibold uppercase tracking-wide text-base-content/60">Guardians</h3>
             @for (guardian of student.guardians ?? []; track guardian.id ?? guardian.email ?? guardian) {
             <div class="rounded-xl border border-base-200 bg-base-200/40 p-4">
               <p class="text-sm font-semibold">{{ guardian.firstName }} {{ guardian.lastName }}</p>
               <div class="mt-2 space-y-1 text-sm text-base-content/70">
                 @if (guardian.email) {
-                <a class="inline-flex items-center gap-2 text-primary hover:text-primary/80"
+                <a class="inline-flex items-center gap-2 text-base-content/60 text-sm"
                   href="mailto:{{ guardian.email }}">
                   {{ guardian.email }}
                 </a>
@@ -122,7 +114,7 @@
           }
         </div>
         }
-      </section>
+      </div>
     </div>
   </div>
 
