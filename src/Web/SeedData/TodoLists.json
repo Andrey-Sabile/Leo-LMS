@@ -1,0 +1,14 @@
+{
+  "lists": [
+    {
+      "title": "Todo List",
+      "colour": "#FFFFFF",
+      "items": [
+        { "title": "Make a todo list 📃", "done": false },
+        { "title": "Check off the first item ✅", "done": false },
+        { "title": "Realise you've already done two things on the list! 🤯", "done": false },
+        { "title": "Reward yourself with a nice, long nap 🏆", "done": false }
+      ]
+    }
+  ]
+}

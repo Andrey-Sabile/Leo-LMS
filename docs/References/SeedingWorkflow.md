@@ -1,0 +1,8 @@
+# Seeding Workflow
+
+- `InitialiserExtensions.InitialiseDatabaseAsync` resolves `ApplicationDbContextInitialiser`, rebuilds the database, then triggers seeding (`src/Infrastructure/Data/ApplicationDbContextInitialiser.cs:9`).
+- `TrySeedAsync` ensures default roles, an administrator user, and a sample to-do list exist, then runs every registered `IEndpointSeedContributor`, logging failures with the endpoint name (`src/Infrastructure/Data/ApplicationDbContextInitialiser.cs:42`).
+- Each contributor exposes `EndpointName` and `SeedAsync`; the initializer calls them in turn so feature seeding stays modular (`src/Infrastructure/Data/Seed/IEndpointSeedContributor.cs:6`).
+- Contributors typically load data through `ISeedDataReader`. `FileSeedDataReader` builds the path `<content root>/<SeedDataOptions.DirectoryName>/<EndpointName>.json`, deserializes with case-insensitive property names and enum support, and either throws or logs when missing (`src/Infrastructure/Data/Seed/FileSeedDataReader.cs:12`, `src/Infrastructure/Data/Seed/SeedDataOptions.cs:4`).
+- `StudentDirectorySeedContributor` reads `StudentDirectorySeedModel`, skips entries without emails or that already exist, constructs domain entities for students and guardians, saves newly added students, and logs the count inserted (`src/Infrastructure/Data/Seed/Contributors/StudentDirectorySeedContributor.cs:8`, `src/Infrastructure/Data/Seed/Models/StudentDirectorySeedModel.cs:3`).
+- The expected payload resides at `src/Web/SeedData/StudentDirectory.json`, matching the model schema (`students[].{firstName,lastName,email,address,guardians[]}`), so updating that file (or adding another endpoint file) extends the seed data set.
