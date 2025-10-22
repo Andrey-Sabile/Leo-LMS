@@ -1,0 +1,104 @@
+{
+  "subjects": [
+    {
+      "name": "Foundations of Mathematics",
+      "code": "MATH101",
+      "description": "Covers number sense, algebraic expressions, and problem solving strategies."
+    },
+    {
+      "name": "Introduction to Biology",
+      "code": "BIO105",
+      "description": "Explores cellular structure, genetics, and ecosystems through inquiry-based learning."
+    },
+    {
+      "name": "World History Survey",
+      "code": "HIST210",
+      "description": "Traces major civilizations and global interactions from antiquity to the modern era."
+    },
+    {
+      "name": "Literary Analysis",
+      "code": "ENG220",
+      "description": "Develops critical reading and writing skills using diverse literary genres."
+    },
+    {
+      "name": "General Chemistry",
+      "code": "CHEM115",
+      "description": "Introduces atomic theory, chemical bonding, and laboratory safety fundamentals."
+    },
+    {
+      "name": "Creative Coding",
+      "code": "CS130",
+      "description": "Applies programming concepts to art, music, and interactive storytelling projects."
+    },
+    {
+      "name": "Environmental Science",
+      "code": "SCI180",
+      "description": "Examines human impacts on natural systems with an emphasis on sustainability solutions."
+    },
+    {
+      "name": "Financial Literacy",
+      "code": "ECON150",
+      "description": "Builds practical skills in budgeting, investing, and evaluating financial risk."
+    },
+    {
+      "name": "Physical Education and Wellness",
+      "code": "PE101",
+      "description": "Promotes lifelong fitness habits through movement, nutrition, and mindfulness activities."
+    },
+    {
+      "name": "Digital Media Production",
+      "code": "ART175",
+      "description": "Covers storytelling, audio/video editing, and publishing for digital platforms."
+    },
+    {
+      "name": "Music Theory and Composition",
+      "code": "MUS140",
+      "description": "Introduces notation, harmony, and creative composition techniques across genres."
+    },
+    {
+      "name": "Modern Languages Lab",
+      "code": "LANG230",
+      "description": "Builds conversational fluency through immersive practice and cultural studies."
+    },
+    {
+      "name": "Physics of Motion",
+      "code": "PHYS125",
+      "description": "Explores mechanics, energy, and real-world applications of classical physics."
+    },
+    {
+      "name": "Applied Statistics",
+      "code": "STAT205",
+      "description": "Covers probability, data analysis, and visualization using authentic datasets."
+    },
+    {
+      "name": "Introduction to Psychology",
+      "code": "PSY200",
+      "description": "Examines cognition, behavior, and research methods with reflective practice."
+    },
+    {
+      "name": "Human Geography",
+      "code": "GEO160",
+      "description": "Analyzes population trends, urbanization, and spatial problem solving."
+    },
+    {
+      "name": "Ethics and Philosophy",
+      "code": "PHIL240",
+      "description": "Investigates moral frameworks and philosophical inquiry through Socratic dialogue."
+    },
+    {
+      "name": "Entrepreneurship and Innovation",
+      "code": "BUS210",
+      "description": "Guides learners through opportunity discovery, prototyping, and pitch development."
+    },
+    {
+      "name": "Robotics Engineering",
+      "code": "ROB260",
+      "description": "Combines electronics, mechanics, and coding to design autonomous systems."
+    },
+    {
+      "name": "Performing Arts Studio",
+      "code": "DRAMA190",
+      "description": "Develops stagecraft, ensemble collaboration, and expressive performance skills."
+    }
+  ]
+}

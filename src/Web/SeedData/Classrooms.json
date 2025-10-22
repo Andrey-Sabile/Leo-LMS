@@ -1,0 +1,340 @@
+{
+  "classrooms": [
+    {
+      "name": "STEM Foundations",
+      "description": "Collaborative math practice with weekly problem-solving challenges.",
+      "subjectCode": "MATH101",
+      "teacherEmail": "grace.hopper@example.com"
+    },
+    {
+      "name": "Life Sciences Lab",
+      "description": "Hands-on biology experiments exploring cells, genetics, and ecosystems.",
+      "subjectCode": "BIO105",
+      "teacherEmail": "priya.iyer@example.com"
+    },
+    {
+      "name": "Global Perspectives Seminar",
+      "description": "Discussion-based history seminar connecting world events across eras.",
+      "subjectCode": "HIST210",
+      "teacherEmail": "ramon.lopez@example.com"
+    },
+    {
+      "name": "Creative Writing Workshop",
+      "description": "Peer-reviewed literary analysis and original composition projects.",
+      "subjectCode": "ENG220",
+      "teacherEmail": "fallon.gibson@example.com"
+    },
+    {
+      "name": "Applied Chemistry Studio",
+      "description": "Lab-focused course emphasizing experimentation and safety techniques.",
+      "subjectCode": "CHEM115",
+      "teacherEmail": "jules.hughes@example.com"
+    },
+    {
+      "name": "Coding Makerspace",
+      "description": "Project-based programming lab building creative digital artifacts.",
+      "subjectCode": "CS130",
+      "teacherEmail": "kai.easton@example.com"
+    },
+    {
+      "name": "Mathematics Problem Lab",
+      "description": "Small-group clinics focusing on algebraic reasoning and strategy.",
+      "subjectCode": "MATH101",
+      "teacherEmail": "jensen.reeves@example.com"
+    },
+    {
+      "name": "Advanced Algebra Cohort",
+      "description": "Extended practice with quadratic models and mathematical communication.",
+      "subjectCode": "MATH101",
+      "teacherEmail": "dakota.keller@example.com"
+    },
+    {
+      "name": "Biology Field Research",
+      "description": "Outdoor investigations documenting biodiversity within local habitats.",
+      "subjectCode": "BIO105",
+      "teacherEmail": "jamie.sawyer@example.com"
+    },
+    {
+      "name": "Anatomy Explorers",
+      "description": "Anatomical modeling labs emphasizing systems thinking and wellness.",
+      "subjectCode": "BIO105",
+      "teacherEmail": "casey.garcia@example.com"
+    },
+    {
+      "name": "History Debates Forum",
+      "description": "Structured debates analyzing cause and effect across pivotal eras.",
+      "subjectCode": "HIST210",
+      "teacherEmail": "sasha.underwood@example.com"
+    },
+    {
+      "name": "Cultural Heritage Projects",
+      "description": "Inquiry projects highlighting storytelling from global communities.",
+      "subjectCode": "HIST210",
+      "teacherEmail": "morgan.prescott@example.com"
+    },
+    {
+      "name": "Writers Studio",
+      "description": "Critique-driven workshop refining narrative voice and revision skills.",
+      "subjectCode": "ENG220",
+      "teacherEmail": "teagan.young@example.com"
+    },
+    {
+      "name": "Poetry and Performance",
+      "description": "Spoken word lab blending literary analysis with stagecraft.",
+      "subjectCode": "ENG220",
+      "teacherEmail": "micah.walker@example.com"
+    },
+    {
+      "name": "Chemistry Problem Solving",
+      "description": "Collaborative problem sets reinforcing stoichiometry and thermodynamics.",
+      "subjectCode": "CHEM115",
+      "teacherEmail": "whitney.harlow@example.com"
+    },
+    {
+      "name": "Organic Chemistry Prep",
+      "description": "Scaffolded labs introducing molecular structure and reaction mechanisms.",
+      "subjectCode": "CHEM115",
+      "teacherEmail": "logan.adler@example.com"
+    },
+    {
+      "name": "Intro to Robotics Lab",
+      "description": "Design cycle challenges building autonomous robots with sensors.",
+      "subjectCode": "ROB260",
+      "teacherEmail": "rowan.nolan@example.com"
+    },
+    {
+      "name": "Robotics Design Challenge",
+      "description": "Team-based sprints iterating on drivetrain, control, and testing.",
+      "subjectCode": "ROB260",
+      "teacherEmail": "kendall.fletcher@example.com"
+    },
+    {
+      "name": "Financial Futures Club",
+      "description": "Scenario planning activities exploring personal and global finance trends.",
+      "subjectCode": "ECON150",
+      "teacherEmail": "tatum.york@example.com"
+    },
+    {
+      "name": "Investment Simulation Workshop",
+      "description": "Hands-on investing simulations with reflective portfolio reviews.",
+      "subjectCode": "ECON150",
+      "teacherEmail": "skyler.york@example.com"
+    },
+    {
+      "name": "Environmental Action Team",
+      "description": "Service-learning projects focused on climate resilience strategies.",
+      "subjectCode": "SCI180",
+      "teacherEmail": "kendall.ramirez@example.com"
+    },
+    {
+      "name": "Sustainability Capstone",
+      "description": "Capstone lab synthesizing environmental data into community proposals.",
+      "subjectCode": "SCI180",
+      "teacherEmail": "lennon.west@example.com"
+    },
+    {
+      "name": "Wellness Coaching Group",
+      "description": "Peer coaching sessions supporting goal setting and healthy habits.",
+      "subjectCode": "PE101",
+      "teacherEmail": "robin.xavier@example.com"
+    },
+    {
+      "name": "Mindful Movement Studio",
+      "description": "Mind-body practices integrating yoga, breathwork, and reflection.",
+      "subjectCode": "PE101",
+      "teacherEmail": "quinn.dalton@example.com"
+    },
+    {
+      "name": "Digital Storytelling Lab",
+      "description": "Media lab crafting narratives through video, audio, and motion graphics.",
+      "subjectCode": "ART175",
+      "teacherEmail": "finley.nolan@example.com"
+    },
+    {
+      "name": "Media Production Crew",
+      "description": "Collaborative production team managing school-wide broadcasts.",
+      "subjectCode": "ART175",
+      "teacherEmail": "jamie.bishop@example.com"
+    },
+    {
+      "name": "Music Ensemble Practice",
+      "description": "Rehearsal block for chamber groups emphasizing technique and balance.",
+      "subjectCode": "MUS140",
+      "teacherEmail": "briar.zamora@example.com"
+    },
+    {
+      "name": "Composition Masterclass",
+      "description": "Composer clinics refining melodic development and orchestration.",
+      "subjectCode": "MUS140",
+      "teacherEmail": "finley.york@example.com"
+    },
+    {
+      "name": "Spanish Immersion Circle",
+      "description": "Immersive conversation tables with cultural storytelling prompts.",
+      "subjectCode": "LANG230",
+      "teacherEmail": "skyler.thompson@example.com"
+    },
+    {
+      "name": "Global Languages Exchange",
+      "description": "Language buddy program connecting learners with international partners.",
+      "subjectCode": "LANG230",
+      "teacherEmail": "noel.keller@example.com"
+    },
+    {
+      "name": "Physics Makers Lab",
+      "description": "Engineering builds applying mechanics, energy, and materials science.",
+      "subjectCode": "PHYS125",
+      "teacherEmail": "alex.vargas@example.com"
+    },
+    {
+      "name": "Engineering Dynamics Workshop",
+      "description": "Modeling and testing prototypes to explore forces and motion.",
+      "subjectCode": "PHYS125",
+      "teacherEmail": "casey.xavier@example.com"
+    },
+    {
+      "name": "Statistics Data Studio",
+      "description": "Project-based investigations using statistical inference and coding.",
+      "subjectCode": "STAT205",
+      "teacherEmail": "micah.sawyer@example.com"
+    },
+    {
+      "name": "Data Visualization Lab",
+      "description": "Visual storytelling projects transforming datasets into compelling insights.",
+      "subjectCode": "STAT205",
+      "teacherEmail": "sydney.nolan@example.com"
+    },
+    {
+      "name": "Psychology Discussion Group",
+      "description": "Socratic discussions examining cognition, motivation, and wellness.",
+      "subjectCode": "PSY200",
+      "teacherEmail": "yardley.ingram@example.com"
+    },
+    {
+      "name": "Behavioral Science Projects",
+      "description": "Student-designed studies exploring behavior, perception, and learning.",
+      "subjectCode": "PSY200",
+      "teacherEmail": "remy.ramirez@example.com"
+    },
+    {
+      "name": "Geography Mapping Center",
+      "description": "Spatial analysis labs using GIS tools to interpret global patterns.",
+      "subjectCode": "GEO160",
+      "teacherEmail": "alex.underwood@example.com"
+    },
+    {
+      "name": "Urban Planning Co-op",
+      "description": "Design sprints reimagining public spaces with sustainable practices.",
+      "subjectCode": "GEO160",
+      "teacherEmail": "robin.easton@example.com"
+    },
+    {
+      "name": "Philosophy Socratic Circle",
+      "description": "Dialectic seminars questioning ethics, logic, and human experience.",
+      "subjectCode": "PHIL240",
+      "teacherEmail": "noel.lang@example.com"
+    },
+    {
+      "name": "Ethics Case Studies",
+      "description": "Applied ethics labs evaluating dilemmas from modern society.",
+      "subjectCode": "PHIL240",
+      "teacherEmail": "rowan.jensen@example.com"
+    },
+    {
+      "name": "Entrepreneurship Incubator",
+      "description": "Product development cycle guiding teams from idea to launch.",
+      "subjectCode": "BUS210",
+      "teacherEmail": "finley.easton@example.com"
+    },
+    {
+      "name": "Startup Pitch Studio",
+      "description": "Investor pitch simulations with iterative feedback and coaching.",
+      "subjectCode": "BUS210",
+      "teacherEmail": "zephyr.ramirez@example.com"
+    },
+    {
+      "name": "Coding Innovation Lab",
+      "description": "Exploratory coding challenges centered on emerging technologies.",
+      "subjectCode": "CS130",
+      "teacherEmail": "finley.fletcher@example.com"
+    },
+    {
+      "name": "Autonomous Systems Guild",
+      "description": "Advanced robotics club focusing on AI-driven navigation techniques.",
+      "subjectCode": "ROB260",
+      "teacherEmail": "cameron.ramirez@example.com"
+    },
+    {
+      "name": "Drama Rehearsal Company",
+      "description": "Production rehearsals refining blocking, timing, and ensemble work.",
+      "subjectCode": "DRAMA190",
+      "teacherEmail": "robin.keller@example.com"
+    },
+    {
+      "name": "Performing Arts Ensemble",
+      "description": "Collaborative performance troupe blending music, dance, and theater.",
+      "subjectCode": "DRAMA190",
+      "teacherEmail": "blair.dalton@example.com"
+    },
+    {
+      "name": "Advanced PE Leadership",
+      "description": "Leadership practicum mentoring peers in fitness planning and safety.",
+      "subjectCode": "PE101",
+      "teacherEmail": "wren.walker@example.com"
+    },
+    {
+      "name": "Sports Analytics Workshop",
+      "description": "Performance analytics projects integrating statistics with athletics.",
+      "subjectCode": "STAT205",
+      "teacherEmail": "jensen.garcia@example.com"
+    },
+    {
+      "name": "Creative Wellness Lab",
+      "description": "Holistic wellness projects combining movement, art, and reflection.",
+      "subjectCode": "PE101",
+      "teacherEmail": "kai.carter@example.com"
+    },
+    {
+      "name": "Sustainable Design Studio",
+      "description": "Interdisciplinary studio reimagining spaces with sustainable materials.",
+      "subjectCode": "SCI180",
+      "teacherEmail": "kendall.sutton@example.com"
+    },
+    {
+      "name": "Integrated Science Seminar",
+      "description": "Cross-disciplinary seminar connecting biology, chemistry, and physics.",
+      "subjectCode": "SCI180",
+      "teacherEmail": "jordan.ingram@example.com"
+    },
+    {
+      "name": "Digital Media Agency",
+      "description": "Student-run agency producing multimedia campaigns for campus partners.",
+      "subjectCode": "ART175",
+      "teacherEmail": "morgan.jacobs@example.com"
+    },
+    {
+      "name": "Broadcast Journalism Lab",
+      "description": "Newsroom lab practicing reporting, editing, and on-air delivery.",
+      "subjectCode": "ART175",
+      "teacherEmail": "robin.owens@example.com"
+    },
+    {
+      "name": "Mathematics Enrichment Seminar",
+      "description": "Extension seminar tackling contest problems and logical puzzles.",
+      "subjectCode": "MATH101",
+      "teacherEmail": "grace.hopper@example.com"
+    },
+    {
+      "name": "Biotech Innovations Lab",
+      "description": "Biotech prototyping lab investigating genetics and biomedical advances.",
+      "subjectCode": "BIO105",
+      "teacherEmail": "priya.iyer@example.com"
+    },
+    {
+      "name": "World Cultures Colloquium",
+      "description": "Colloquium examining cultural exchange, diplomacy, and global citizenship.",
+      "subjectCode": "HIST210",
+      "teacherEmail": "ramon.lopez@example.com"
+    }
+  ]
+}
