@@ -11,16 +11,16 @@ Each **Epic (1.0, 2.0, 3.0, …)** represents a major release milestone with its
 
 ### Core Features
 - [ ] Authentication & role-based access (Admin, Teacher, Student)
-- [ ] Core navigation & layout (AppShell, sidebar, top nav)
-- [ ] Calendar (basic) — create/view events (no drag-and-drop)
-- [ ] Student directory — flat information view
-- [ ] Initial database models: User, Student, Teacher, CalendarEvent
+- [x] Core navigation & layout (AppShell, sidebar, top nav)
+- [x] Calendar (basic) — create/view events (no drag-and-drop)
+- [x] Student directory — flat information view
+- [x] Initial database models: User, Student, Teacher, CalendarEvent
 
 ### Technical Foundations
-- [ ] Authentication/authorization layer
-- [ ] Routing and layout system
+- [x] Authentication/authorization layer
+- [x] Routing and layout system
 - [ ] Base entities + seed data
-- [ ] Shared UI library setup (Tailwind + DaisyUI)
+- [x] Shared UI library setup (Tailwind + DaisyUI)
 
 ---
 
