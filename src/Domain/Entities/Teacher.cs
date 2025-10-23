@@ -9,7 +9,7 @@ public class Teacher : BaseAuditableEntity
     public string Email { get; private set; } = null!;
     public int PhoneNumber { get; private set; }
     public Address Address { get; private set; } = null!;
-    public IList<Classroom> Classrooms { get; private set; } = [];
+    public IList<Classroom> Classrooms { get; private set; } = new List<Classroom>();
 
     public static Teacher Create(
         string firstName,
@@ -53,7 +53,6 @@ public class Teacher : BaseAuditableEntity
         Email = email;
         PhoneNumber = phoneNumber;
         Address = address;
-        Classrooms = classrooms;
     }
 
     private static void ValidateFields(string firstName, string lastName, string email, Address address, IList<Classroom> classrooms)
@@ -69,5 +68,22 @@ public class Teacher : BaseAuditableEntity
 
         ArgumentNullException.ThrowIfNull(address);
         ArgumentNullException.ThrowIfNull(classrooms);
+    }
+
+    internal void AddClassroom(Classroom classroom)
+    {
+        ArgumentNullException.ThrowIfNull(classroom);
+
+        if (Classrooms.Contains(classroom))
+            return;
+
+        Classrooms.Add(classroom);
+    }
+
+    internal void RemoveClassroom(Classroom classroom)
+    {
+        ArgumentNullException.ThrowIfNull(classroom);
+
+        Classrooms.Remove(classroom);
     }
 }

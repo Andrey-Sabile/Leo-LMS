@@ -7,7 +7,8 @@ public class Student : BaseAuditableEntity
     public string FirstName { get; private set; } = null!;
     public string LastName { get; private set; } = null!;
     public string Email { get; private set; } = null!;
-    public IList<Guardian> Guardians { get; private set; } = [];
+    public IList<Guardian> Guardians { get; private set; } = new List<Guardian>();
+    public IList<Classroom> Classrooms { get; private set; } = new List<Classroom>();
     public Address Address { get; private set; } = null!;
 
     public static Student Create(
@@ -65,5 +66,22 @@ public class Student : BaseAuditableEntity
     // Soft Delete
 
     // Guard against removal of final guardian? not sure if we should implement it here
+
+    internal void AddClassroom(Classroom classroom)
+    {
+        ArgumentNullException.ThrowIfNull(classroom);
+
+        if (Classrooms.Contains(classroom))
+            return;
+
+        Classrooms.Add(classroom);
+    }
+
+    internal void RemoveClassroom(Classroom classroom)
+    {
+        ArgumentNullException.ThrowIfNull(classroom);
+
+        Classrooms.Remove(classroom);
+    }
 
 }

@@ -29,16 +29,11 @@ export class CalendarComponent {
   readonly referenceDate = signal(new Date());
   readonly calendarEvents = signal<CalendarEventBriefDto[]>([]);
   readonly isCreateEventModalOpen = signal(false);
-  readonly viewModeLabel = computed(() => {
-    switch (this.viewMode()) {
-      case 'day':
-        return 'Day';
-      case 'month':
-        return 'Month';
-      default:
-        return 'Week';
-    }
-  });
+  readonly viewTabs: ReadonlyArray<{ mode: CalendarViewMode; label: string }> = [
+    { mode: 'day', label: 'Day' },
+    { mode: 'week', label: 'Week' },
+    { mode: 'month', label: 'Month' },
+  ];
 
   private readonly refreshEventsEffect = effect(
     () => {
@@ -146,6 +141,10 @@ export class CalendarComponent {
   });
 
   setViewMode(mode: CalendarViewMode): void {
+    if (this.viewMode() === mode) {
+      return;
+    }
+
     this.viewMode.set(mode);
     this.resetReferenceDate();
   }

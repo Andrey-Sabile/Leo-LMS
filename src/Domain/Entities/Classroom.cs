@@ -16,8 +16,51 @@ public class Classroom : BaseAuditableEntity
 
     public int TeacherId { get; private set; }
 
-    // Placeholder collection for future member assignments
-    public IList<int> MemberIds { get; private set; } = [];
+    public IList<Student> Students { get; private set; } = new List<Student>();
+
+    public IList<Teacher> Teachers { get; private set; } = new List<Teacher>();
+
+    public void AddStudent(Student student)
+    {
+        ArgumentNullException.ThrowIfNull(student);
+
+        if (Students.Contains(student))
+            return;
+
+        Students.Add(student);
+        student.AddClassroom(this);
+    }
+
+    public void RemoveStudent(Student student)
+    {
+        ArgumentNullException.ThrowIfNull(student);
+
+        if (!Students.Remove(student))
+            return;
+
+        student.RemoveClassroom(this);
+    }
+
+    public void AddTeacher(Teacher teacher)
+    {
+        ArgumentNullException.ThrowIfNull(teacher);
+
+        if (Teachers.Contains(teacher))
+            return;
+
+        Teachers.Add(teacher);
+        teacher.AddClassroom(this);
+    }
+
+    public void RemoveTeacher(Teacher teacher)
+    {
+        ArgumentNullException.ThrowIfNull(teacher);
+
+        if (!Teachers.Remove(teacher))
+            return;
+
+        teacher.RemoveClassroom(this);
+    }
 
     public static Classroom Create(
         string name,

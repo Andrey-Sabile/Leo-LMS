@@ -21,6 +21,12 @@ public class ClassroomConfiguration : IEntityTypeConfiguration<Classroom>
         builder.Property(classroom => classroom.TeacherId)
             .IsRequired();
 
-        builder.Ignore(classroom => classroom.MemberIds);
+        builder
+            .HasMany(classroom => classroom.Teachers)
+            .WithMany(teacher => teacher.Classrooms);
+
+        builder
+            .HasMany(classroom => classroom.Students)
+            .WithMany(student => student.Classrooms);
     }
 }

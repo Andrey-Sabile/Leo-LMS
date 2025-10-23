@@ -6,7 +6,6 @@ import { ClassroomDto } from '@app/data-access/api/api-client';
 @Component({
   selector: 'app-classroom-dashboard',
   standalone: true,
-  imports: [RouterLink, DatePipe],
   templateUrl: './classroom-dashboard.component.html',
   styles: ``,
   changeDetection: ChangeDetectionStrategy.OnPush

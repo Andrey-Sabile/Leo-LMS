@@ -1,8 +1,9 @@
-import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
-import { RouterLink } from '@angular/router';
+import { ChangeDetectionStrategy, Component, DestroyRef, computed, inject, signal } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
 import { ClassroomDto, ClassroomsClient } from '@app/data-access/api/api-client';
+import { finalize } from 'rxjs/operators';
 import { catchError, map, of } from 'rxjs';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-classes',
@@ -14,17 +15,14 @@ import { catchError, map, of } from 'rxjs';
 })
 export class ClassesComponent {
   private readonly classroomsClient = inject(ClassroomsClient);
-  readonly classrooms = toSignal(
-    this.classroomsClient.getClassrooms().pipe(
-      map(response => response.classrooms ?? []),
-      catchError(error => {
-        console.error('Failed to load classrooms.', error);
-        return of<ClassroomDto[]>([]);
-      })
-    ),
-    { initialValue: [] }
-  );
+  private readonly destroyRef = inject(DestroyRef);
+  private readonly router = inject(Router);
+
+  readonly classrooms = signal<ClassroomDto[]>([]);
   readonly searchQuery = signal('');
+  readonly loadError = signal<string | null>(null);
+  readonly isLoading = signal(false);
+
   readonly filteredClassrooms = computed(() => {
     const searchTerm = this.searchQuery().trim().toLowerCase();
     const classrooms = this.classrooms();
@@ -39,11 +37,42 @@ export class ClassesComponent {
     });
   });
 
+  constructor() {
+    this.loadClassrooms();
+  }
+
   onSearchChange(value: string): void {
     this.searchQuery.set(value);
   }
 
   onSearchSubmit(value: string): void {
     this.searchQuery.set(value);
+  }
+
+  private loadClassrooms(): void {
+    this.isLoading.set(true);
+    this.loadError.set(null);
+
+    this.classroomsClient
+      .getClassrooms()
+      .pipe(
+        map(response => response.classrooms ?? []),
+        catchError(error => {
+          console.error('Failed to load classrooms.', error);
+          this.loadError.set('Unable to load classrooms. Please try again.');
+          return of<ClassroomDto[]>([]);
+        }),
+        finalize(() => {
+          this.isLoading.set(false);
+        }),
+        takeUntilDestroyed(this.destroyRef)
+      )
+      .subscribe(classrooms => {
+        this.classrooms.set(classrooms);
+      });
+  }
+
+  navigateToCreateClass(): void {
+    this.router.navigate(['/classes', 'create']);
   }
 }
