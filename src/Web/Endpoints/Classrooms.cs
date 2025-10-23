@@ -1,5 +1,9 @@
+using LeoLMS.Application.Classrooms.Commands.AddStudentToClassroom;
+using LeoLMS.Application.Classrooms.Commands.AddTeacherToClassroom;
 using LeoLMS.Application.Classrooms.Commands.CreateClassroom;
 using LeoLMS.Application.Classrooms.Commands.DeleteClassroom;
+using LeoLMS.Application.Classrooms.Commands.RemoveStudentFromClassroom;
+using LeoLMS.Application.Classrooms.Commands.RemoveTeacherFromClassroom;
 using LeoLMS.Application.Classrooms.Commands.UpdateClassroom;
 using LeoLMS.Application.Classrooms.Queries.GetClassrooms;
 using LeoLMS.Application.Classrooms.Queries.GetClassroomDetails;
@@ -16,6 +20,10 @@ public class Classrooms : EndpointGroupBase
         groupBuilder.MapPost(CreateClassroom).RequireAuthorization();
         groupBuilder.MapPut(UpdateClassroom, "{id}").RequireAuthorization();
         groupBuilder.MapDelete(DeleteClassroom, "{id}").RequireAuthorization();
+        groupBuilder.MapPost(AddStudentToClassroom, "{id}/students").RequireAuthorization();
+        groupBuilder.MapDelete(RemoveStudentFromClassroom, "{id}/students/{studentId}").RequireAuthorization();
+        groupBuilder.MapPost(AddTeacherToClassroom, "{id}/teachers").RequireAuthorization();
+        groupBuilder.MapDelete(RemoveTeacherFromClassroom, "{id}/teachers/{teacherId}").RequireAuthorization();
     }
 
     public async Task<Ok<ClassroomsVm>> GetClassrooms(ISender sender)
@@ -51,6 +59,38 @@ public class Classrooms : EndpointGroupBase
     public async Task<NoContent> DeleteClassroom(ISender sender, int id)
     {
         await sender.Send(new DeleteClassroomCommand(id));
+
+        return TypedResults.NoContent();
+    }
+
+    public async Task<Results<NoContent, BadRequest>> AddStudentToClassroom(ISender sender, int id, AddStudentToClassroomCommand command)
+    {
+        if (id != command.ClassroomId) return TypedResults.BadRequest();
+
+        await sender.Send(command);
+
+        return TypedResults.NoContent();
+    }
+
+    public async Task<NoContent> RemoveStudentFromClassroom(ISender sender, int id, int studentId)
+    {
+        await sender.Send(new RemoveStudentFromClassroomCommand(id, studentId));
+
+        return TypedResults.NoContent();
+    }
+
+    public async Task<Results<NoContent, BadRequest>> AddTeacherToClassroom(ISender sender, int id, AddTeacherToClassroomCommand command)
+    {
+        if (id != command.ClassroomId) return TypedResults.BadRequest();
+
+        await sender.Send(command);
+
+        return TypedResults.NoContent();
+    }
+
+    public async Task<NoContent> RemoveTeacherFromClassroom(ISender sender, int id, int teacherId)
+    {
+        await sender.Send(new RemoveTeacherFromClassroomCommand(id, teacherId));
 
         return TypedResults.NoContent();
     }

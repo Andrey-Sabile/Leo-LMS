@@ -29,18 +29,16 @@ Each **Epic (1.0, 2.0, 3.0, …)** represents a major release milestone with its
 **Goal:** Introduce “Classrooms” as the central organizing structure and extend the calendar with scoped events.
 
 ### Core Features
-- [ ] Classroom creation (Admin/Teacher adds class, defines subject)
+- [x] Classroom creation (Admin/Teacher adds class, defines subject)
 - [ ] Assign students to classrooms (manual selection)
 - [ ] Scoped calendar events (Global / Class / Personal)
 - [ ] Calendar drag-and-drop support
-- [ ] Classroom dashboard view (members, upcoming events)
+- [x] Classroom dashboard view (members, upcoming events)
 
 ### Technical Dependencies
-- [ ] Classroom entity and relationships
+- [x] Classroom entity and relationships
 - [ ] CalendarEvent ↔ Classroom foreign key
 - [ ] Enhanced calendar UI/UX
-- [ ] Class-level filtering and permissions
-
 ---
 
 ## 🗞️ Epic 3.0 — Announcements & Communication Layer

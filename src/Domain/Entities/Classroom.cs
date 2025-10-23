@@ -1,5 +1,6 @@
 namespace LeoLMS.Domain.Entities;
 
+using System.Linq;
 using LeoLMS.Domain.Events;
 
 public class Classroom : BaseAuditableEntity
@@ -24,7 +25,7 @@ public class Classroom : BaseAuditableEntity
     {
         ArgumentNullException.ThrowIfNull(student);
 
-        if (Students.Contains(student))
+        if (IsStudentAlreadyAssigned(student))
             return;
 
         Students.Add(student);
@@ -35,17 +36,20 @@ public class Classroom : BaseAuditableEntity
     {
         ArgumentNullException.ThrowIfNull(student);
 
-        if (!Students.Remove(student))
+        var studentInClassroom = FindStudent(student);
+
+        if (studentInClassroom is null)
             return;
 
-        student.RemoveClassroom(this);
+        Students.Remove(studentInClassroom);
+        studentInClassroom.RemoveClassroom(this);
     }
 
     public void AddTeacher(Teacher teacher)
     {
         ArgumentNullException.ThrowIfNull(teacher);
 
-        if (Teachers.Contains(teacher))
+        if (IsTeacherAlreadyAssigned(teacher))
             return;
 
         Teachers.Add(teacher);
@@ -56,10 +60,53 @@ public class Classroom : BaseAuditableEntity
     {
         ArgumentNullException.ThrowIfNull(teacher);
 
-        if (!Teachers.Remove(teacher))
+        var teacherInClassroom = FindTeacher(teacher);
+
+        if (teacherInClassroom is null)
             return;
 
-        teacher.RemoveClassroom(this);
+        Teachers.Remove(teacherInClassroom);
+        teacherInClassroom.RemoveClassroom(this);
+    }
+
+    private bool IsStudentAlreadyAssigned(Student student)
+    {
+        if (student.Id == 0)
+        {
+            return Students.Contains(student);
+        }
+
+        return Students.Any(existing => existing.Id == student.Id);
+    }
+
+    private Student? FindStudent(Student student)
+    {
+        if (student.Id == 0)
+        {
+            return Students.Contains(student) ? student : null;
+        }
+
+        return Students.FirstOrDefault(existing => existing.Id == student.Id);
+    }
+
+    private bool IsTeacherAlreadyAssigned(Teacher teacher)
+    {
+        if (teacher.Id == 0)
+        {
+            return Teachers.Contains(teacher);
+        }
+
+        return Teachers.Any(existing => existing.Id == teacher.Id);
+    }
+
+    private Teacher? FindTeacher(Teacher teacher)
+    {
+        if (teacher.Id == 0)
+        {
+            return Teachers.Contains(teacher) ? teacher : null;
+        }
+
+        return Teachers.FirstOrDefault(existing => existing.Id == teacher.Id);
     }
 
     public static Classroom Create(
