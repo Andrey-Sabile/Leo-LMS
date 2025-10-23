@@ -16,4 +16,8 @@ public class ClassroomSeedItem
     public string TeacherEmail { get; init; } = string.Empty;
 
     public string? Description { get; init; }
+
+    public IList<string> AdditionalTeacherEmails { get; init; } = new List<string>();
+
+    public IList<string> StudentEmails { get; init; } = new List<string>();
 }

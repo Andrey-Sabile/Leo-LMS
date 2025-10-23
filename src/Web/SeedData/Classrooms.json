@@ -4,337 +4,1791 @@
       "name": "STEM Foundations",
       "description": "Collaborative math practice with weekly problem-solving challenges.",
       "subjectCode": "MATH101",
-      "teacherEmail": "grace.hopper@example.com"
+      "teacherEmail": "grace.hopper@example.com",
+      "studentEmails": [
+        "ada.lovelace@example.com",
+        "alan.turing@example.com",
+        "kaleb.rhodes@example.com",
+        "jane.koch@example.com",
+        "rosa.hicks@example.com",
+        "luc.herman@example.com",
+        "abubakar.mcleod@example.com",
+        "lucian.tanner@example.com",
+        "nicolas.mullins@example.com",
+        "miles.chaney@example.com",
+        "milo.stafford@example.com",
+        "daisy.mccoy@example.com",
+        "ruqayyah.hunt@example.com",
+        "neha.mcknight@example.com",
+        "aneesa.cohen@example.com",
+        "frederic.lynn@example.com",
+        "chester.england@example.com",
+        "jerry.mora@example.com",
+        "bradley.sawyer@example.com",
+        "jack.chandler@example.com"
+      ],
+      "additionalTeacherEmails": [
+        "ramon.lopez@example.com",
+        "priya.iyer@example.com"
+      ]
     },
     {
       "name": "Life Sciences Lab",
       "description": "Hands-on biology experiments exploring cells, genetics, and ecosystems.",
       "subjectCode": "BIO105",
-      "teacherEmail": "priya.iyer@example.com"
+      "teacherEmail": "priya.iyer@example.com",
+      "studentEmails": [
+        "miles.chaney@example.com",
+        "milo.stafford@example.com",
+        "daisy.mccoy@example.com",
+        "ruqayyah.hunt@example.com",
+        "neha.mcknight@example.com",
+        "aneesa.cohen@example.com",
+        "frederic.lynn@example.com",
+        "chester.england@example.com",
+        "jerry.mora@example.com",
+        "bradley.sawyer@example.com",
+        "jack.chandler@example.com",
+        "adnan.robbins@example.com",
+        "malachy.alexander@example.com",
+        "francesco.soto@example.com",
+        "liberty.larsen@example.com",
+        "alannah.patterson@example.com",
+        "enzo.stone@example.com",
+        "gabriela.marshall@example.com",
+        "alexis.morse@example.com",
+        "maryam.harper@example.com"
+      ],
+      "additionalTeacherEmails": [
+        "fallon.gibson@example.com"
+      ]
     },
     {
       "name": "Global Perspectives Seminar",
       "description": "Discussion-based history seminar connecting world events across eras.",
       "subjectCode": "HIST210",
-      "teacherEmail": "ramon.lopez@example.com"
+      "teacherEmail": "ramon.lopez@example.com",
+      "studentEmails": [
+        "bradley.sawyer@example.com",
+        "jack.chandler@example.com",
+        "adnan.robbins@example.com",
+        "malachy.alexander@example.com",
+        "francesco.soto@example.com",
+        "liberty.larsen@example.com",
+        "alannah.patterson@example.com",
+        "enzo.stone@example.com",
+        "gabriela.marshall@example.com",
+        "alexis.morse@example.com",
+        "maryam.harper@example.com",
+        "khadijah.harding@example.com",
+        "trey.warner@example.com",
+        "theresa.wallace@example.com",
+        "maxim.alvarado@example.com",
+        "aaminah.patel@example.com",
+        "micheal.santiago@example.com",
+        "aishah.hampton@example.com",
+        "muhammed.jenkins@example.com",
+        "salma.barrett@example.com"
+      ],
+      "additionalTeacherEmails": [
+        "fallon.gibson@example.com",
+        "jules.hughes@example.com"
+      ]
     },
     {
       "name": "Creative Writing Workshop",
       "description": "Peer-reviewed literary analysis and original composition projects.",
       "subjectCode": "ENG220",
-      "teacherEmail": "fallon.gibson@example.com"
+      "teacherEmail": "fallon.gibson@example.com",
+      "studentEmails": [
+        "alexis.morse@example.com",
+        "maryam.harper@example.com",
+        "khadijah.harding@example.com",
+        "trey.warner@example.com",
+        "theresa.wallace@example.com",
+        "maxim.alvarado@example.com",
+        "aaminah.patel@example.com",
+        "micheal.santiago@example.com",
+        "aishah.hampton@example.com",
+        "muhammed.jenkins@example.com",
+        "salma.barrett@example.com",
+        "mariya.barker@example.com",
+        "shauna.butler@example.com",
+        "terence.melton@example.com",
+        "nancy.larson@example.com",
+        "ahmad.hobbs@example.com",
+        "cruz.welch@example.com",
+        "gabriel.oconnell@example.com",
+        "abdulrahman.duran@example.com",
+        "aoife.fletcher@example.com"
+      ],
+      "additionalTeacherEmails": [
+        "jules.hughes@example.com",
+        "kai.easton@example.com"
+      ]
     },
     {
       "name": "Applied Chemistry Studio",
       "description": "Lab-focused course emphasizing experimentation and safety techniques.",
       "subjectCode": "CHEM115",
-      "teacherEmail": "jules.hughes@example.com"
+      "teacherEmail": "jules.hughes@example.com",
+      "studentEmails": [
+        "muhammed.jenkins@example.com",
+        "salma.barrett@example.com",
+        "mariya.barker@example.com",
+        "shauna.butler@example.com",
+        "terence.melton@example.com",
+        "nancy.larson@example.com",
+        "ahmad.hobbs@example.com",
+        "cruz.welch@example.com",
+        "gabriel.oconnell@example.com",
+        "abdulrahman.duran@example.com",
+        "aoife.fletcher@example.com",
+        "madiha.humphrey@example.com",
+        "fraser.owens@example.com",
+        "shreya.gonzales@example.com",
+        "olivia.morrow@example.com",
+        "leyton.dunlap@example.com",
+        "penny.ogallagher@example.com",
+        "ruth.mccullough@example.com",
+        "jamal.kane@example.com",
+        "charis.avila@example.com"
+      ],
+      "additionalTeacherEmails": [
+        "kai.easton@example.com",
+        "jensen.reeves@example.com"
+      ]
     },
     {
       "name": "Coding Makerspace",
       "description": "Project-based programming lab building creative digital artifacts.",
       "subjectCode": "CS130",
-      "teacherEmail": "kai.easton@example.com"
+      "teacherEmail": "kai.easton@example.com",
+      "studentEmails": [
+        "abdulrahman.duran@example.com",
+        "aoife.fletcher@example.com",
+        "madiha.humphrey@example.com",
+        "fraser.owens@example.com",
+        "shreya.gonzales@example.com",
+        "olivia.morrow@example.com",
+        "leyton.dunlap@example.com",
+        "penny.ogallagher@example.com",
+        "ruth.mccullough@example.com",
+        "jamal.kane@example.com",
+        "charis.avila@example.com",
+        "amaan.cortez@example.com",
+        "ellie.vance@example.com",
+        "abu.hall@example.com",
+        "krishan.hoffman@example.com",
+        "fletcher.little@example.com",
+        "norman.reilly@example.com",
+        "maya.frank@example.com",
+        "clark.bowers@example.com",
+        "amirah.randall@example.com"
+      ],
+      "additionalTeacherEmails": [
+        "jensen.reeves@example.com",
+        "dakota.keller@example.com"
+      ]
     },
     {
       "name": "Mathematics Problem Lab",
       "description": "Small-group clinics focusing on algebraic reasoning and strategy.",
       "subjectCode": "MATH101",
-      "teacherEmail": "jensen.reeves@example.com"
+      "teacherEmail": "jensen.reeves@example.com",
+      "studentEmails": [
+        "jamal.kane@example.com",
+        "charis.avila@example.com",
+        "amaan.cortez@example.com",
+        "ellie.vance@example.com",
+        "abu.hall@example.com",
+        "krishan.hoffman@example.com",
+        "fletcher.little@example.com",
+        "norman.reilly@example.com",
+        "maya.frank@example.com",
+        "clark.bowers@example.com",
+        "amirah.randall@example.com",
+        "riley.norman@example.com",
+        "romeo.james@example.com",
+        "sophia.hoover@example.com",
+        "abi.nunez@example.com",
+        "hanna.hensley@example.com",
+        "diana.faulkner@example.com",
+        "tilly.odoherty@example.com",
+        "gene.ball@example.com",
+        "faiza.zuniga@example.com"
+      ],
+      "additionalTeacherEmails": [
+        "dakota.keller@example.com",
+        "jamie.sawyer@example.com"
+      ]
     },
     {
       "name": "Advanced Algebra Cohort",
       "description": "Extended practice with quadratic models and mathematical communication.",
       "subjectCode": "MATH101",
-      "teacherEmail": "dakota.keller@example.com"
+      "teacherEmail": "dakota.keller@example.com",
+      "studentEmails": [
+        "clark.bowers@example.com",
+        "amirah.randall@example.com",
+        "riley.norman@example.com",
+        "romeo.james@example.com",
+        "sophia.hoover@example.com",
+        "abi.nunez@example.com",
+        "hanna.hensley@example.com",
+        "diana.faulkner@example.com",
+        "tilly.odoherty@example.com",
+        "gene.ball@example.com",
+        "faiza.zuniga@example.com",
+        "leonardo.potts@example.com",
+        "abdullah.olson@example.com",
+        "elspeth.hubbard@example.com",
+        "andrew.lucas@example.com",
+        "cassie.allison@example.com",
+        "kenny.proctor@example.com",
+        "miranda.oliver@example.com",
+        "faisal.bass@example.com",
+        "lilian.buckley@example.com"
+      ],
+      "additionalTeacherEmails": [
+        "jamie.sawyer@example.com",
+        "casey.garcia@example.com"
+      ]
     },
     {
       "name": "Biology Field Research",
       "description": "Outdoor investigations documenting biodiversity within local habitats.",
       "subjectCode": "BIO105",
-      "teacherEmail": "jamie.sawyer@example.com"
+      "teacherEmail": "jamie.sawyer@example.com",
+      "studentEmails": [
+        "gene.ball@example.com",
+        "faiza.zuniga@example.com",
+        "leonardo.potts@example.com",
+        "abdullah.olson@example.com",
+        "elspeth.hubbard@example.com",
+        "andrew.lucas@example.com",
+        "cassie.allison@example.com",
+        "kenny.proctor@example.com",
+        "miranda.oliver@example.com",
+        "faisal.bass@example.com",
+        "lilian.buckley@example.com",
+        "jim.chen@example.com",
+        "kiera.leach@example.com",
+        "mario.rowe@example.com",
+        "ida.ross@example.com",
+        "chanelle.reid@example.com",
+        "grover.waters@example.com",
+        "zainab.mahoney@example.com",
+        "zack.dyer@example.com",
+        "yousuf.landry@example.com"
+      ],
+      "additionalTeacherEmails": [
+        "casey.garcia@example.com",
+        "sasha.underwood@example.com"
+      ]
     },
     {
       "name": "Anatomy Explorers",
       "description": "Anatomical modeling labs emphasizing systems thinking and wellness.",
       "subjectCode": "BIO105",
-      "teacherEmail": "casey.garcia@example.com"
+      "teacherEmail": "casey.garcia@example.com",
+      "studentEmails": [
+        "faisal.bass@example.com",
+        "lilian.buckley@example.com",
+        "jim.chen@example.com",
+        "kiera.leach@example.com",
+        "mario.rowe@example.com",
+        "ida.ross@example.com",
+        "chanelle.reid@example.com",
+        "grover.waters@example.com",
+        "zainab.mahoney@example.com",
+        "zack.dyer@example.com",
+        "yousuf.landry@example.com",
+        "jamie.sears@example.com",
+        "christian.bolton@example.com",
+        "sion.hanson@example.com",
+        "milton.knapp@example.com",
+        "lewys.mccall@example.com",
+        "lawson.carson@example.com",
+        "macy.grimes@example.com",
+        "barry.pineda@example.com",
+        "muhammad.mcgowan@example.com"
+      ],
+      "additionalTeacherEmails": [
+        "sasha.underwood@example.com",
+        "morgan.prescott@example.com"
+      ]
     },
     {
       "name": "History Debates Forum",
       "description": "Structured debates analyzing cause and effect across pivotal eras.",
       "subjectCode": "HIST210",
-      "teacherEmail": "sasha.underwood@example.com"
+      "teacherEmail": "sasha.underwood@example.com",
+      "studentEmails": [
+        "zack.dyer@example.com",
+        "yousuf.landry@example.com",
+        "jamie.sears@example.com",
+        "christian.bolton@example.com",
+        "sion.hanson@example.com",
+        "milton.knapp@example.com",
+        "lewys.mccall@example.com",
+        "lawson.carson@example.com",
+        "macy.grimes@example.com",
+        "barry.pineda@example.com",
+        "muhammad.mcgowan@example.com",
+        "liana.vargas@example.com",
+        "flora.wu@example.com",
+        "roger.browning@example.com",
+        "kyle.obrien@example.com",
+        "rishi.hill@example.com",
+        "charlotte.holder@example.com",
+        "alistair.bloggs@example.com",
+        "lorenzo.francis@example.com",
+        "alysha.edwards@example.com"
+      ],
+      "additionalTeacherEmails": [
+        "morgan.prescott@example.com",
+        "teagan.young@example.com"
+      ]
     },
     {
       "name": "Cultural Heritage Projects",
       "description": "Inquiry projects highlighting storytelling from global communities.",
       "subjectCode": "HIST210",
-      "teacherEmail": "morgan.prescott@example.com"
+      "teacherEmail": "morgan.prescott@example.com",
+      "studentEmails": [
+        "barry.pineda@example.com",
+        "muhammad.mcgowan@example.com",
+        "liana.vargas@example.com",
+        "flora.wu@example.com",
+        "roger.browning@example.com",
+        "kyle.obrien@example.com",
+        "rishi.hill@example.com",
+        "charlotte.holder@example.com",
+        "alistair.bloggs@example.com",
+        "lorenzo.francis@example.com",
+        "alysha.edwards@example.com",
+        "hasan.clayton@example.com",
+        "yasin.rivas@example.com",
+        "mariah.mathis@example.com",
+        "ada.avila@example.com",
+        "elisabeth.bolton@example.com",
+        "nate.bishop@example.com",
+        "janice.berger@example.com",
+        "traci.mclaughlin@example.com",
+        "aston.schroeder@example.com"
+      ],
+      "additionalTeacherEmails": [
+        "teagan.young@example.com",
+        "micah.walker@example.com"
+      ]
     },
     {
       "name": "Writers Studio",
       "description": "Critique-driven workshop refining narrative voice and revision skills.",
       "subjectCode": "ENG220",
-      "teacherEmail": "teagan.young@example.com"
+      "teacherEmail": "teagan.young@example.com",
+      "studentEmails": [
+        "lorenzo.francis@example.com",
+        "alysha.edwards@example.com",
+        "hasan.clayton@example.com",
+        "yasin.rivas@example.com",
+        "mariah.mathis@example.com",
+        "ada.avila@example.com",
+        "elisabeth.bolton@example.com",
+        "nate.bishop@example.com",
+        "janice.berger@example.com",
+        "traci.mclaughlin@example.com",
+        "aston.schroeder@example.com",
+        "colin.rangel@example.com",
+        "azaan.parrish@example.com",
+        "savanna.mullen@example.com",
+        "leia.mcdowell@example.com",
+        "clayton.phillips@example.com",
+        "herbie.dalton@example.com",
+        "alan.valdez@example.com",
+        "annabelle.wallace@example.com",
+        "luther.woodard@example.com"
+      ],
+      "additionalTeacherEmails": [
+        "micah.walker@example.com",
+        "whitney.harlow@example.com"
+      ]
     },
     {
       "name": "Poetry and Performance",
       "description": "Spoken word lab blending literary analysis with stagecraft.",
       "subjectCode": "ENG220",
-      "teacherEmail": "micah.walker@example.com"
+      "teacherEmail": "micah.walker@example.com",
+      "studentEmails": [
+        "traci.mclaughlin@example.com",
+        "aston.schroeder@example.com",
+        "colin.rangel@example.com",
+        "azaan.parrish@example.com",
+        "savanna.mullen@example.com",
+        "leia.mcdowell@example.com",
+        "clayton.phillips@example.com",
+        "herbie.dalton@example.com",
+        "alan.valdez@example.com",
+        "annabelle.wallace@example.com",
+        "luther.woodard@example.com",
+        "zuzanna.gentry@example.com",
+        "haydn.harper@example.com",
+        "amy.doherty@example.com",
+        "emilio.noble@example.com",
+        "krishan.watts@example.com",
+        "eleri.mcgee@example.com",
+        "bertha.donnelly@example.com",
+        "flynn.harrell@example.com",
+        "bill.lowery@example.com"
+      ],
+      "additionalTeacherEmails": [
+        "whitney.harlow@example.com",
+        "logan.adler@example.com"
+      ]
     },
     {
       "name": "Chemistry Problem Solving",
       "description": "Collaborative problem sets reinforcing stoichiometry and thermodynamics.",
       "subjectCode": "CHEM115",
-      "teacherEmail": "whitney.harlow@example.com"
+      "teacherEmail": "whitney.harlow@example.com",
+      "studentEmails": [
+        "annabelle.wallace@example.com",
+        "luther.woodard@example.com",
+        "zuzanna.gentry@example.com",
+        "haydn.harper@example.com",
+        "amy.doherty@example.com",
+        "emilio.noble@example.com",
+        "krishan.watts@example.com",
+        "eleri.mcgee@example.com",
+        "bertha.donnelly@example.com",
+        "flynn.harrell@example.com",
+        "bill.lowery@example.com",
+        "wilson.walker@example.com",
+        "clementine.wilkerson@example.com",
+        "kallum.house@example.com",
+        "dylan.lopez@example.com",
+        "hannah.barber@example.com",
+        "zane.carter@example.com",
+        "isobelle.griffin@example.com",
+        "maksymilian.peters@example.com",
+        "richie.dennis@example.com"
+      ],
+      "additionalTeacherEmails": [
+        "logan.adler@example.com",
+        "rowan.nolan@example.com"
+      ]
     },
     {
       "name": "Organic Chemistry Prep",
       "description": "Scaffolded labs introducing molecular structure and reaction mechanisms.",
       "subjectCode": "CHEM115",
-      "teacherEmail": "logan.adler@example.com"
+      "teacherEmail": "logan.adler@example.com",
+      "studentEmails": [
+        "flynn.harrell@example.com",
+        "bill.lowery@example.com",
+        "wilson.walker@example.com",
+        "clementine.wilkerson@example.com",
+        "kallum.house@example.com",
+        "dylan.lopez@example.com",
+        "hannah.barber@example.com",
+        "zane.carter@example.com",
+        "isobelle.griffin@example.com",
+        "maksymilian.peters@example.com",
+        "richie.dennis@example.com",
+        "amira.salinas@example.com",
+        "hussein.rios@example.com",
+        "john.bowen@example.com",
+        "aiden.adkins@example.com",
+        "taylor.shepard@example.com",
+        "naima.nicholson@example.com",
+        "arman.huffman@example.com",
+        "kathleen.stevens@example.com",
+        "mary.lara@example.com"
+      ],
+      "additionalTeacherEmails": [
+        "rowan.nolan@example.com",
+        "kendall.fletcher@example.com"
+      ]
     },
     {
       "name": "Intro to Robotics Lab",
       "description": "Design cycle challenges building autonomous robots with sensors.",
       "subjectCode": "ROB260",
-      "teacherEmail": "rowan.nolan@example.com"
+      "teacherEmail": "rowan.nolan@example.com",
+      "studentEmails": [
+        "maksymilian.peters@example.com",
+        "richie.dennis@example.com",
+        "amira.salinas@example.com",
+        "hussein.rios@example.com",
+        "john.bowen@example.com",
+        "aiden.adkins@example.com",
+        "taylor.shepard@example.com",
+        "naima.nicholson@example.com",
+        "arman.huffman@example.com",
+        "kathleen.stevens@example.com",
+        "mary.lara@example.com",
+        "cory.miles@example.com",
+        "inaaya.gallagher@example.com",
+        "maison.richmond@example.com",
+        "melisa.sloan@example.com",
+        "mathilda.ballard@example.com",
+        "kiara.may@example.com",
+        "sid.gray@example.com",
+        "rodney.rogers@example.com",
+        "jenny.wheeler@example.com"
+      ],
+      "additionalTeacherEmails": [
+        "kendall.fletcher@example.com",
+        "tatum.york@example.com"
+      ]
     },
     {
       "name": "Robotics Design Challenge",
       "description": "Team-based sprints iterating on drivetrain, control, and testing.",
       "subjectCode": "ROB260",
-      "teacherEmail": "kendall.fletcher@example.com"
+      "teacherEmail": "kendall.fletcher@example.com",
+      "studentEmails": [
+        "kathleen.stevens@example.com",
+        "mary.lara@example.com",
+        "cory.miles@example.com",
+        "inaaya.gallagher@example.com",
+        "maison.richmond@example.com",
+        "melisa.sloan@example.com",
+        "mathilda.ballard@example.com",
+        "kiara.may@example.com",
+        "sid.gray@example.com",
+        "rodney.rogers@example.com",
+        "jenny.wheeler@example.com",
+        "maggie.townsend@example.com",
+        "lily.davenport@example.com",
+        "rachel.swanson@example.com",
+        "sadie.contreras@example.com",
+        "francis.vance@example.com",
+        "jayden.graham@example.com",
+        "jaime.ali@example.com",
+        "santiago.stevenson@example.com",
+        "betty.moreno@example.com"
+      ],
+      "additionalTeacherEmails": [
+        "tatum.york@example.com",
+        "skyler.york@example.com"
+      ]
     },
     {
       "name": "Financial Futures Club",
       "description": "Scenario planning activities exploring personal and global finance trends.",
       "subjectCode": "ECON150",
-      "teacherEmail": "tatum.york@example.com"
+      "teacherEmail": "tatum.york@example.com",
+      "studentEmails": [
+        "rodney.rogers@example.com",
+        "jenny.wheeler@example.com",
+        "maggie.townsend@example.com",
+        "lily.davenport@example.com",
+        "rachel.swanson@example.com",
+        "sadie.contreras@example.com",
+        "francis.vance@example.com",
+        "jayden.graham@example.com",
+        "jaime.ali@example.com",
+        "santiago.stevenson@example.com",
+        "betty.moreno@example.com",
+        "gabrielle.baldwin@example.com",
+        "alannah.moody@example.com",
+        "malaika.reeves@example.com",
+        "haaris.lin@example.com",
+        "josh.clark@example.com",
+        "evelyn.valencia@example.com",
+        "ruairi.barnes@example.com",
+        "tina.silva@example.com",
+        "inayah.vasquez@example.com"
+      ],
+      "additionalTeacherEmails": [
+        "skyler.york@example.com",
+        "kendall.ramirez@example.com"
+      ]
     },
     {
       "name": "Investment Simulation Workshop",
       "description": "Hands-on investing simulations with reflective portfolio reviews.",
       "subjectCode": "ECON150",
-      "teacherEmail": "skyler.york@example.com"
+      "teacherEmail": "skyler.york@example.com",
+      "studentEmails": [
+        "santiago.stevenson@example.com",
+        "betty.moreno@example.com",
+        "gabrielle.baldwin@example.com",
+        "alannah.moody@example.com",
+        "malaika.reeves@example.com",
+        "haaris.lin@example.com",
+        "josh.clark@example.com",
+        "evelyn.valencia@example.com",
+        "ruairi.barnes@example.com",
+        "tina.silva@example.com",
+        "inayah.vasquez@example.com",
+        "owain.prince@example.com",
+        "alvin.nelson@example.com",
+        "lexie.dale@example.com",
+        "coral.hughes@example.com",
+        "moses.joyce@example.com",
+        "tiago.davies@example.com",
+        "abdulrahman.curtis@example.com",
+        "halima.chapman@example.com",
+        "halle.hayes@example.com"
+      ],
+      "additionalTeacherEmails": [
+        "kendall.ramirez@example.com",
+        "lennon.west@example.com"
+      ]
     },
     {
       "name": "Environmental Action Team",
       "description": "Service-learning projects focused on climate resilience strategies.",
       "subjectCode": "SCI180",
-      "teacherEmail": "kendall.ramirez@example.com"
+      "teacherEmail": "kendall.ramirez@example.com",
+      "studentEmails": [
+        "tina.silva@example.com",
+        "inayah.vasquez@example.com",
+        "owain.prince@example.com",
+        "alvin.nelson@example.com",
+        "lexie.dale@example.com",
+        "coral.hughes@example.com",
+        "moses.joyce@example.com",
+        "tiago.davies@example.com",
+        "abdulrahman.curtis@example.com",
+        "halima.chapman@example.com",
+        "halle.hayes@example.com",
+        "asa.leblanc@example.com",
+        "bessie.herman@example.com",
+        "lorcan.lloyd@example.com",
+        "theo.hull@example.com",
+        "rabia.walls@example.com",
+        "rebecca.clay@example.com",
+        "angel.sampson@example.com",
+        "keisha.campos@example.com",
+        "edgar.mcintyre@example.com"
+      ],
+      "additionalTeacherEmails": [
+        "lennon.west@example.com",
+        "robin.xavier@example.com"
+      ]
     },
     {
       "name": "Sustainability Capstone",
       "description": "Capstone lab synthesizing environmental data into community proposals.",
       "subjectCode": "SCI180",
-      "teacherEmail": "lennon.west@example.com"
+      "teacherEmail": "lennon.west@example.com",
+      "studentEmails": [
+        "halima.chapman@example.com",
+        "halle.hayes@example.com",
+        "asa.leblanc@example.com",
+        "bessie.herman@example.com",
+        "lorcan.lloyd@example.com",
+        "theo.hull@example.com",
+        "rabia.walls@example.com",
+        "rebecca.clay@example.com",
+        "angel.sampson@example.com",
+        "keisha.campos@example.com",
+        "edgar.mcintyre@example.com",
+        "elysia.velez@example.com",
+        "calum.shepherd@example.com",
+        "anas.moreno@example.com",
+        "roberta.mayer@example.com",
+        "rhiannon.preston@example.com",
+        "zoe.copeland@example.com",
+        "tommylee.wiggins@example.com",
+        "jamil.burns@example.com",
+        "hope.doherty@example.com"
+      ],
+      "additionalTeacherEmails": [
+        "robin.xavier@example.com",
+        "quinn.dalton@example.com"
+      ]
     },
     {
       "name": "Wellness Coaching Group",
       "description": "Peer coaching sessions supporting goal setting and healthy habits.",
       "subjectCode": "PE101",
-      "teacherEmail": "robin.xavier@example.com"
+      "teacherEmail": "robin.xavier@example.com",
+      "studentEmails": [
+        "keisha.campos@example.com",
+        "edgar.mcintyre@example.com",
+        "elysia.velez@example.com",
+        "calum.shepherd@example.com",
+        "anas.moreno@example.com",
+        "roberta.mayer@example.com",
+        "rhiannon.preston@example.com",
+        "zoe.copeland@example.com",
+        "tommylee.wiggins@example.com",
+        "jamil.burns@example.com",
+        "hope.doherty@example.com",
+        "pippa.nichols@example.com",
+        "alfred.montoya@example.com",
+        "demileigh.connolly@example.com",
+        "rishi.mooney@example.com",
+        "edie.jensen@example.com",
+        "phoenix.wolf@example.com",
+        "salma.gilbert@example.com",
+        "roisin.keller@example.com",
+        "elsa.trujillo@example.com"
+      ],
+      "additionalTeacherEmails": [
+        "quinn.dalton@example.com",
+        "finley.nolan@example.com"
+      ]
     },
     {
       "name": "Mindful Movement Studio",
       "description": "Mind-body practices integrating yoga, breathwork, and reflection.",
       "subjectCode": "PE101",
-      "teacherEmail": "quinn.dalton@example.com"
+      "teacherEmail": "quinn.dalton@example.com",
+      "studentEmails": [
+        "jamil.burns@example.com",
+        "hope.doherty@example.com",
+        "pippa.nichols@example.com",
+        "alfred.montoya@example.com",
+        "demileigh.connolly@example.com",
+        "rishi.mooney@example.com",
+        "edie.jensen@example.com",
+        "phoenix.wolf@example.com",
+        "salma.gilbert@example.com",
+        "roisin.keller@example.com",
+        "elsa.trujillo@example.com",
+        "susan.barron@example.com",
+        "keiran.duran@example.com",
+        "eryn.meadows@example.com",
+        "cyrus.patrick@example.com",
+        "saoirse.dejesus@example.com",
+        "kayla.webster@example.com",
+        "yash.palmer@example.com",
+        "morgan.grimes@example.com",
+        "elliot.ali@example.com"
+      ],
+      "additionalTeacherEmails": [
+        "finley.nolan@example.com",
+        "jamie.bishop@example.com"
+      ]
     },
     {
       "name": "Digital Storytelling Lab",
       "description": "Media lab crafting narratives through video, audio, and motion graphics.",
       "subjectCode": "ART175",
-      "teacherEmail": "finley.nolan@example.com"
+      "teacherEmail": "finley.nolan@example.com",
+      "studentEmails": [
+        "roisin.keller@example.com",
+        "elsa.trujillo@example.com",
+        "susan.barron@example.com",
+        "keiran.duran@example.com",
+        "eryn.meadows@example.com",
+        "cyrus.patrick@example.com",
+        "saoirse.dejesus@example.com",
+        "kayla.webster@example.com",
+        "yash.palmer@example.com",
+        "morgan.grimes@example.com",
+        "elliot.ali@example.com",
+        "brooklyn.wall@example.com",
+        "genevieve.patel@example.com",
+        "khadija.thomas@example.com",
+        "erin.pollard@example.com",
+        "alvin.vasquez@example.com",
+        "freddy.caldwell@example.com",
+        "ria.moss@example.com",
+        "timothy.vargas@example.com",
+        "dexter.slater@example.com"
+      ],
+      "additionalTeacherEmails": [
+        "jamie.bishop@example.com",
+        "briar.zamora@example.com"
+      ]
     },
     {
       "name": "Media Production Crew",
       "description": "Collaborative production team managing school-wide broadcasts.",
       "subjectCode": "ART175",
-      "teacherEmail": "jamie.bishop@example.com"
+      "teacherEmail": "jamie.bishop@example.com",
+      "studentEmails": [
+        "morgan.grimes@example.com",
+        "elliot.ali@example.com",
+        "brooklyn.wall@example.com",
+        "genevieve.patel@example.com",
+        "khadija.thomas@example.com",
+        "erin.pollard@example.com",
+        "alvin.vasquez@example.com",
+        "freddy.caldwell@example.com",
+        "ria.moss@example.com",
+        "timothy.vargas@example.com",
+        "dexter.slater@example.com",
+        "gregory.oliver@example.com",
+        "ben.malone@example.com",
+        "dhruv.morris@example.com",
+        "kathleen.welsh@example.com",
+        "rufus.barrett@example.com",
+        "gavin.jenkins@example.com",
+        "saskia.carey@example.com",
+        "ameer.wilson@example.com",
+        "theodore.duffy@example.com"
+      ],
+      "additionalTeacherEmails": [
+        "briar.zamora@example.com",
+        "finley.york@example.com"
+      ]
     },
     {
       "name": "Music Ensemble Practice",
       "description": "Rehearsal block for chamber groups emphasizing technique and balance.",
       "subjectCode": "MUS140",
-      "teacherEmail": "briar.zamora@example.com"
+      "teacherEmail": "briar.zamora@example.com",
+      "studentEmails": [
+        "timothy.vargas@example.com",
+        "dexter.slater@example.com",
+        "gregory.oliver@example.com",
+        "ben.malone@example.com",
+        "dhruv.morris@example.com",
+        "kathleen.welsh@example.com",
+        "rufus.barrett@example.com",
+        "gavin.jenkins@example.com",
+        "saskia.carey@example.com",
+        "ameer.wilson@example.com",
+        "theodore.duffy@example.com",
+        "adelaide.mason@example.com",
+        "jasmine.williams@example.com",
+        "fletcher.evans@example.com",
+        "ashleigh.whitney@example.com",
+        "nataniel.cooper@example.com",
+        "otis.bonner@example.com",
+        "saad.quinn@example.com",
+        "ronan.haley@example.com",
+        "henry.huffman@example.com"
+      ],
+      "additionalTeacherEmails": [
+        "finley.york@example.com",
+        "skyler.thompson@example.com"
+      ]
     },
     {
       "name": "Composition Masterclass",
       "description": "Composer clinics refining melodic development and orchestration.",
       "subjectCode": "MUS140",
-      "teacherEmail": "finley.york@example.com"
+      "teacherEmail": "finley.york@example.com",
+      "studentEmails": [
+        "ameer.wilson@example.com",
+        "theodore.duffy@example.com",
+        "adelaide.mason@example.com",
+        "jasmine.williams@example.com",
+        "fletcher.evans@example.com",
+        "ashleigh.whitney@example.com",
+        "nataniel.cooper@example.com",
+        "otis.bonner@example.com",
+        "saad.quinn@example.com",
+        "ronan.haley@example.com",
+        "henry.huffman@example.com",
+        "sabrina.krueger@example.com",
+        "kabir.turner@example.com",
+        "juliette.finley@example.com",
+        "amelie.marsh@example.com",
+        "yaseen.vega@example.com",
+        "elias.clayton@example.com",
+        "gerald.haas@example.com",
+        "myah.armstrong@example.com",
+        "felix.hendricks@example.com"
+      ],
+      "additionalTeacherEmails": [
+        "skyler.thompson@example.com",
+        "noel.keller@example.com"
+      ]
     },
     {
       "name": "Spanish Immersion Circle",
       "description": "Immersive conversation tables with cultural storytelling prompts.",
       "subjectCode": "LANG230",
-      "teacherEmail": "skyler.thompson@example.com"
+      "teacherEmail": "skyler.thompson@example.com",
+      "studentEmails": [
+        "ronan.haley@example.com",
+        "henry.huffman@example.com",
+        "sabrina.krueger@example.com",
+        "kabir.turner@example.com",
+        "juliette.finley@example.com",
+        "amelie.marsh@example.com",
+        "yaseen.vega@example.com",
+        "elias.clayton@example.com",
+        "gerald.haas@example.com",
+        "myah.armstrong@example.com",
+        "felix.hendricks@example.com",
+        "allen.barr@example.com",
+        "otto.alvarez@example.com",
+        "lina.mccall@example.com",
+        "kate.small@example.com",
+        "laila.mccann@example.com",
+        "huda.cherry@example.com",
+        "elijah.dixon@example.com",
+        "leonie.roy@example.com",
+        "franklin.greer@example.com"
+      ],
+      "additionalTeacherEmails": [
+        "noel.keller@example.com",
+        "alex.vargas@example.com"
+      ]
     },
     {
       "name": "Global Languages Exchange",
       "description": "Language buddy program connecting learners with international partners.",
       "subjectCode": "LANG230",
-      "teacherEmail": "noel.keller@example.com"
+      "teacherEmail": "noel.keller@example.com",
+      "studentEmails": [
+        "myah.armstrong@example.com",
+        "felix.hendricks@example.com",
+        "allen.barr@example.com",
+        "otto.alvarez@example.com",
+        "lina.mccall@example.com",
+        "kate.small@example.com",
+        "laila.mccann@example.com",
+        "huda.cherry@example.com",
+        "elijah.dixon@example.com",
+        "leonie.roy@example.com",
+        "franklin.greer@example.com",
+        "lili.moon@example.com",
+        "casey.park@example.com",
+        "angus.gentry@example.com",
+        "cara.day@example.com",
+        "thomas.wood@example.com",
+        "cameron.gates@example.com",
+        "rhianna.meza@example.com",
+        "stephanie.willis@example.com",
+        "nikodem.orozco@example.com"
+      ],
+      "additionalTeacherEmails": [
+        "alex.vargas@example.com",
+        "casey.xavier@example.com"
+      ]
     },
     {
       "name": "Physics Makers Lab",
       "description": "Engineering builds applying mechanics, energy, and materials science.",
       "subjectCode": "PHYS125",
-      "teacherEmail": "alex.vargas@example.com"
+      "teacherEmail": "alex.vargas@example.com",
+      "studentEmails": [
+        "leonie.roy@example.com",
+        "franklin.greer@example.com",
+        "lili.moon@example.com",
+        "casey.park@example.com",
+        "angus.gentry@example.com",
+        "cara.day@example.com",
+        "thomas.wood@example.com",
+        "cameron.gates@example.com",
+        "rhianna.meza@example.com",
+        "stephanie.willis@example.com",
+        "nikodem.orozco@example.com",
+        "alina.brady@example.com",
+        "deacon.wang@example.com",
+        "gabrielle.acevedo@example.com",
+        "nia.kirk@example.com",
+        "michaela.stein@example.com",
+        "chaim.kerr@example.com",
+        "annabella.mack@example.com",
+        "osian.thompson@example.com",
+        "orla.harding@example.com"
+      ],
+      "additionalTeacherEmails": [
+        "casey.xavier@example.com",
+        "micah.sawyer@example.com"
+      ]
     },
     {
       "name": "Engineering Dynamics Workshop",
       "description": "Modeling and testing prototypes to explore forces and motion.",
       "subjectCode": "PHYS125",
-      "teacherEmail": "casey.xavier@example.com"
+      "teacherEmail": "casey.xavier@example.com",
+      "studentEmails": [
+        "stephanie.willis@example.com",
+        "nikodem.orozco@example.com",
+        "alina.brady@example.com",
+        "deacon.wang@example.com",
+        "gabrielle.acevedo@example.com",
+        "nia.kirk@example.com",
+        "michaela.stein@example.com",
+        "chaim.kerr@example.com",
+        "annabella.mack@example.com",
+        "osian.thompson@example.com",
+        "orla.harding@example.com",
+        "lea.ramsey@example.com",
+        "arjun.donaldson@example.com",
+        "fynn.vazquez@example.com",
+        "troy.kemp@example.com",
+        "safia.odonnell@example.com",
+        "jaden.mejia@example.com",
+        "lily.oneill@example.com",
+        "gabriela.horn@example.com",
+        "cian.atkins@example.com"
+      ],
+      "additionalTeacherEmails": [
+        "micah.sawyer@example.com",
+        "sydney.nolan@example.com"
+      ]
     },
     {
       "name": "Statistics Data Studio",
       "description": "Project-based investigations using statistical inference and coding.",
       "subjectCode": "STAT205",
-      "teacherEmail": "micah.sawyer@example.com"
+      "teacherEmail": "micah.sawyer@example.com",
+      "studentEmails": [
+        "osian.thompson@example.com",
+        "orla.harding@example.com",
+        "lea.ramsey@example.com",
+        "arjun.donaldson@example.com",
+        "fynn.vazquez@example.com",
+        "troy.kemp@example.com",
+        "safia.odonnell@example.com",
+        "jaden.mejia@example.com",
+        "lily.oneill@example.com",
+        "gabriela.horn@example.com",
+        "cian.atkins@example.com",
+        "tamara.yoder@example.com",
+        "zeeshan.riddle@example.com",
+        "asa.mcgee@example.com",
+        "michael.blackwell@example.com",
+        "neave.elliott@example.com",
+        "saba.freeman@example.com",
+        "bessie.johns@example.com",
+        "jordan.prince@example.com",
+        "darcy.hebert@example.com"
+      ],
+      "additionalTeacherEmails": [
+        "sydney.nolan@example.com",
+        "yardley.ingram@example.com"
+      ]
     },
     {
       "name": "Data Visualization Lab",
       "description": "Visual storytelling projects transforming datasets into compelling insights.",
       "subjectCode": "STAT205",
-      "teacherEmail": "sydney.nolan@example.com"
+      "teacherEmail": "sydney.nolan@example.com",
+      "studentEmails": [
+        "gabriela.horn@example.com",
+        "cian.atkins@example.com",
+        "tamara.yoder@example.com",
+        "zeeshan.riddle@example.com",
+        "asa.mcgee@example.com",
+        "michael.blackwell@example.com",
+        "neave.elliott@example.com",
+        "saba.freeman@example.com",
+        "bessie.johns@example.com",
+        "jordan.prince@example.com",
+        "darcy.hebert@example.com",
+        "susannah.lane@example.com",
+        "roseanna.yates@example.com",
+        "kaylee.rich@example.com",
+        "caleb.rivers@example.com",
+        "scott.brock@example.com",
+        "fynn.mcclure@example.com",
+        "stella.ochoa@example.com",
+        "melvin.herrera@example.com",
+        "edith.kirby@example.com"
+      ],
+      "additionalTeacherEmails": [
+        "yardley.ingram@example.com",
+        "remy.ramirez@example.com"
+      ]
     },
     {
       "name": "Psychology Discussion Group",
       "description": "Socratic discussions examining cognition, motivation, and wellness.",
       "subjectCode": "PSY200",
-      "teacherEmail": "yardley.ingram@example.com"
+      "teacherEmail": "yardley.ingram@example.com",
+      "studentEmails": [
+        "jordan.prince@example.com",
+        "darcy.hebert@example.com",
+        "susannah.lane@example.com",
+        "roseanna.yates@example.com",
+        "kaylee.rich@example.com",
+        "caleb.rivers@example.com",
+        "scott.brock@example.com",
+        "fynn.mcclure@example.com",
+        "stella.ochoa@example.com",
+        "melvin.herrera@example.com",
+        "edith.kirby@example.com",
+        "aqsa.branch@example.com",
+        "raees.rivera@example.com",
+        "chelsey.escobar@example.com",
+        "dean.waller@example.com",
+        "josiah.sampson@example.com",
+        "milly.murray@example.com",
+        "ishaq.lindsey@example.com",
+        "kamil.guerrero@example.com",
+        "elias.welsh@example.com"
+      ],
+      "additionalTeacherEmails": [
+        "remy.ramirez@example.com",
+        "alex.underwood@example.com"
+      ]
     },
     {
       "name": "Behavioral Science Projects",
       "description": "Student-designed studies exploring behavior, perception, and learning.",
       "subjectCode": "PSY200",
-      "teacherEmail": "remy.ramirez@example.com"
+      "teacherEmail": "remy.ramirez@example.com",
+      "studentEmails": [
+        "melvin.herrera@example.com",
+        "edith.kirby@example.com",
+        "aqsa.branch@example.com",
+        "raees.rivera@example.com",
+        "chelsey.escobar@example.com",
+        "dean.waller@example.com",
+        "josiah.sampson@example.com",
+        "milly.murray@example.com",
+        "ishaq.lindsey@example.com",
+        "kamil.guerrero@example.com",
+        "elias.welsh@example.com",
+        "ajay.oliver@example.com",
+        "haseeb.french@example.com",
+        "kendra.gomez@example.com",
+        "tommylee.sullivan@example.com",
+        "henrietta.sutton@example.com",
+        "jimmy.knapp@example.com",
+        "elena.dickerson@example.com",
+        "kye.gregory@example.com",
+        "angel.franco@example.com"
+      ],
+      "additionalTeacherEmails": [
+        "alex.underwood@example.com",
+        "robin.easton@example.com"
+      ]
     },
     {
       "name": "Geography Mapping Center",
       "description": "Spatial analysis labs using GIS tools to interpret global patterns.",
       "subjectCode": "GEO160",
-      "teacherEmail": "alex.underwood@example.com"
+      "teacherEmail": "alex.underwood@example.com",
+      "studentEmails": [
+        "kamil.guerrero@example.com",
+        "elias.welsh@example.com",
+        "ajay.oliver@example.com",
+        "haseeb.french@example.com",
+        "kendra.gomez@example.com",
+        "tommylee.sullivan@example.com",
+        "henrietta.sutton@example.com",
+        "jimmy.knapp@example.com",
+        "elena.dickerson@example.com",
+        "kye.gregory@example.com",
+        "angel.franco@example.com",
+        "keaton.garner@example.com",
+        "arman.cotton@example.com",
+        "hasan.stewart@example.com",
+        "esmee.whitney@example.com",
+        "anne.pearce@example.com",
+        "aiza.rodriguez@example.com",
+        "billy.downs@example.com",
+        "mollie.lowery@example.com",
+        "muhammad.hood@example.com"
+      ],
+      "additionalTeacherEmails": [
+        "robin.easton@example.com",
+        "noel.lang@example.com"
+      ]
     },
     {
       "name": "Urban Planning Co-op",
       "description": "Design sprints reimagining public spaces with sustainable practices.",
       "subjectCode": "GEO160",
-      "teacherEmail": "robin.easton@example.com"
+      "teacherEmail": "robin.easton@example.com",
+      "studentEmails": [
+        "kye.gregory@example.com",
+        "angel.franco@example.com",
+        "keaton.garner@example.com",
+        "arman.cotton@example.com",
+        "hasan.stewart@example.com",
+        "esmee.whitney@example.com",
+        "anne.pearce@example.com",
+        "aiza.rodriguez@example.com",
+        "billy.downs@example.com",
+        "mollie.lowery@example.com",
+        "muhammad.hood@example.com",
+        "cecil.connolly@example.com",
+        "kenneth.ballard@example.com",
+        "rio.webster@example.com",
+        "bernice.moody@example.com",
+        "leonard.flores@example.com",
+        "imran.conway@example.com",
+        "claude.vang@example.com",
+        "daisie.huber@example.com",
+        "cole.mejia@example.com"
+      ],
+      "additionalTeacherEmails": [
+        "noel.lang@example.com",
+        "rowan.jensen@example.com"
+      ]
     },
     {
       "name": "Philosophy Socratic Circle",
       "description": "Dialectic seminars questioning ethics, logic, and human experience.",
       "subjectCode": "PHIL240",
-      "teacherEmail": "noel.lang@example.com"
+      "teacherEmail": "noel.lang@example.com",
+      "studentEmails": [
+        "mollie.lowery@example.com",
+        "muhammad.hood@example.com",
+        "cecil.connolly@example.com",
+        "kenneth.ballard@example.com",
+        "rio.webster@example.com",
+        "bernice.moody@example.com",
+        "leonard.flores@example.com",
+        "imran.conway@example.com",
+        "claude.vang@example.com",
+        "daisie.huber@example.com",
+        "cole.mejia@example.com",
+        "dulcie.reeves@example.com",
+        "francis.hardy@example.com",
+        "marcus.randolph@example.com",
+        "anthony.michael@example.com",
+        "paige.perkins@example.com",
+        "sadia.erickson@example.com",
+        "lara.wolf@example.com",
+        "homer.hutchinson@example.com",
+        "saoirse.munoz@example.com"
+      ],
+      "additionalTeacherEmails": [
+        "rowan.jensen@example.com",
+        "finley.easton@example.com"
+      ]
     },
     {
       "name": "Ethics Case Studies",
       "description": "Applied ethics labs evaluating dilemmas from modern society.",
       "subjectCode": "PHIL240",
-      "teacherEmail": "rowan.jensen@example.com"
+      "teacherEmail": "rowan.jensen@example.com",
+      "studentEmails": [
+        "daisie.huber@example.com",
+        "cole.mejia@example.com",
+        "dulcie.reeves@example.com",
+        "francis.hardy@example.com",
+        "marcus.randolph@example.com",
+        "anthony.michael@example.com",
+        "paige.perkins@example.com",
+        "sadia.erickson@example.com",
+        "lara.wolf@example.com",
+        "homer.hutchinson@example.com",
+        "saoirse.munoz@example.com",
+        "dennis.zimmerman@example.com",
+        "erin.garza@example.com",
+        "ciara.dorsey@example.com",
+        "catherine.page@example.com",
+        "miguel.nunez@example.com",
+        "colin.mccann@example.com",
+        "kaya.ferguson@example.com",
+        "rhea.butler@example.com",
+        "mahir.harvey@example.com"
+      ],
+      "additionalTeacherEmails": [
+        "finley.easton@example.com",
+        "zephyr.ramirez@example.com"
+      ]
     },
     {
       "name": "Entrepreneurship Incubator",
       "description": "Product development cycle guiding teams from idea to launch.",
       "subjectCode": "BUS210",
-      "teacherEmail": "finley.easton@example.com"
+      "teacherEmail": "finley.easton@example.com",
+      "studentEmails": [
+        "homer.hutchinson@example.com",
+        "saoirse.munoz@example.com",
+        "dennis.zimmerman@example.com",
+        "erin.garza@example.com",
+        "ciara.dorsey@example.com",
+        "catherine.page@example.com",
+        "miguel.nunez@example.com",
+        "colin.mccann@example.com",
+        "kaya.ferguson@example.com",
+        "rhea.butler@example.com",
+        "mahir.harvey@example.com",
+        "ivy.lindsay@example.com",
+        "esme.aguirre@example.com",
+        "brett.oreilly@example.com",
+        "alexander.malone@example.com",
+        "khalil.nguyen@example.com",
+        "lula.stokes@example.com",
+        "preston.jennings@example.com",
+        "margie.gillespie@example.com",
+        "brodie.moran@example.com"
+      ],
+      "additionalTeacherEmails": [
+        "zephyr.ramirez@example.com",
+        "finley.fletcher@example.com"
+      ]
     },
     {
       "name": "Startup Pitch Studio",
       "description": "Investor pitch simulations with iterative feedback and coaching.",
       "subjectCode": "BUS210",
-      "teacherEmail": "zephyr.ramirez@example.com"
+      "teacherEmail": "zephyr.ramirez@example.com",
+      "studentEmails": [
+        "rhea.butler@example.com",
+        "mahir.harvey@example.com",
+        "ivy.lindsay@example.com",
+        "esme.aguirre@example.com",
+        "brett.oreilly@example.com",
+        "alexander.malone@example.com",
+        "khalil.nguyen@example.com",
+        "lula.stokes@example.com",
+        "preston.jennings@example.com",
+        "margie.gillespie@example.com",
+        "brodie.moran@example.com",
+        "ayub.bowers@example.com",
+        "arianna.allen@example.com",
+        "zahra.mcgee@example.com",
+        "samara.irwin@example.com",
+        "arjun.jenkins@example.com",
+        "harris.ramirez@example.com",
+        "finnley.gonzalez@example.com",
+        "aminah.wong@example.com",
+        "micheal.austin@example.com"
+      ],
+      "additionalTeacherEmails": [
+        "finley.fletcher@example.com",
+        "cameron.ramirez@example.com"
+      ]
     },
     {
       "name": "Coding Innovation Lab",
       "description": "Exploratory coding challenges centered on emerging technologies.",
       "subjectCode": "CS130",
-      "teacherEmail": "finley.fletcher@example.com"
+      "teacherEmail": "finley.fletcher@example.com",
+      "studentEmails": [
+        "margie.gillespie@example.com",
+        "brodie.moran@example.com",
+        "ayub.bowers@example.com",
+        "arianna.allen@example.com",
+        "zahra.mcgee@example.com",
+        "samara.irwin@example.com",
+        "arjun.jenkins@example.com",
+        "harris.ramirez@example.com",
+        "finnley.gonzalez@example.com",
+        "aminah.wong@example.com",
+        "micheal.austin@example.com",
+        "kezia.fuller@example.com",
+        "lori.howe@example.com",
+        "damien.roth@example.com",
+        "yasmine.burton@example.com",
+        "georgia.gonzales@example.com",
+        "darcie.wright@example.com",
+        "tiana.richard@example.com",
+        "luther.hubbard@example.com",
+        "tanisha.holden@example.com"
+      ],
+      "additionalTeacherEmails": [
+        "cameron.ramirez@example.com",
+        "robin.keller@example.com"
+      ]
     },
     {
       "name": "Autonomous Systems Guild",
       "description": "Advanced robotics club focusing on AI-driven navigation techniques.",
       "subjectCode": "ROB260",
-      "teacherEmail": "cameron.ramirez@example.com"
+      "teacherEmail": "cameron.ramirez@example.com",
+      "studentEmails": [
+        "aminah.wong@example.com",
+        "micheal.austin@example.com",
+        "kezia.fuller@example.com",
+        "lori.howe@example.com",
+        "damien.roth@example.com",
+        "yasmine.burton@example.com",
+        "georgia.gonzales@example.com",
+        "darcie.wright@example.com",
+        "tiana.richard@example.com",
+        "luther.hubbard@example.com",
+        "tanisha.holden@example.com",
+        "gertrude.harrington@example.com",
+        "victor.mendoza@example.com",
+        "luis.li@example.com",
+        "holly.perry@example.com",
+        "flynn.parrish@example.com",
+        "raees.greer@example.com",
+        "cody.key@example.com",
+        "anya.cuevas@example.com",
+        "maryam.callahan@example.com"
+      ],
+      "additionalTeacherEmails": [
+        "robin.keller@example.com",
+        "blair.dalton@example.com"
+      ]
     },
     {
       "name": "Drama Rehearsal Company",
       "description": "Production rehearsals refining blocking, timing, and ensemble work.",
       "subjectCode": "DRAMA190",
-      "teacherEmail": "robin.keller@example.com"
+      "teacherEmail": "robin.keller@example.com",
+      "studentEmails": [
+        "luther.hubbard@example.com",
+        "tanisha.holden@example.com",
+        "gertrude.harrington@example.com",
+        "victor.mendoza@example.com",
+        "luis.li@example.com",
+        "holly.perry@example.com",
+        "flynn.parrish@example.com",
+        "raees.greer@example.com",
+        "cody.key@example.com",
+        "anya.cuevas@example.com",
+        "maryam.callahan@example.com",
+        "ricky.sloan@example.com",
+        "abdul.sanchez@example.com",
+        "ffion.levine@example.com",
+        "addie.garner@example.com",
+        "miya.koch@example.com",
+        "shreya.craig@example.com",
+        "inaaya.rhodes@example.com",
+        "gerard.walton@example.com",
+        "hollie.poole@example.com"
+      ],
+      "additionalTeacherEmails": [
+        "blair.dalton@example.com",
+        "wren.walker@example.com"
+      ]
     },
     {
       "name": "Performing Arts Ensemble",
       "description": "Collaborative performance troupe blending music, dance, and theater.",
       "subjectCode": "DRAMA190",
-      "teacherEmail": "blair.dalton@example.com"
+      "teacherEmail": "blair.dalton@example.com",
+      "studentEmails": [
+        "anya.cuevas@example.com",
+        "maryam.callahan@example.com",
+        "ricky.sloan@example.com",
+        "abdul.sanchez@example.com",
+        "ffion.levine@example.com",
+        "addie.garner@example.com",
+        "miya.koch@example.com",
+        "shreya.craig@example.com",
+        "inaaya.rhodes@example.com",
+        "gerard.walton@example.com",
+        "hollie.poole@example.com",
+        "gilbert.gallagher@example.com",
+        "marc.cameron@example.com",
+        "miriam.jackson@example.com",
+        "evie.hull@example.com",
+        "ciaran.mills@example.com",
+        "milo.ward@example.com",
+        "bertha.rangel@example.com",
+        "jade.hanson@example.com",
+        "zakaria.bryant@example.com"
+      ],
+      "additionalTeacherEmails": [
+        "wren.walker@example.com",
+        "jensen.garcia@example.com"
+      ]
     },
     {
       "name": "Advanced PE Leadership",
       "description": "Leadership practicum mentoring peers in fitness planning and safety.",
       "subjectCode": "PE101",
-      "teacherEmail": "wren.walker@example.com"
+      "teacherEmail": "wren.walker@example.com",
+      "studentEmails": [
+        "gerard.walton@example.com",
+        "hollie.poole@example.com",
+        "gilbert.gallagher@example.com",
+        "marc.cameron@example.com",
+        "miriam.jackson@example.com",
+        "evie.hull@example.com",
+        "ciaran.mills@example.com",
+        "milo.ward@example.com",
+        "bertha.rangel@example.com",
+        "jade.hanson@example.com",
+        "zakaria.bryant@example.com",
+        "zakariya.mcguire@example.com",
+        "deacon.kaufman@example.com",
+        "shauna.ferguson@example.com",
+        "danyal.lamb@example.com",
+        "alex.sharp@example.com",
+        "milly.stephenson@example.com",
+        "rose.todd@example.com",
+        "lucie.pacheco@example.com",
+        "tessa.sanders@example.com"
+      ],
+      "additionalTeacherEmails": [
+        "jensen.garcia@example.com",
+        "kai.carter@example.com"
+      ]
     },
     {
       "name": "Sports Analytics Workshop",
       "description": "Performance analytics projects integrating statistics with athletics.",
       "subjectCode": "STAT205",
-      "teacherEmail": "jensen.garcia@example.com"
+      "teacherEmail": "jensen.garcia@example.com",
+      "studentEmails": [
+        "jade.hanson@example.com",
+        "zakaria.bryant@example.com",
+        "zakariya.mcguire@example.com",
+        "deacon.kaufman@example.com",
+        "shauna.ferguson@example.com",
+        "danyal.lamb@example.com",
+        "alex.sharp@example.com",
+        "milly.stephenson@example.com",
+        "rose.todd@example.com",
+        "lucie.pacheco@example.com",
+        "tessa.sanders@example.com",
+        "april.bright@example.com",
+        "tamsin.black@example.com",
+        "eliza.carson@example.com",
+        "dawud.russo@example.com",
+        "amie.bloggs@example.com",
+        "amelie.townsend@example.com",
+        "salman.oconnor@example.com",
+        "jennie.knox@example.com",
+        "tomos.mckinney@example.com"
+      ],
+      "additionalTeacherEmails": [
+        "kai.carter@example.com",
+        "kendall.sutton@example.com"
+      ]
     },
     {
       "name": "Creative Wellness Lab",
       "description": "Holistic wellness projects combining movement, art, and reflection.",
       "subjectCode": "PE101",
-      "teacherEmail": "kai.carter@example.com"
+      "teacherEmail": "kai.carter@example.com",
+      "studentEmails": [
+        "lucie.pacheco@example.com",
+        "tessa.sanders@example.com",
+        "april.bright@example.com",
+        "tamsin.black@example.com",
+        "eliza.carson@example.com",
+        "dawud.russo@example.com",
+        "amie.bloggs@example.com",
+        "amelie.townsend@example.com",
+        "salman.oconnor@example.com",
+        "jennie.knox@example.com",
+        "tomos.mckinney@example.com",
+        "neo.stevenson@example.com",
+        "nia.bender@example.com",
+        "eden.kline@example.com",
+        "eoin.house@example.com",
+        "hayden.petty@example.com",
+        "zara.hall@example.com",
+        "bruno.harris@example.com",
+        "fergus.cotton@example.com",
+        "demi.sears@example.com"
+      ],
+      "additionalTeacherEmails": [
+        "kendall.sutton@example.com",
+        "jordan.ingram@example.com"
+      ]
     },
     {
       "name": "Sustainable Design Studio",
       "description": "Interdisciplinary studio reimagining spaces with sustainable materials.",
       "subjectCode": "SCI180",
-      "teacherEmail": "kendall.sutton@example.com"
+      "teacherEmail": "kendall.sutton@example.com",
+      "studentEmails": [
+        "jennie.knox@example.com",
+        "tomos.mckinney@example.com",
+        "neo.stevenson@example.com",
+        "nia.bender@example.com",
+        "eden.kline@example.com",
+        "eoin.house@example.com",
+        "hayden.petty@example.com",
+        "zara.hall@example.com",
+        "bruno.harris@example.com",
+        "fergus.cotton@example.com",
+        "demi.sears@example.com",
+        "jim.lynn@example.com",
+        "ethan.luna@example.com",
+        "ajay.stanton@example.com",
+        "zackary.pugh@example.com",
+        "mahdi.aguilar@example.com",
+        "rohan.francis@example.com",
+        "miles.hamilton@example.com",
+        "eric.bennett@example.com",
+        "alessandro.farley@example.com"
+      ],
+      "additionalTeacherEmails": [
+        "jordan.ingram@example.com",
+        "morgan.jacobs@example.com"
+      ]
     },
     {
       "name": "Integrated Science Seminar",
       "description": "Cross-disciplinary seminar connecting biology, chemistry, and physics.",
       "subjectCode": "SCI180",
-      "teacherEmail": "jordan.ingram@example.com"
+      "teacherEmail": "jordan.ingram@example.com",
+      "studentEmails": [
+        "fergus.cotton@example.com",
+        "demi.sears@example.com",
+        "jim.lynn@example.com",
+        "ethan.luna@example.com",
+        "ajay.stanton@example.com",
+        "zackary.pugh@example.com",
+        "mahdi.aguilar@example.com",
+        "rohan.francis@example.com",
+        "miles.hamilton@example.com",
+        "eric.bennett@example.com",
+        "alessandro.farley@example.com",
+        "lexie.barnes@example.com",
+        "rafe.howard@example.com",
+        "william.briggs@example.com",
+        "antonia.curry@example.com",
+        "eliot.massey@example.com",
+        "saira.schwartz@example.com",
+        "ronnie.mendoza@example.com",
+        "lily.cox@example.com",
+        "abdur.gibbons@example.com"
+      ],
+      "additionalTeacherEmails": [
+        "morgan.jacobs@example.com",
+        "robin.owens@example.com"
+      ]
     },
     {
       "name": "Digital Media Agency",
       "description": "Student-run agency producing multimedia campaigns for campus partners.",
       "subjectCode": "ART175",
-      "teacherEmail": "morgan.jacobs@example.com"
+      "teacherEmail": "morgan.jacobs@example.com",
+      "studentEmails": [
+        "eric.bennett@example.com",
+        "alessandro.farley@example.com",
+        "lexie.barnes@example.com",
+        "rafe.howard@example.com",
+        "william.briggs@example.com",
+        "antonia.curry@example.com",
+        "eliot.massey@example.com",
+        "saira.schwartz@example.com",
+        "ronnie.mendoza@example.com",
+        "lily.cox@example.com",
+        "abdur.gibbons@example.com",
+        "larry.li@example.com",
+        "cyrus.cannon@example.com",
+        "elizabeth.delacruz@example.com",
+        "jane.ali@example.com",
+        "jenny.daniels@example.com",
+        "lorcan.griffith@example.com",
+        "maddie.barber@example.com",
+        "douglas.pittman@example.com",
+        "fannie.lyons@example.com"
+      ],
+      "additionalTeacherEmails": [
+        "robin.owens@example.com",
+        "grace.hopper@example.com"
+      ]
     },
     {
       "name": "Broadcast Journalism Lab",
       "description": "Newsroom lab practicing reporting, editing, and on-air delivery.",
       "subjectCode": "ART175",
-      "teacherEmail": "robin.owens@example.com"
+      "teacherEmail": "robin.owens@example.com",
+      "studentEmails": [
+        "lily.cox@example.com",
+        "abdur.gibbons@example.com",
+        "larry.li@example.com",
+        "cyrus.cannon@example.com",
+        "elizabeth.delacruz@example.com",
+        "jane.ali@example.com",
+        "jenny.daniels@example.com",
+        "lorcan.griffith@example.com",
+        "maddie.barber@example.com",
+        "douglas.pittman@example.com",
+        "fannie.lyons@example.com",
+        "aron.buckley@example.com",
+        "zeeshan.newman@example.com",
+        "louis.hopkins@example.com",
+        "alvin.rollins@example.com",
+        "tariq.bates@example.com",
+        "josie.franklin@example.com",
+        "malachi.norton@example.com",
+        "cameron.krueger@example.com",
+        "brogan.elliott@example.com"
+      ],
+      "additionalTeacherEmails": [
+        "grace.hopper@example.com",
+        "ramon.lopez@example.com"
+      ]
     },
     {
       "name": "Mathematics Enrichment Seminar",
       "description": "Extension seminar tackling contest problems and logical puzzles.",
       "subjectCode": "MATH101",
-      "teacherEmail": "grace.hopper@example.com"
+      "teacherEmail": "grace.hopper@example.com",
+      "studentEmails": [
+        "douglas.pittman@example.com",
+        "fannie.lyons@example.com",
+        "aron.buckley@example.com",
+        "zeeshan.newman@example.com",
+        "louis.hopkins@example.com",
+        "alvin.rollins@example.com",
+        "tariq.bates@example.com",
+        "josie.franklin@example.com",
+        "malachi.norton@example.com",
+        "cameron.krueger@example.com",
+        "brogan.elliott@example.com",
+        "aiza.friedman@example.com",
+        "caitlyn.hodge@example.com",
+        "maximus.rivera@example.com",
+        "cecilia.haley@example.com",
+        "arianna.contreras@example.com",
+        "katerina.connor@example.com",
+        "omer.holloway@example.com",
+        "abigail.landry@example.com",
+        "mariya.roth@example.com"
+      ],
+      "additionalTeacherEmails": [
+        "ramon.lopez@example.com",
+        "priya.iyer@example.com"
+      ]
     },
     {
       "name": "Biotech Innovations Lab",
       "description": "Biotech prototyping lab investigating genetics and biomedical advances.",
       "subjectCode": "BIO105",
-      "teacherEmail": "priya.iyer@example.com"
+      "teacherEmail": "priya.iyer@example.com",
+      "studentEmails": [
+        "cameron.krueger@example.com",
+        "brogan.elliott@example.com",
+        "aiza.friedman@example.com",
+        "caitlyn.hodge@example.com",
+        "maximus.rivera@example.com",
+        "cecilia.haley@example.com",
+        "arianna.contreras@example.com",
+        "katerina.connor@example.com",
+        "omer.holloway@example.com",
+        "abigail.landry@example.com",
+        "mariya.roth@example.com",
+        "alisha.foley@example.com",
+        "idris.burnett@example.com",
+        "elisha.wilkerson@example.com",
+        "luc.scott@example.com",
+        "tyrone.thomas@example.com",
+        "ada.lovelace@example.com",
+        "alan.turing@example.com",
+        "kaleb.rhodes@example.com",
+        "jane.koch@example.com"
+      ],
+      "additionalTeacherEmails": [
+        "fallon.gibson@example.com"
+      ]
     },
     {
       "name": "World Cultures Colloquium",
       "description": "Colloquium examining cultural exchange, diplomacy, and global citizenship.",
       "subjectCode": "HIST210",
-      "teacherEmail": "ramon.lopez@example.com"
+      "teacherEmail": "ramon.lopez@example.com",
+      "studentEmails": [
+        "abigail.landry@example.com",
+        "mariya.roth@example.com",
+        "alisha.foley@example.com",
+        "idris.burnett@example.com",
+        "elisha.wilkerson@example.com",
+        "luc.scott@example.com",
+        "tyrone.thomas@example.com",
+        "ada.lovelace@example.com",
+        "alan.turing@example.com",
+        "kaleb.rhodes@example.com",
+        "jane.koch@example.com",
+        "rosa.hicks@example.com",
+        "luc.herman@example.com",
+        "abubakar.mcleod@example.com",
+        "lucian.tanner@example.com",
+        "nicolas.mullins@example.com",
+        "miles.chaney@example.com",
+        "milo.stafford@example.com",
+        "daisy.mccoy@example.com",
+        "ruqayyah.hunt@example.com"
+      ],
+      "additionalTeacherEmails": [
+        "fallon.gibson@example.com",
+        "jules.hughes@example.com"
+      ]
     }
   ]
 }
