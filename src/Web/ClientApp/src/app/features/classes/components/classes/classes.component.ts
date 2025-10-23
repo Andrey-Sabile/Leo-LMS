@@ -1,12 +1,13 @@
 import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { RouterLink } from '@angular/router';
 import { ClassroomDto, ClassroomsClient } from '@app/data-access/api/api-client';
 import { catchError, map, of } from 'rxjs';
 
 @Component({
   selector: 'app-classes',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './classes.component.html',
   styles: ``,
   changeDetection: ChangeDetectionStrategy.OnPush
