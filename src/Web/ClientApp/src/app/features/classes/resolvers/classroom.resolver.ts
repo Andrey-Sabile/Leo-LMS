@@ -1,9 +1,9 @@
 import { inject } from '@angular/core';
 import { ResolveFn, Router } from '@angular/router';
-import { ClassroomDto, ClassroomsClient } from '@app/data-access/api/api-client';
-import { EMPTY, catchError, map, of, switchMap } from 'rxjs';
+import { ClassroomDetailsDto, ClassroomsClient } from '@app/data-access/api/api-client';
+import { EMPTY, catchError, map } from 'rxjs';
 
-export const classroomResolver: ResolveFn<ClassroomDto> = route => {
+export const classroomResolver: ResolveFn<ClassroomDetailsDto> = route => {
   const classroomsClient = inject(ClassroomsClient);
   const router = inject(Router);
   const classroomIdParam = route.paramMap.get('id');
@@ -14,16 +14,13 @@ export const classroomResolver: ResolveFn<ClassroomDto> = route => {
     return EMPTY;
   }
 
-  return classroomsClient.getClassrooms().pipe(
-    map(response => response.classrooms ?? []),
-    map(classrooms => classrooms.find(classroom => classroom.id === classroomId) ?? null),
-    switchMap(classroom => {
+  return classroomsClient.getClassroomDetails(classroomId).pipe(
+    map(classroom => {
       if (classroom) {
-        return of(classroom);
+        return classroom;
       }
 
-      router.navigate(['/classes']);
-      return EMPTY;
+      throw new Error(`Classroom with id ${classroomId} not found.`);
     }),
     catchError(error => {
       console.error('Failed to resolve classroom.', error);

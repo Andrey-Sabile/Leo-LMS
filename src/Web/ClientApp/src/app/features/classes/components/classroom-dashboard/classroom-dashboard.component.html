@@ -1,17 +1,21 @@
-<div class="p-4 flex flex-col gap-4">
-  <h1 class="text-3xl font-semibold">{{classroom().name}}</h1>
-  <!-- name of each tab group should be unique -->
+<div class="p-4 flex flex-col gap-6">
+  <h1 class="text-3xl font-semibold">{{ classroomName() }}</h1>
+
   <div class="tabs tabs-lift">
-    <input type="radio" name="my_tabs_3" class="tab" aria-label="People" checked="checked" />
+    <input type="radio" name="classroom_dashboard_tabs" class="tab" aria-label="People" checked />
     <div class="tab-content bg-base-100 border-base-300 p-6">
-      <h2> Teachers </h2>
-      <h2> Students </h2>
+      <app-classroom-dashboard-people [teachers]="teachers()" [students]="students()"></app-classroom-dashboard-people>
     </div>
 
-    <input type="radio" name="my_tabs_3" class="tab" aria-label="Classwork" />
-    <div class="tab-content bg-base-100 border-base-300 p-6">Tab content 2</div>
+    <input type="radio" name="classroom_dashboard_tabs" class="tab" aria-label="Classwork" />
+    <div class="tab-content bg-base-100 border-base-300 p-6">
+      <p class="text-sm text-base-content/60">Classwork content will appear here.</p>
+    </div>
 
-    <input type="radio" name="my_tabs_3" class="tab" aria-label="Marks" />
-    <div class="tab-content bg-base-100 border-base-300 p-6">Tab content 3</div>
+    <input type="radio" name="classroom_dashboard_tabs" class="tab" aria-label="Marks" />
+    <div class="tab-content bg-base-100 border-base-300 p-6">
+      <h2 class="text-xl font-semibold mb-2">Marks</h2>
+      <p class="text-sm text-base-content/60">Marks content will appear here.</p>
+    </div>
   </div>
 </div>

@@ -264,6 +264,7 @@ export class CalendarEventsClient implements ICalendarEventsClient {
 export interface IClassroomsClient {
     getClassrooms(): Observable<ClassroomsVm>;
     createClassroom(command: CreateClassroomCommand): Observable<number>;
+    getClassroomDetails(id: number): Observable<ClassroomDetailsDto>;
     updateClassroom(id: number, command: UpdateClassroomCommand): Observable<void>;
     deleteClassroom(id: number): Observable<void>;
 }
@@ -373,6 +374,57 @@ export class ClassroomsClient implements IClassroomsClient {
                 result201 = resultData201 !== undefined ? resultData201 : <any>null;
     
             return _observableOf(result201);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    getClassroomDetails(id: number): Observable<ClassroomDetailsDto> {
+        let url_ = this.baseUrl + "/api/Classrooms/{id}";
+        if (id === undefined || id === null)
+            throw new Error("The parameter 'id' must be defined.");
+        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetClassroomDetails(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetClassroomDetails(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<ClassroomDetailsDto>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<ClassroomDetailsDto>;
+        }));
+    }
+
+    protected processGetClassroomDetails(response: HttpResponseBase): Observable<ClassroomDetailsDto> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ClassroomDetailsDto.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -2273,6 +2325,182 @@ export interface IClassroomDto {
     subjectId?: number;
     teacherId?: number;
     createdOn?: Date;
+}
+
+export class ClassroomDetailsDto implements IClassroomDetailsDto {
+    id?: number;
+    name?: string;
+    description?: string | undefined;
+    subjectId?: number;
+    teacherId?: number;
+    createdOn?: Date;
+    teachers?: ClassroomTeacherDto[];
+    students?: ClassroomStudentDto[];
+
+    constructor(data?: IClassroomDetailsDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.name = _data["name"];
+            this.description = _data["description"];
+            this.subjectId = _data["subjectId"];
+            this.teacherId = _data["teacherId"];
+            this.createdOn = _data["createdOn"] ? new Date(_data["createdOn"].toString()) : <any>undefined;
+            if (Array.isArray(_data["teachers"])) {
+                this.teachers = [] as any;
+                for (let item of _data["teachers"])
+                    this.teachers!.push(ClassroomTeacherDto.fromJS(item));
+            }
+            if (Array.isArray(_data["students"])) {
+                this.students = [] as any;
+                for (let item of _data["students"])
+                    this.students!.push(ClassroomStudentDto.fromJS(item));
+            }
+        }
+    }
+
+    static fromJS(data: any): ClassroomDetailsDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new ClassroomDetailsDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["name"] = this.name;
+        data["description"] = this.description;
+        data["subjectId"] = this.subjectId;
+        data["teacherId"] = this.teacherId;
+        data["createdOn"] = this.createdOn ? this.createdOn.toISOString() : <any>undefined;
+        if (Array.isArray(this.teachers)) {
+            data["teachers"] = [];
+            for (let item of this.teachers)
+                data["teachers"].push(item.toJSON());
+        }
+        if (Array.isArray(this.students)) {
+            data["students"] = [];
+            for (let item of this.students)
+                data["students"].push(item.toJSON());
+        }
+        return data;
+    }
+}
+
+export interface IClassroomDetailsDto {
+    id?: number;
+    name?: string;
+    description?: string | undefined;
+    subjectId?: number;
+    teacherId?: number;
+    createdOn?: Date;
+    teachers?: ClassroomTeacherDto[];
+    students?: ClassroomStudentDto[];
+}
+
+export class ClassroomTeacherDto implements IClassroomTeacherDto {
+    id?: number;
+    firstName?: string;
+    lastName?: string;
+    email?: string;
+
+    constructor(data?: IClassroomTeacherDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.firstName = _data["firstName"];
+            this.lastName = _data["lastName"];
+            this.email = _data["email"];
+        }
+    }
+
+    static fromJS(data: any): ClassroomTeacherDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new ClassroomTeacherDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["firstName"] = this.firstName;
+        data["lastName"] = this.lastName;
+        data["email"] = this.email;
+        return data;
+    }
+}
+
+export interface IClassroomTeacherDto {
+    id?: number;
+    firstName?: string;
+    lastName?: string;
+    email?: string;
+}
+
+export class ClassroomStudentDto implements IClassroomStudentDto {
+    id?: number;
+    firstName?: string;
+    lastName?: string;
+    email?: string;
+
+    constructor(data?: IClassroomStudentDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.firstName = _data["firstName"];
+            this.lastName = _data["lastName"];
+            this.email = _data["email"];
+        }
+    }
+
+    static fromJS(data: any): ClassroomStudentDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new ClassroomStudentDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["firstName"] = this.firstName;
+        data["lastName"] = this.lastName;
+        data["email"] = this.email;
+        return data;
+    }
+}
+
+export interface IClassroomStudentDto {
+    id?: number;
+    firstName?: string;
+    lastName?: string;
+    email?: string;
 }
 
 export class CreateClassroomCommand implements ICreateClassroomCommand {
