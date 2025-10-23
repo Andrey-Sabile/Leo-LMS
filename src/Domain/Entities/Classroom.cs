@@ -16,8 +16,6 @@ public class Classroom : BaseAuditableEntity
 
     public int TeacherId { get; private set; }
 
-    public DateTimeOffset CreatedOn { get; private set; }
-
     // Placeholder collection for future member assignments
     public IList<int> MemberIds { get; private set; } = [];
 
@@ -30,8 +28,6 @@ public class Classroom : BaseAuditableEntity
         var classroom = new Classroom();
 
         classroom.SetDetails(name, subjectId, teacherId, description);
-        classroom.CreatedOn = DateTimeOffset.UtcNow;
-
         classroom.AddDomainEvent(new ClassroomCreatedEvent(classroom));
 
         return classroom;
