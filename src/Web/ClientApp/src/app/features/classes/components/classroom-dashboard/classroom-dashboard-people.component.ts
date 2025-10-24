@@ -1,14 +1,14 @@
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 import { ClassroomStudentDto, ClassroomTeacherDto } from '@app/data-access/api/api-client';
 import { provideIcons, NgIcon } from '@ng-icons/core';
-import { heroUserPlus } from '@ng-icons/heroicons/outline';
+import { heroUserPlus, heroEllipsisVertical } from '@ng-icons/heroicons/outline';
 
 @Component({
   selector: 'app-classroom-dashboard-people',
   templateUrl: './classroom-dashboard-people.component.html',
   styles: ``,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  viewProviders: [provideIcons({ heroUserPlus })],
+  viewProviders: [provideIcons({ heroUserPlus, heroEllipsisVertical })],
   imports: [NgIcon]
 })
 

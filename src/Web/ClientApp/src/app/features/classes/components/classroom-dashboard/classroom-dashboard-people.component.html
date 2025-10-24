@@ -10,11 +10,15 @@
     @if (teacherCount() === 0) {
     <p class="text-sm text-base-content/60">No teachers assigned yet.</p>
     } @else {
-    <ul class="flex flex-col gap-2">
+    <ul class="list p-4">
       @for (teacher of teachers(); track teacher.id) {
-      <li class="rounded-xl border border-base-300 bg-base-200/60 px-4 py-3">
+      <li class="list-row flex-row items-center gap-4">
+        <div class="avatar avatar-placeholder">
+          <div class="bg-primary text-black w-12 rounded-full">
+            PP
+          </div>
+        </div>
         <p class="font-medium">{{ teacher.firstName }} {{ teacher.lastName }}</p>
-        <p class="text-sm text-base-content/60">{{ teacher.email }}</p>
       </li>
       }
     </ul>
@@ -31,11 +35,16 @@
     @if (studentCount() === 0) {
     <p class="text-sm text-base-content/60">No students enrolled yet.</p>
     } @else {
-    <ul class="flex flex-col gap-2 max-h-80 overflow-y-auto pr-1">
+    <ul class="list p-4 max-h-80 overflow-y-auto">
       @for (student of students(); track student.id) {
-      <li class="rounded-xl border border-base-300 bg-base-200/40 px-4 py-3">
+      <li class="list-row flex-row items-center gap-4 hover:bg-base-200 hover:cursor-pointer">
+        <div class="avatar avatar-placeholder">
+          <div class="bg-primary text-black w-12 rounded-full">
+            PP
+          </div>
+        </div>
         <p class="font-medium">{{ student.firstName }} {{ student.lastName }}</p>
-        <p class="text-sm text-base-content/60">{{ student.email }}</p>
+        <button class="btn btn-ghost btn-square"><ng-icon name="heroEllipsisVertical"></ng-icon></button>
       </li>
       }
     </ul>
