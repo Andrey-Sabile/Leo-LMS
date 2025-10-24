@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, DestroyRef, computed, effect, inject, input, output, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, computed, inject, input, output, signal } from '@angular/core';
 import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ClassroomStudentDto, ClassroomTeacherDto, ClassroomsClient, AddTeacherToClassroomCommand, TeachersClient, TeacherLookupDto } from '@app/data-access/api/api-client';
 import { provideIcons, NgIcon } from '@ng-icons/core';
@@ -38,18 +38,9 @@ export class ClassroomDashboardPeopleComponent {
     teacherId: ['', Validators.required],
   });
 
-
   constructor() {
-    this.loadTeachers("AA");
+    this.loadTeachers('');
   }
-
-  private readonly refreshTeachersEffect = effect(
-    () => {
-      const search = this.teacherSearchQuery();
-      this.loadTeachers(search);
-    },
-    { allowSignalWrites: true }
-  );
 
   private loadTeachers(search: string): void {
     this.teachersClient.getTeacherLookup(search || null, 1, 20).subscribe({
@@ -61,6 +52,7 @@ export class ClassroomDashboardPeopleComponent {
 
   onSearchChange(value: string): void {
     this.teacherSearchQuery.set(value);
+    this.loadTeachers(value);
   }
 
   addTeacherToClass(teacher: TeacherLookupDto): void {
@@ -74,6 +66,14 @@ export class ClassroomDashboardPeopleComponent {
     control.markAsDirty();
     control.markAsTouched();
     this.submitError.set(null);
+  }
+
+  openTeacherDialog(dialog: HTMLDialogElement): void {
+    this.teacherSearchQuery.set('');
+    this.addTeacherForm.reset({ teacherId: '' });
+    this.submitError.set(null);
+    this.loadTeachers('');
+    dialog.showModal();
   }
 
   onSubmit(dialog: HTMLDialogElement): void {
