@@ -7,7 +7,6 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-classes',
-  standalone: true,
   imports: [RouterLink],
   templateUrl: './classes.component.html',
   styles: ``,

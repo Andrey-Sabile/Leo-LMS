@@ -105,7 +105,7 @@ const addHours = (date: Date, hours: number): Date => {
 
 @Component({
   selector: 'app-create-calendar-event-modal',
-  standalone: true,
+
   imports: [ReactiveFormsModule],
   templateUrl: './create-calendar-event-modal.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,

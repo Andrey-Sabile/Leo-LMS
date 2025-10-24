@@ -4,7 +4,7 @@ import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-student-directory',
-  standalone: true,
+
   imports: [],
   templateUrl: './student-directory.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush

@@ -23,7 +23,7 @@ type WeekDayColumnVm = {
 
 @Component({
   selector: 'app-calendar-week-view',
-  standalone: true,
+
   imports: [CommonModule],
   templateUrl: './calendar-week-view.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,

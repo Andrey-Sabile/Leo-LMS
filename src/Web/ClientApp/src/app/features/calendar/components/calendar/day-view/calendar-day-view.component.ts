@@ -19,7 +19,7 @@ type HourSlotVm = {
 
 @Component({
   selector: 'app-calendar-day-view',
-  standalone: true,
+
   imports: [CommonModule],
   templateUrl: './calendar-day-view.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -47,7 +47,7 @@ const optionalPositiveIntegerValidator: ValidatorFn = (control: AbstractControl)
 
 @Component({
   selector: 'app-create-class',
-  standalone: true,
+
   imports: [ReactiveFormsModule, RouterLink],
   templateUrl: './create-class.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,

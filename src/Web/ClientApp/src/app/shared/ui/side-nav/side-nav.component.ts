@@ -13,7 +13,7 @@ type NavLink = {
 
 @Component({
   selector: 'app-side-nav',
-  standalone: true,
+
   templateUrl: './side-nav.component.html',
   imports: [RouterLink, RouterLinkActive, NgIcon],
   viewProviders: [provideIcons({ heroHome, heroBookOpen, heroCalendar, heroListBullet, heroPhone })]

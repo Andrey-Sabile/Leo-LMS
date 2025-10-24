@@ -11,7 +11,7 @@ export type CalendarDateRange = { start: Date; end: Date };
 
 @Component({
   selector: 'app-calendar',
-  standalone: true,
+
   imports: [
     CalendarDayViewComponent,
     CalendarMonthViewComponent,

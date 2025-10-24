@@ -4,7 +4,7 @@ import type { MonthViewVm } from '../calendar-view.models';
 
 @Component({
   selector: 'app-calendar-month-view',
-  standalone: true,
+
   imports: [CommonModule],
   templateUrl: './calendar-month-view.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,

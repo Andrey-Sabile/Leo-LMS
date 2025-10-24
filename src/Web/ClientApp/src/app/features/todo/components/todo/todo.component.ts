@@ -12,7 +12,7 @@ import { FormsModule } from '@angular/forms';
   selector: 'app-todo-component',
   templateUrl: './todo.component.html',
   styleUrls: ['./todo.component.css'],
-  standalone: true,
+
   imports: [FormsModule, JsonPipe]
 })
 export class TodoComponent implements OnInit {

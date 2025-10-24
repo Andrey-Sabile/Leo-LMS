@@ -4,7 +4,6 @@ import { ClassroomDashboardPeopleComponent } from './classroom-dashboard-people.
 
 @Component({
   selector: 'app-classroom-dashboard',
-  standalone: true,
   imports: [ClassroomDashboardPeopleComponent],
   templateUrl: './classroom-dashboard.component.html',
   styles: ``,

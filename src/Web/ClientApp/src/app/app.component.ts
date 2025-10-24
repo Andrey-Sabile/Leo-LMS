@@ -3,8 +3,8 @@ import { AppShellComponent } from '@app/core/layout/app-shell/app-shell.componen
 
 @Component({
   selector: 'app-root',
-  standalone: true,
+
   imports: [AppShellComponent],
   template: '<app-shell></app-shell>'
 })
-export class AppComponent {}
+export class AppComponent { }
