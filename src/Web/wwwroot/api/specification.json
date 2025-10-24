@@ -365,6 +365,156 @@
         }
       }
     },
+    "/api/Classrooms/{id}/students": {
+      "post": {
+        "tags": [
+          "Classrooms"
+        ],
+        "operationId": "AddStudentToClassroom",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "x-position": 1
+          }
+        ],
+        "requestBody": {
+          "x-name": "command",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddStudentToClassroomCommand"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 2
+        },
+        "responses": {
+          "204": {
+            "description": ""
+          },
+          "400": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/api/Classrooms/{id}/students/{studentId}": {
+      "delete": {
+        "tags": [
+          "Classrooms"
+        ],
+        "operationId": "RemoveStudentFromClassroom",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "x-position": 1
+          },
+          {
+            "name": "studentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "x-position": 2
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/api/Classrooms/{id}/teachers": {
+      "post": {
+        "tags": [
+          "Classrooms"
+        ],
+        "operationId": "AddTeacherToClassroom",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "x-position": 1
+          }
+        ],
+        "requestBody": {
+          "x-name": "command",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddTeacherToClassroomCommand"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 2
+        },
+        "responses": {
+          "204": {
+            "description": ""
+          },
+          "400": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/api/Classrooms/{id}/teachers/{teacherId}": {
+      "delete": {
+        "tags": [
+          "Classrooms"
+        ],
+        "operationId": "RemoveTeacherFromClassroom",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "x-position": 1
+          },
+          {
+            "name": "teacherId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "x-position": 2
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        }
+      }
+    },
     "/api/Guardians": {
       "get": {
         "tags": [
@@ -1537,6 +1687,34 @@
             "nullable": true
           },
           "subjectId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "teacherId": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "AddStudentToClassroomCommand": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "classroomId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "studentId": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "AddTeacherToClassroomCommand": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "classroomId": {
             "type": "integer",
             "format": "int32"
           },

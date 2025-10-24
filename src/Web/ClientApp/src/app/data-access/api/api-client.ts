@@ -267,6 +267,10 @@ export interface IClassroomsClient {
     getClassroomDetails(id: number): Observable<ClassroomDetailsDto>;
     updateClassroom(id: number, command: UpdateClassroomCommand): Observable<void>;
     deleteClassroom(id: number): Observable<void>;
+    addStudentToClassroom(id: number, command: AddStudentToClassroomCommand): Observable<void>;
+    removeStudentFromClassroom(id: number, studentId: number): Observable<void>;
+    addTeacherToClassroom(id: number, command: AddTeacherToClassroomCommand): Observable<void>;
+    removeTeacherFromClassroom(id: number, teacherId: number): Observable<void>;
 }
 
 @Injectable({
@@ -518,6 +522,216 @@ export class ClassroomsClient implements IClassroomsClient {
     }
 
     protected processDeleteClassroom(response: HttpResponseBase): Observable<void> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return _observableOf(null as any);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    addStudentToClassroom(id: number, command: AddStudentToClassroomCommand): Observable<void> {
+        let url_ = this.baseUrl + "/api/Classrooms/{id}/students";
+        if (id === undefined || id === null)
+            throw new Error("The parameter 'id' must be defined.");
+        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(command);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json",
+            })
+        };
+
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processAddStudentToClassroom(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processAddStudentToClassroom(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<void>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<void>;
+        }));
+    }
+
+    protected processAddStudentToClassroom(response: HttpResponseBase): Observable<void> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return _observableOf(null as any);
+            }));
+        } else if (status === 400) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("A server side error occurred.", status, _responseText, _headers);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    removeStudentFromClassroom(id: number, studentId: number): Observable<void> {
+        let url_ = this.baseUrl + "/api/Classrooms/{id}/students/{studentId}";
+        if (id === undefined || id === null)
+            throw new Error("The parameter 'id' must be defined.");
+        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+        if (studentId === undefined || studentId === null)
+            throw new Error("The parameter 'studentId' must be defined.");
+        url_ = url_.replace("{studentId}", encodeURIComponent("" + studentId));
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+            })
+        };
+
+        return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processRemoveStudentFromClassroom(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processRemoveStudentFromClassroom(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<void>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<void>;
+        }));
+    }
+
+    protected processRemoveStudentFromClassroom(response: HttpResponseBase): Observable<void> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return _observableOf(null as any);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    addTeacherToClassroom(id: number, command: AddTeacherToClassroomCommand): Observable<void> {
+        let url_ = this.baseUrl + "/api/Classrooms/{id}/teachers";
+        if (id === undefined || id === null)
+            throw new Error("The parameter 'id' must be defined.");
+        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(command);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json",
+            })
+        };
+
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processAddTeacherToClassroom(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processAddTeacherToClassroom(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<void>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<void>;
+        }));
+    }
+
+    protected processAddTeacherToClassroom(response: HttpResponseBase): Observable<void> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return _observableOf(null as any);
+            }));
+        } else if (status === 400) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("A server side error occurred.", status, _responseText, _headers);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    removeTeacherFromClassroom(id: number, teacherId: number): Observable<void> {
+        let url_ = this.baseUrl + "/api/Classrooms/{id}/teachers/{teacherId}";
+        if (id === undefined || id === null)
+            throw new Error("The parameter 'id' must be defined.");
+        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+        if (teacherId === undefined || teacherId === null)
+            throw new Error("The parameter 'teacherId' must be defined.");
+        url_ = url_.replace("{teacherId}", encodeURIComponent("" + teacherId));
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+            })
+        };
+
+        return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processRemoveTeacherFromClassroom(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processRemoveTeacherFromClassroom(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<void>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<void>;
+        }));
+    }
+
+    protected processRemoveTeacherFromClassroom(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -2600,6 +2814,86 @@ export interface IUpdateClassroomCommand {
     name?: string;
     description?: string | undefined;
     subjectId?: number;
+    teacherId?: number;
+}
+
+export class AddStudentToClassroomCommand implements IAddStudentToClassroomCommand {
+    classroomId?: number;
+    studentId?: number;
+
+    constructor(data?: IAddStudentToClassroomCommand) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.classroomId = _data["classroomId"];
+            this.studentId = _data["studentId"];
+        }
+    }
+
+    static fromJS(data: any): AddStudentToClassroomCommand {
+        data = typeof data === 'object' ? data : {};
+        let result = new AddStudentToClassroomCommand();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["classroomId"] = this.classroomId;
+        data["studentId"] = this.studentId;
+        return data;
+    }
+}
+
+export interface IAddStudentToClassroomCommand {
+    classroomId?: number;
+    studentId?: number;
+}
+
+export class AddTeacherToClassroomCommand implements IAddTeacherToClassroomCommand {
+    classroomId?: number;
+    teacherId?: number;
+
+    constructor(data?: IAddTeacherToClassroomCommand) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.classroomId = _data["classroomId"];
+            this.teacherId = _data["teacherId"];
+        }
+    }
+
+    static fromJS(data: any): AddTeacherToClassroomCommand {
+        data = typeof data === 'object' ? data : {};
+        let result = new AddTeacherToClassroomCommand();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["classroomId"] = this.classroomId;
+        data["teacherId"] = this.teacherId;
+        return data;
+    }
+}
+
+export interface IAddTeacherToClassroomCommand {
+    classroomId?: number;
     teacherId?: number;
 }
 

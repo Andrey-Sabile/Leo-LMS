@@ -22,6 +22,7 @@ public class GetClassroomDetailsQueryHandler : IRequestHandler<GetClassroomDetai
         var classroom = await _context.Classrooms
             .AsNoTracking()
             .Where(classroom => classroom.Id == request.Id)
+            .AsSplitQuery()
             .ProjectTo<ClassroomDetailsDto>(_mapper.ConfigurationProvider)
             .SingleOrDefaultAsync(cancellationToken);
 

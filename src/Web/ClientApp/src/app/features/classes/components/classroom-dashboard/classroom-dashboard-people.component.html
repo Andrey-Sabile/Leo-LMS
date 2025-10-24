@@ -2,7 +2,9 @@
   <div class="flex flex-col gap-3">
     <div class="flex flex-row justify-between items-center">
       <h3 class="text-lg font-medium">Teachers</h3>
-      <button class="btn btn-ghost btn-square"><ng-icon name="heroUserPlus"></ng-icon></button>
+      <button class="btn btn-ghost btn-square" onclick="add_new_teacher_modal.showModal()">
+        <ng-icon name="heroUserPlus"></ng-icon>
+      </button>
     </div>
 
     @if (teacherCount() === 0) {
@@ -22,7 +24,8 @@
   <div class="flex flex-col gap-3">
     <div class="flex flex-row justify-between items-center">
       <h3 class="text-lg font-medium">Students</h3>
-      <button class="btn btn-ghost btn-square"><ng-icon name="heroUserPlus"></ng-icon></button>
+      <button class="btn btn-ghost btn-square" onclick="add_new_student_modal.showModal()"><ng-icon
+          name="heroUserPlus"></ng-icon></button>
     </div>
 
     @if (studentCount() === 0) {
@@ -39,3 +42,23 @@
     }
   </div>
 </div>
+
+<dialog id="add_new_teacher_modal" class="modal">
+  <div class="modal-box">
+    <form method="dialog">
+      <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+    </form>
+    <h3 class="text-lg font-bold">Hello!</h3>
+    <p class="py-4">Press ESC key or click on ✕ button to close</p>
+  </div>
+</dialog>
+
+<dialog id="add_new_student_modal" class="modal">
+  <div class="modal-box">
+    <form method="dialog">
+      <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+    </form>
+    <h3 class="text-lg font-bold">Hello!</h3>
+    <p class="py-4">Press ESC key or click on ✕ button to close</p>
+  </div>
+</dialog>
