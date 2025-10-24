@@ -31,3 +31,5 @@ When working with HTML files, refer to daisyui.instructions.md located in /Users
 When working with Angular files, refer to angular.instructions.md located in /Users/andreysabile/Dev/LeoLMS/src/Web/ClientApp/docs
 
 Avoid generating .css or scss files. Use the html file and tailwind as much as possible.
+
+Do not modify /Users/andreysabile/Dev/LeoLMS/src/Web/ClientApp/src/app/data-access/api/api-client.ts file and the /Users/andreysabile/Dev/LeoLMS/src/Web/wwwroot/api/specification.json. When the web endpoints get changed, those files get automatically gets updated.

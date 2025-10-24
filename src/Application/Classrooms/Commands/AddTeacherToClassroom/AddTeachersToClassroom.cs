@@ -1,8 +1,14 @@
+using System.Collections.Generic;
+using System.Linq;
+using Ardalis.GuardClauses;
+using FluentValidation;
 using LeoLMS.Application.Common.Interfaces;
+using MediatR;
+using Microsoft.EntityFrameworkCore;
 
 namespace LeoLMS.Application.Classrooms.Commands.AddTeacherToClassroom;
 
-public record AddTeacherToClassroomCommand(int ClassroomId, int TeacherId) : IRequest;
+public record AddTeacherToClassroomCommand(int ClassroomId, IReadOnlyCollection<int> TeacherIds) : IRequest;
 
 public class AddTeacherToClassroomCommandValidator : AbstractValidator<AddTeacherToClassroomCommand>
 {
@@ -11,7 +17,12 @@ public class AddTeacherToClassroomCommandValidator : AbstractValidator<AddTeache
         RuleFor(command => command.ClassroomId)
             .GreaterThan(0);
 
-        RuleFor(command => command.TeacherId)
+        RuleFor(command => command.TeacherIds)
+            .NotNull()
+            .Must(ids => ids.Any())
+            .WithMessage("At least one teacher must be provided.");
+
+        RuleForEach(command => command.TeacherIds)
             .GreaterThan(0);
     }
 }
@@ -33,13 +44,20 @@ public class AddTeacherToClassroomCommandHandler : IRequestHandler<AddTeacherToC
 
         Guard.Against.NotFound(request.ClassroomId, classroom);
 
-        var teacher = await _context.Teachers
+        var teacherIds = request.TeacherIds.Distinct().ToList();
+
+        var teachers = await _context.Teachers
             .Include(t => t.Classrooms)
-            .SingleOrDefaultAsync(t => t.Id == request.TeacherId, cancellationToken);
+            .Where(t => teacherIds.Contains(t.Id))
+            .ToListAsync(cancellationToken);
 
-        Guard.Against.NotFound(request.TeacherId, teacher);
+        foreach (var teacherId in teacherIds)
+        {
+            var teacher = teachers.FirstOrDefault(t => t.Id == teacherId);
+            Guard.Against.NotFound(teacherId, teacher);
 
-        classroom!.AddTeacher(teacher!);
+            classroom!.AddTeacher(teacher!);
+        }
 
         await _context.SaveChangesAsync(cancellationToken);
     }

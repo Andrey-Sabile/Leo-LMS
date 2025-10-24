@@ -1,5 +1,6 @@
 namespace LeoLMS.Domain.Entities;
 
+using System.Collections.Generic;
 using System.Linq;
 using LeoLMS.Domain.Events;
 
@@ -32,6 +33,16 @@ public class Classroom : BaseAuditableEntity
         student.AddClassroom(this);
     }
 
+    public void AddStudents(IEnumerable<Student> students)
+    {
+        ArgumentNullException.ThrowIfNull(students);
+
+        foreach (var student in students)
+        {
+            AddStudent(student);
+        }
+    }
+
     public void RemoveStudent(Student student)
     {
         ArgumentNullException.ThrowIfNull(student);
@@ -54,6 +65,16 @@ public class Classroom : BaseAuditableEntity
 
         Teachers.Add(teacher);
         teacher.AddClassroom(this);
+    }
+
+    public void AddTeachers(IEnumerable<Teacher> teachers)
+    {
+        ArgumentNullException.ThrowIfNull(teachers);
+
+        foreach (var teacher in teachers)
+        {
+            AddTeacher(teacher);
+        }
     }
 
     public void RemoveTeacher(Teacher teacher)

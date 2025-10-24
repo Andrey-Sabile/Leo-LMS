@@ -10,7 +10,7 @@
     @if (!teachers()) {
     <p class="text-sm text-base-content/60">No teachers assigned yet.</p>
     } @else {
-    <ul class="list p-4">
+    <ul class="list p-4 max-h-80 overflow-y-auto">
       @for (teacher of teachers(); track teacher.id) {
       <li class="list-row flex-row items-center gap-4">
         <div class="avatar avatar-placeholder">
@@ -28,8 +28,9 @@
   <div class="flex flex-col gap-3">
     <div class="flex flex-row justify-between items-center">
       <h3 class="text-lg font-medium">Students</h3>
-      <button class="btn btn-ghost btn-square" onclick="add_new_student_modal.showModal()"><ng-icon
-          name="heroUserPlus"></ng-icon></button>
+      <button class="btn btn-ghost btn-square" (click)="openStudentDialog(studentDialog)">
+        <ng-icon name="heroUserPlus"></ng-icon>
+      </button>
     </div>
 
     @if (studentCount() === 0) {
@@ -44,7 +45,9 @@
           </div>
         </div>
         <p class="font-medium">{{ student.firstName }} {{ student.lastName }}</p>
-        <button class="btn btn-ghost btn-square"><ng-icon name="heroEllipsisVertical"></ng-icon></button>
+        <button class="btn btn-ghost btn-square">
+          <ng-icon name="heroEllipsisVertical"></ng-icon>
+        </button>
       </li>
       }
     </ul>
@@ -54,55 +57,150 @@
 
 <dialog #teacherDialog class="modal">
   <div class="modal-box">
-    <form [formGroup]="addTeacherForm" (ngSubmit)="onSubmit(teacherDialog)">
+    <form [formGroup]="addTeacherForm" (ngSubmit)="submitTeachers(teacherDialog)">
       <button type="button" class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
         (click)="teacherDialog.close()">✕</button>
 
-      <h3 class="text-lg font-bold mb-4">Add Teacher</h3>
+      <h3 class="text-lg font-bold mb-4">Add Teachers</h3>
 
       <label class="input input-lg w-full">
         <input type="search" placeholder="Search for Teachers" [value]="teacherSearchQuery()"
-          (input)="onSearchChange(($any($event.target)).value ?? '')">
+          (input)="onTeacherSearchChange(($any($event.target)).value ?? '')">
       </label>
 
-      <ul class="list p-4 max-h-[32rem] overflow-y-auto">
-        @for (loadedTeacher of teachersLoaded(); track loadedTeacher.id) {
-        <li class="list-row flex-row gap-4 hover:bg-base-200 hover:cursor-pointer" (click)="addTeacherToClass(loadedTeacher)">
-          <div class="avatar avatar-placeholder">
-            <div class="bg-primary text-black w-12 rounded-full"> AA </div>
-          </div>
+      <p class="text-sm text-base-content/60 mt-2">
+        @if (selectedTeachers().length === 0) {
+        <span>Select one or more teachers below to add them to the classroom.</span>
+        } @else {
+        <span>{{ selectedTeachers().length }} teacher(s) selected.</span>
+        }
+      </p>
 
-          <div>
-            <p class="text-sm font-medium">{{ loadedTeacher.firstName }} {{ loadedTeacher.lastName }}</p>
-            @if (loadedTeacher.email) { <p class="truncate text-xs text-base-content/60">{{ loadedTeacher.email }}</p> }
+      @if (selectedTeachers().length > 0) {
+      <ul class="flex flex-wrap gap-2 mt-2">
+        @for (selectedTeacher of selectedTeachers(); track selectedTeacher.id) {
+        <li>
+          <div class="badge badge-outline gap-2 py-3 px-4">
+            <span>{{ selectedTeacher.firstName }} {{ selectedTeacher.lastName }}</span>
+            <button type="button" class="btn btn-ghost btn-xs px-1" (click)="removeSelectedTeacher(selectedTeacher.id)">
+              ✕
+            </button>
           </div>
         </li>
         }
       </ul>
+      }
 
-      @if (submitError()) {
-      <p class="text-sm text-error mt-3">{{ submitError() }}</p>
+      <ul class="list p-4 max-h-[32rem] overflow-y-auto">
+        @for (loadedTeacher of teachersLoaded(); track loadedTeacher.id) {
+        <li class="list-row flex-row gap-4 hover:bg-base-200 hover:cursor-pointer">
+          <button type="button" class="flex w-full items-center gap-4 text-left p-2 rounded-lg transition-colors"
+            (click)="toggleTeacherSelection(loadedTeacher)" [class.bg-base-200]="isTeacherSelected(loadedTeacher.id)">
+            <input type="checkbox" class="checkbox checkbox-primary" [checked]="isTeacherSelected(loadedTeacher.id)"
+              (click)="$event.stopPropagation(); toggleTeacherSelection(loadedTeacher)">
+
+            <div class="avatar avatar-placeholder">
+              <div class="bg-primary text-black w-12 rounded-full"> AA </div>
+            </div>
+
+            <div>
+              <p class="text-sm font-medium">{{ loadedTeacher.firstName }} {{ loadedTeacher.lastName }}</p>
+              @if (loadedTeacher.email) { <p class="truncate text-xs text-base-content/60">{{ loadedTeacher.email }}</p>
+              }
+            </div>
+          </button>
+        </li>
+        }
+      </ul>
+
+      @if (teacherSubmitError()) {
+      <p class="text-sm text-error mt-3">{{ teacherSubmitError() }}</p>
       }
 
       <div class="modal-action">
         <button type="button" class="btn" (click)="teacherDialog.close()">Cancel</button>
-        <button type="submit" class="btn btn-primary" [disabled]="addTeacherForm.invalid || isSubmitting()">
-          @if (isSubmitting()) {
+        <button type="submit" class="btn btn-primary" [disabled]="addTeacherForm.invalid || isAddingTeachers()">
+          @if (isAddingTeachers()) {
           <span class="loading loading-spinner loading-sm"></span>
           }
-          <span>Add teacher</span>
+          <span>Add teachers</span>
         </button>
       </div>
     </form>
   </div>
 </dialog>
 
-<dialog id="add_new_student_modal" class="modal">
+<dialog #studentDialog class="modal">
   <div class="modal-box">
-    <form method="dialog">
-      <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+    <form [formGroup]="addStudentForm" (ngSubmit)="submitStudents(studentDialog)">
+      <button type="button" class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+        (click)="studentDialog.close()">✕</button>
+
+      <h3 class="text-lg font-bold mb-4">Add Students</h3>
+
+      <label class="input input-lg w-full">
+        <input type="search" placeholder="Search for Students" [value]="studentSearchQuery()"
+          (input)="onStudentSearchChange(($any($event.target)).value ?? '')">
+      </label>
+
+      <p class="text-sm text-base-content/60 mt-2">
+        @if (selectedStudents().length === 0) {
+        <span>Select one or more students below to add them to the classroom.</span>
+        } @else {
+        <span>{{ selectedStudents().length }} student(s) selected.</span>
+        }
+      </p>
+
+      @if (selectedStudents().length > 0) {
+      <ul class="flex flex-wrap gap-2 mt-2">
+        @for (selectedStudent of selectedStudents(); track selectedStudent.id) {
+        <li>
+          <div class="badge badge-outline gap-2 py-3 px-4">
+            <span>{{ selectedStudent.firstName }} {{ selectedStudent.lastName }}</span>
+            <button type="button" class="btn btn-ghost btn-xs px-1" (click)="removeSelectedStudent(selectedStudent.id)">
+              ✕
+            </button>
+          </div>
+        </li>
+        }
+      </ul>
+      }
+
+      <ul class="list p-4 max-h-[32rem] overflow-y-auto">
+        @for (loadedStudent of studentsLoaded(); track loadedStudent.id) {
+        <li class="list-row flex-row gap-4 hover:bg-base-200 hover:cursor-pointer">
+          <button type="button" class="flex w-full items-center gap-4 text-left p-2 rounded-lg transition-colors"
+            (click)="toggleStudentSelection(loadedStudent)" [class.bg-base-200]="isStudentSelected(loadedStudent.id)">
+            <input type="checkbox" class="checkbox checkbox-primary" [checked]="isStudentSelected(loadedStudent.id)"
+              (click)="$event.stopPropagation(); toggleStudentSelection(loadedStudent)">
+
+            <div class="avatar avatar-placeholder">
+              <div class="bg-primary text-black w-12 rounded-full"> AA </div>
+            </div>
+
+            <div>
+              <p class="text-sm font-medium">{{ loadedStudent.firstName }} {{ loadedStudent.lastName }}</p>
+              @if (loadedStudent.email) { <p class="truncate text-xs text-base-content/60">{{ loadedStudent.email }}</p>
+              }
+            </div>
+          </button>
+        </li>
+        }
+      </ul>
+
+      @if (studentSubmitError()) {
+      <p class="text-sm text-error mt-3">{{ studentSubmitError() }}</p>
+      }
+
+      <div class="modal-action">
+        <button type="button" class="btn" (click)="studentDialog.close()">Cancel</button>
+        <button type="submit" class="btn btn-primary" [disabled]="addStudentForm.invalid || isAddingStudents()">
+          @if (isAddingStudents()) {
+          <span class="loading loading-spinner loading-sm"></span>
+          }
+          <span>Add students</span>
+        </button>
+      </div>
     </form>
-    <h3 class="text-lg font-bold">Hello!</h3>
-    <p class="py-4">Press ESC key or click on ✕ button to close</p>
   </div>
 </dialog>

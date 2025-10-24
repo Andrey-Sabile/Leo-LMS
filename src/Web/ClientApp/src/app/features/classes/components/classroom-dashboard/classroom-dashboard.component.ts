@@ -57,6 +57,10 @@ export class ClassroomDashboardComponent {
     this.reloadVersion.update(version => version + 1);
   }
 
+  handleStudentAdded(): void {
+    this.reloadVersion.update(version => version + 1);
+  }
+
   private fetchClassroomDetails(id: number): void {
     this.classroomsClient
       .getClassroomDetails(id)

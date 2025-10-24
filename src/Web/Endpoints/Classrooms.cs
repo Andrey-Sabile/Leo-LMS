@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using LeoLMS.Application.Classrooms.Commands.AddStudentToClassroom;
 using LeoLMS.Application.Classrooms.Commands.AddTeacherToClassroom;
 using LeoLMS.Application.Classrooms.Commands.CreateClassroom;
@@ -20,9 +21,9 @@ public class Classrooms : EndpointGroupBase
         groupBuilder.MapPost(CreateClassroom).RequireAuthorization();
         groupBuilder.MapPut(UpdateClassroom, "{id}").RequireAuthorization();
         groupBuilder.MapDelete(DeleteClassroom, "{id}").RequireAuthorization();
-        groupBuilder.MapPost(AddStudentToClassroom, "{id}/students").RequireAuthorization();
+        groupBuilder.MapPost(AddStudentsToClassroom, "AddStudents").RequireAuthorization();
         groupBuilder.MapDelete(RemoveStudentFromClassroom, "{id}/students/{studentId}").RequireAuthorization();
-        groupBuilder.MapPost(AddTeacherToClassroom, "{id}/teachers").RequireAuthorization();
+        groupBuilder.MapPost(AddTeachersToClassroom, "AddTeachers").RequireAuthorization();
         groupBuilder.MapDelete(RemoveTeacherFromClassroom, "{id}/teachers/{teacherId}").RequireAuthorization();
     }
 
@@ -63,11 +64,11 @@ public class Classrooms : EndpointGroupBase
         return TypedResults.NoContent();
     }
 
-    public async Task<Results<NoContent, BadRequest>> AddStudentToClassroom(ISender sender, int id, AddStudentToClassroomCommand command)
+    public async Task<Results<NoContent, BadRequest>> AddStudentsToClassroom(ISender sender, int classroomId, AddStudentsToClassroomCommand request)
     {
-        if (id != command.ClassroomId) return TypedResults.BadRequest();
+        if (request.StudentIds is null || request.StudentIds.Count == 0) return TypedResults.BadRequest();
 
-        await sender.Send(command);
+        await sender.Send(new AddStudentsToClassroomCommand(classroomId, request.StudentIds));
 
         return TypedResults.NoContent();
     }
@@ -79,7 +80,7 @@ public class Classrooms : EndpointGroupBase
         return TypedResults.NoContent();
     }
 
-    public async Task<Results<NoContent, BadRequest>> AddTeacherToClassroom(ISender sender, int id, AddTeacherToClassroomCommand command)
+    public async Task<Results<NoContent, BadRequest>> AddTeachersToClassroom(ISender sender, int id, AddTeacherToClassroomCommand command)
     {
         if (id != command.ClassroomId) return TypedResults.BadRequest();
 
@@ -94,4 +95,9 @@ public class Classrooms : EndpointGroupBase
 
         return TypedResults.NoContent();
     }
+}
+
+public class AddStudentsToClassroomRequest
+{
+    public IReadOnlyCollection<int>? StudentIds { get; init; }
 }

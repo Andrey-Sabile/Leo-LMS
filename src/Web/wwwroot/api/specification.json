@@ -365,16 +365,16 @@
         }
       }
     },
-    "/api/Classrooms/{id}/students": {
+    "/api/Classrooms/AddStudents": {
       "post": {
         "tags": [
           "Classrooms"
         ],
-        "operationId": "AddStudentToClassroom",
+        "operationId": "AddStudentsToClassroom",
         "parameters": [
           {
-            "name": "id",
-            "in": "path",
+            "name": "classroomId",
+            "in": "query",
             "required": true,
             "schema": {
               "type": "integer",
@@ -384,11 +384,11 @@
           }
         ],
         "requestBody": {
-          "x-name": "command",
+          "x-name": "request",
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/AddStudentToClassroomCommand"
+                "$ref": "#/components/schemas/AddStudentsToClassroomCommand"
               }
             }
           },
@@ -440,16 +440,16 @@
         }
       }
     },
-    "/api/Classrooms/{id}/teachers": {
+    "/api/Classrooms/AddTeachers": {
       "post": {
         "tags": [
           "Classrooms"
         ],
-        "operationId": "AddTeacherToClassroom",
+        "operationId": "AddTeachersToClassroom",
         "parameters": [
           {
             "name": "id",
-            "in": "path",
+            "in": "query",
             "required": true,
             "schema": {
               "type": "integer",
@@ -1747,7 +1747,7 @@
           }
         }
       },
-      "AddStudentToClassroomCommand": {
+      "AddStudentsToClassroomCommand": {
         "type": "object",
         "additionalProperties": false,
         "properties": {
@@ -1755,9 +1755,12 @@
             "type": "integer",
             "format": "int32"
           },
-          "studentId": {
-            "type": "integer",
-            "format": "int32"
+          "studentIds": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            }
           }
         }
       },
@@ -1769,9 +1772,12 @@
             "type": "integer",
             "format": "int32"
           },
-          "teacherId": {
-            "type": "integer",
-            "format": "int32"
+          "teacherIds": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            }
           }
         }
       },

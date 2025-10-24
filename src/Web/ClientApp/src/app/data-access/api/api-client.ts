@@ -267,9 +267,9 @@ export interface IClassroomsClient {
     getClassroomDetails(id: number): Observable<ClassroomDetailsDto>;
     updateClassroom(id: number, command: UpdateClassroomCommand): Observable<void>;
     deleteClassroom(id: number): Observable<void>;
-    addStudentToClassroom(id: number, command: AddStudentToClassroomCommand): Observable<void>;
+    addStudentsToClassroom(classroomId: number, request: AddStudentsToClassroomCommand): Observable<void>;
     removeStudentFromClassroom(id: number, studentId: number): Observable<void>;
-    addTeacherToClassroom(id: number, command: AddTeacherToClassroomCommand): Observable<void>;
+    addTeachersToClassroom(id: number, command: AddTeacherToClassroomCommand): Observable<void>;
     removeTeacherFromClassroom(id: number, teacherId: number): Observable<void>;
 }
 
@@ -540,14 +540,15 @@ export class ClassroomsClient implements IClassroomsClient {
         return _observableOf(null as any);
     }
 
-    addStudentToClassroom(id: number, command: AddStudentToClassroomCommand): Observable<void> {
-        let url_ = this.baseUrl + "/api/Classrooms/{id}/students";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    addStudentsToClassroom(classroomId: number, request: AddStudentsToClassroomCommand): Observable<void> {
+        let url_ = this.baseUrl + "/api/Classrooms/AddStudents?";
+        if (classroomId === undefined || classroomId === null)
+            throw new Error("The parameter 'classroomId' must be defined and cannot be null.");
+        else
+            url_ += "classroomId=" + encodeURIComponent("" + classroomId) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
-        const content_ = JSON.stringify(command);
+        const content_ = JSON.stringify(request);
 
         let options_ : any = {
             body: content_,
@@ -559,11 +560,11 @@ export class ClassroomsClient implements IClassroomsClient {
         };
 
         return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processAddStudentToClassroom(response_);
+            return this.processAddStudentsToClassroom(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processAddStudentToClassroom(response_ as any);
+                    return this.processAddStudentsToClassroom(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -572,7 +573,7 @@ export class ClassroomsClient implements IClassroomsClient {
         }));
     }
 
-    protected processAddStudentToClassroom(response: HttpResponseBase): Observable<void> {
+    protected processAddStudentsToClassroom(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -645,11 +646,12 @@ export class ClassroomsClient implements IClassroomsClient {
         return _observableOf(null as any);
     }
 
-    addTeacherToClassroom(id: number, command: AddTeacherToClassroomCommand): Observable<void> {
-        let url_ = this.baseUrl + "/api/Classrooms/{id}/teachers";
+    addTeachersToClassroom(id: number, command: AddTeacherToClassroomCommand): Observable<void> {
+        let url_ = this.baseUrl + "/api/Classrooms/AddTeachers?";
         if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+            throw new Error("The parameter 'id' must be defined and cannot be null.");
+        else
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(command);
@@ -664,11 +666,11 @@ export class ClassroomsClient implements IClassroomsClient {
         };
 
         return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processAddTeacherToClassroom(response_);
+            return this.processAddTeachersToClassroom(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processAddTeacherToClassroom(response_ as any);
+                    return this.processAddTeachersToClassroom(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -677,7 +679,7 @@ export class ClassroomsClient implements IClassroomsClient {
         }));
     }
 
-    protected processAddTeacherToClassroom(response: HttpResponseBase): Observable<void> {
+    protected processAddTeachersToClassroom(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -2876,11 +2878,11 @@ export interface IUpdateClassroomCommand {
     teacherId?: number;
 }
 
-export class AddStudentToClassroomCommand implements IAddStudentToClassroomCommand {
+export class AddStudentsToClassroomCommand implements IAddStudentsToClassroomCommand {
     classroomId?: number;
-    studentId?: number;
+    studentIds?: number[];
 
-    constructor(data?: IAddStudentToClassroomCommand) {
+    constructor(data?: IAddStudentsToClassroomCommand) {
         if (data) {
             for (var property in data) {
                 if (data.hasOwnProperty(property))
@@ -2892,13 +2894,17 @@ export class AddStudentToClassroomCommand implements IAddStudentToClassroomComma
     init(_data?: any) {
         if (_data) {
             this.classroomId = _data["classroomId"];
-            this.studentId = _data["studentId"];
+            if (Array.isArray(_data["studentIds"])) {
+                this.studentIds = [] as any;
+                for (let item of _data["studentIds"])
+                    this.studentIds!.push(item);
+            }
         }
     }
 
-    static fromJS(data: any): AddStudentToClassroomCommand {
+    static fromJS(data: any): AddStudentsToClassroomCommand {
         data = typeof data === 'object' ? data : {};
-        let result = new AddStudentToClassroomCommand();
+        let result = new AddStudentsToClassroomCommand();
         result.init(data);
         return result;
     }
@@ -2906,19 +2912,23 @@ export class AddStudentToClassroomCommand implements IAddStudentToClassroomComma
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
         data["classroomId"] = this.classroomId;
-        data["studentId"] = this.studentId;
+        if (Array.isArray(this.studentIds)) {
+            data["studentIds"] = [];
+            for (let item of this.studentIds)
+                data["studentIds"].push(item);
+        }
         return data;
     }
 }
 
-export interface IAddStudentToClassroomCommand {
+export interface IAddStudentsToClassroomCommand {
     classroomId?: number;
-    studentId?: number;
+    studentIds?: number[];
 }
 
 export class AddTeacherToClassroomCommand implements IAddTeacherToClassroomCommand {
     classroomId?: number;
-    teacherId?: number;
+    teacherIds?: number[];
 
     constructor(data?: IAddTeacherToClassroomCommand) {
         if (data) {
@@ -2932,7 +2942,11 @@ export class AddTeacherToClassroomCommand implements IAddTeacherToClassroomComma
     init(_data?: any) {
         if (_data) {
             this.classroomId = _data["classroomId"];
-            this.teacherId = _data["teacherId"];
+            if (Array.isArray(_data["teacherIds"])) {
+                this.teacherIds = [] as any;
+                for (let item of _data["teacherIds"])
+                    this.teacherIds!.push(item);
+            }
         }
     }
 
@@ -2946,14 +2960,18 @@ export class AddTeacherToClassroomCommand implements IAddTeacherToClassroomComma
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
         data["classroomId"] = this.classroomId;
-        data["teacherId"] = this.teacherId;
+        if (Array.isArray(this.teacherIds)) {
+            data["teacherIds"] = [];
+            for (let item of this.teacherIds)
+                data["teacherIds"].push(item);
+        }
         return data;
     }
 }
 
 export interface IAddTeacherToClassroomCommand {
     classroomId?: number;
-    teacherId?: number;
+    teacherIds?: number[];
 }
 
 export class GuardiansVm implements IGuardiansVm {
