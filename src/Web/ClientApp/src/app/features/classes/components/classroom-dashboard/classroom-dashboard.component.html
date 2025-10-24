@@ -6,7 +6,8 @@
     <div class="tab-content bg-base-100 border-base-300 p-6">
       @if (classroomId(); as id) {
       <app-classroom-dashboard-people [teachers]="teachers()" [students]="students()" [classroomId]="id"
-        (teacherAdded)="handleTeacherAdded()" (studentAdded)="handleStudentAdded()">
+        (teacherAdded)="handleUpdate()" (studentAdded)="handleUpdate()" (studentRemovedFromClassroom)="handleUpdate()"
+        (teacherRemovedFromClassroom)="handleUpdate()">
       </app-classroom-dashboard-people>
       }
     </div>

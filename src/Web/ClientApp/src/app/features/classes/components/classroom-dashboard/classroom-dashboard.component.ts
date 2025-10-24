@@ -53,11 +53,7 @@ export class ClassroomDashboardComponent {
     );
   }
 
-  handleTeacherAdded(): void {
-    this.reloadVersion.update(version => version + 1);
-  }
-
-  handleStudentAdded(): void {
+  handleUpdate(): void {
     this.reloadVersion.update(version => version + 1);
   }
 

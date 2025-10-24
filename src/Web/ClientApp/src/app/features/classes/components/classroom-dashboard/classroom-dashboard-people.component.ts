@@ -43,6 +43,8 @@ export class ClassroomDashboardPeopleComponent {
   readonly classroomId = input.required<number>();
   readonly teacherAdded = output<void>();
   readonly studentAdded = output<void>();
+  readonly studentRemovedFromClassroom = output<void>();
+  readonly teacherRemovedFromClassroom = output<void>();
   readonly selectedStudentIds = signal<number[]>([]);
   readonly selectedStudents = signal<StudentDto[]>([]);
   readonly selectedTeacherIds = signal<number[]>([]);
@@ -357,4 +359,30 @@ export class ClassroomDashboardPeopleComponent {
         }
       });
   }
+
+  removeStudentFromClassroom(studentId: number): void {
+    this.classroomsClient
+      .removeStudentFromClassroom(this.classroomId(), studentId,)
+      .subscribe({
+        next: result => {
+          this.studentRemovedFromClassroom.emit();
+        },
+        error: error => {
+          console.error("Failed to remove student from classroom.", error);
+        }
+      })
+  }
+  removeTeacherFromClassroom(teacherId: number): void {
+    this.classroomsClient
+      .removeTeacherFromClassroom(this.classroomId(), teacherId,)
+      .subscribe({
+        next: result => {
+          this.teacherRemovedFromClassroom.emit();
+        },
+        error: error => {
+          console.error("Failed to remove teacher from classroom.", error);
+        }
+      })
+  }
+
 }
