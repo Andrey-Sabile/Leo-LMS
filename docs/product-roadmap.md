@@ -30,7 +30,7 @@ Each **Epic (1.0, 2.0, 3.0, …)** represents a major release milestone with its
 
 ### Core Features
 - [x] Classroom creation (Admin/Teacher adds class, defines subject)
-- [ ] Assign students to classrooms (manual selection)
+- [x] Assign students to classrooms (manual selection)
 - [ ] Scoped calendar events (Global / Class / Personal)
 - [ ] Calendar drag-and-drop support
 - [x] Classroom dashboard view (members, upcoming events)
