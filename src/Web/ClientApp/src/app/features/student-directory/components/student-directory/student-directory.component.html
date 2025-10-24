@@ -6,7 +6,7 @@
   </header>
 
   <label class="input w-full">
-    <input type="search" class="w-fu" placeholder="Search students" [value]="searchQuery()"
+    <input type="search" placeholder="Search students" [value]="searchQuery()"
       (input)="onSearchChange(($any($event.target)).value ?? '')">
   </label>
 
