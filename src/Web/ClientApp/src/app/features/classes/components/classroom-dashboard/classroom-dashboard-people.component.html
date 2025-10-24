@@ -65,9 +65,20 @@
           (input)="onSearchChange(($any($event.target)).value ?? '')">
       </label>
 
-      <div class="form-control w-full">
-        <input type="search">
-      </div>
+      <ul class="list p-4 max-h-[32rem] overflow-y-auto">
+        @for (loadedTeacher of teachersLoaded(); track loadedTeacher.id) {
+        <li class="list-row flex-row gap-4 hover:bg-base-200 hover:cursor-pointer" (click)="addTeacherToClass(loadedTeacher)">
+          <div class="avatar avatar-placeholder">
+            <div class="bg-primary text-black w-12 rounded-full"> AA </div>
+          </div>
+
+          <div>
+            <p class="text-sm font-medium">{{ loadedTeacher.firstName }} {{ loadedTeacher.lastName }}</p>
+            @if (loadedTeacher.email) { <p class="truncate text-xs text-base-content/60">{{ loadedTeacher.email }}</p> }
+          </div>
+        </li>
+        }
+      </ul>
 
       @if (submitError()) {
       <p class="text-sm text-error mt-3">{{ submitError() }}</p>

@@ -38,6 +38,11 @@ export class ClassroomDashboardPeopleComponent {
     teacherId: ['', Validators.required],
   });
 
+
+  constructor() {
+    this.loadTeachers("AA");
+  }
+
   private readonly refreshTeachersEffect = effect(
     () => {
       const search = this.teacherSearchQuery();
@@ -52,6 +57,23 @@ export class ClassroomDashboardPeopleComponent {
         this.teachersLoaded.set(result.items ?? []);
       }
     })
+  }
+
+  onSearchChange(value: string): void {
+    this.teacherSearchQuery.set(value);
+  }
+
+  addTeacherToClass(teacher: TeacherLookupDto): void {
+    const control = this.addTeacherForm.controls.teacherId;
+    if (!teacher?.id) {
+      control.reset('');
+      return;
+    }
+
+    control.setValue(String(teacher.id));
+    control.markAsDirty();
+    control.markAsTouched();
+    this.submitError.set(null);
   }
 
   onSubmit(dialog: HTMLDialogElement): void {
@@ -94,9 +116,5 @@ export class ClassroomDashboardPeopleComponent {
           this.submitError.set('Unable to add teacher. Please try again.');
         }
       });
-  }
-
-  onSearchChange(value: string): void {
-    this.teacherSearchQuery.set(value);
   }
 }

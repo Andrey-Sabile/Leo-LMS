@@ -5,7 +5,8 @@
     <input type="radio" name="classroom_dashboard_tabs" class="tab" aria-label="People" checked />
     <div class="tab-content bg-base-100 border-base-300 p-6">
       @if (classroomId(); as id) {
-      <app-classroom-dashboard-people [teachers]="teachers()" [students]="students()" [classroomId]="id">
+      <app-classroom-dashboard-people [teachers]="teachers()" [students]="students()" [classroomId]="id"
+        (teacherAdded)="handleTeacherAdded()">
       </app-classroom-dashboard-people>
       }
     </div>
