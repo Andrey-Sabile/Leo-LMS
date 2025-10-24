@@ -2,12 +2,12 @@
   <div class="flex flex-col gap-3">
     <div class="flex flex-row justify-between items-center">
       <h3 class="text-lg font-medium">Teachers</h3>
-      <button class="btn btn-ghost btn-square" onclick="add_new_teacher_modal.showModal()">
+      <button class="btn btn-ghost btn-square" (click)="teacherDialog.showModal()">
         <ng-icon name="heroUserPlus"></ng-icon>
       </button>
     </div>
 
-    @if (teacherCount() === 0) {
+    @if (!teachers()) {
     <p class="text-sm text-base-content/60">No teachers assigned yet.</p>
     } @else {
     <ul class="list p-4">
@@ -52,13 +52,38 @@
   </div>
 </div>
 
-<dialog id="add_new_teacher_modal" class="modal">
+<dialog #teacherDialog class="modal">
   <div class="modal-box">
-    <form method="dialog">
-      <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+    <form [formGroup]="addTeacherForm" (ngSubmit)="onSubmit(teacherDialog)">
+      <button type="button" class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+        (click)="teacherDialog.close()">✕</button>
+      <h3 class="text-lg font-bold mb-4">Add Teacher</h3>
+
+      <div class="form-control w-full">
+        <label class="label" for="teacherId">
+          <span class="label-text">Teacher ID</span>
+        </label>
+        <input id="teacherId" type="number" formControlName="teacherId" placeholder="Enter teacher ID"
+          class="input input-bordered w-full" [class.input-error]="addTeacherForm.controls.teacherId.invalid && addTeacherForm.controls.teacherId.touched" />
+        @if (addTeacherForm.controls.teacherId.invalid && addTeacherForm.controls.teacherId.touched) {
+        <p class="text-sm text-error mt-1">Teacher ID is required.</p>
+        }
+      </div>
+
+      @if (submitError()) {
+      <p class="text-sm text-error mt-3">{{ submitError() }}</p>
+      }
+
+      <div class="modal-action">
+        <button type="button" class="btn" (click)="teacherDialog.close()">Cancel</button>
+        <button type="submit" class="btn btn-primary" [disabled]="addTeacherForm.invalid || isSubmitting()">
+          @if (isSubmitting()) {
+          <span class="loading loading-spinner loading-sm"></span>
+          }
+          <span>Add teacher</span>
+        </button>
+      </div>
     </form>
-    <h3 class="text-lg font-bold">Hello!</h3>
-    <p class="py-4">Press ESC key or click on ✕ button to close</p>
   </div>
 </dialog>
 

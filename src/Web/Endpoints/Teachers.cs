@@ -1,6 +1,8 @@
-﻿using LeoLMS.Application.Teachers.Commands.CreateTeacher;
+﻿using LeoLMS.Application.Common.Models;
+using LeoLMS.Application.Teachers.Commands.CreateTeacher;
 using LeoLMS.Application.Teachers.Commands.UpdateTeacher;
 using LeoLMS.Application.Teachers.Queries.GetTeachers;
+using LeoLMS.Application.Teachers.Queries.GetTeacherLookup;
 using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace LeoLMS.Web.Endpoints;
@@ -10,6 +12,7 @@ public class Teachers : EndpointGroupBase
     public override void Map(RouteGroupBuilder groupBuilder)
     {
         groupBuilder.MapGet(GetTeachers).RequireAuthorization();
+        groupBuilder.MapGet(GetTeacherLookup, "lookup").RequireAuthorization();
         groupBuilder.MapPost(CreateTeacher).RequireAuthorization();
         groupBuilder.MapPut(UpdateTeacher, "{id}").RequireAuthorization();
     }
@@ -35,5 +38,14 @@ public class Teachers : EndpointGroupBase
         await sender.Send(command);
 
         return TypedResults.NoContent();
+    }
+
+    public async Task<Ok<PaginatedList<TeacherLookupDto>>> GetTeacherLookup(
+        ISender sender,
+        [AsParameters] GetTeacherLookupQuery request)
+    {
+        var result = await sender.Send(request);
+
+        return TypedResults.Ok(result);
     }
 }
