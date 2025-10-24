@@ -1,4 +1,4 @@
-<div class="drawer drawer-open">
+<div class="drawer drawer-open min-h-screen">
   <input id="sidebar-drawer" type="checkbox" class="drawer-toggle">
 
   <div class="drawer-content bg-base-200">
@@ -9,23 +9,71 @@
 
   <div class="drawer-side">
     <label for="sidebar-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
-    <div class="w-64 bg-base-100 flex flex-col gap-4 items-start min-h-full">
+    <aside class="min-h-full w-72 bg-base-100/95 backdrop-blur border-r border-base-200/70 shadow-xl">
+      <div class="flex h-full flex-col">
+        <div class="px-6 pt-8 pb-6">
+          <div class="flex items-center gap-4 rounded-2xl bg-gradient-to-r from-primary/10 via-primary/5 to-transparent px-4 py-5">
+            <div class="avatar placeholder ring ring-primary/60 ring-offset-base-100 ring-offset-2">
+              <div class="bg-primary/15 text-primary font-semibold rounded-full w-12">
+                <span class="text-base">LL</span>
+              </div>
+            </div>
+            <div class="space-y-1">
+              <p class="text-xs font-semibold uppercase tracking-[0.3em] text-primary">LeoLMS</p>
+              <h1 class="text-xl font-semibold text-base-content">Learning Hub</h1>
+              <p class="text-sm text-base-content/60">Navigate your courses with style.</p>
+            </div>
+          </div>
 
-      <a class="btn btn-ghost text-lg font-semibold mt-4 self-center">Leo</a>
+          <div class="mt-6 rounded-2xl border border-base-200/80 bg-base-100 px-5 py-4 shadow-lg shadow-primary/5">
+            <p class="text-xs font-semibold uppercase tracking-wide text-base-content/50">Today&apos;s tip</p>
+            <p class="mt-2 text-sm text-base-content/70">
+              Keep the momentum going—explore a new module or revisit saved lessons.
+            </p>
+            <button class="btn btn-primary btn-sm mt-4 w-full" type="button">
+              Browse Catalog
+            </button>
+          </div>
+        </div>
 
-      <ul class="menu menu-lg w-full p-4 mt-6 grow">
-        @for (item of navLinks; track item.route) {
-        <li>
-          <a [routerLink]="item.route" class="rounded-lg flex items-center gap-3">
-            <ng-icon [name]="item.iconPaths"></ng-icon>
-            <p class="">{{ item.label }}</p>
-          </a>
-        </li>
-        }
-      </ul>
+        <ul class="menu menu-lg px-4 flex-1 pb-6">
+          <li class="menu-title text-xs font-semibold uppercase tracking-wider text-base-content/50">
+            Navigation
+          </li>
+          @for (item of navLinks; track item.route) {
+          <li>
+            <a
+              [routerLink]="item.route"
+              routerLinkActive="active bg-primary/15 text-primary font-semibold shadow-sm"
+              [routerLinkActiveOptions]="{ exact: true }"
+              class="rounded-xl px-4 py-3 transition duration-200 ease-out hover:bg-primary/10 hover:text-primary"
+            >
+              <div class="flex items-center gap-3">
+                <span class="flex h-9 w-9 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                  <ng-icon [name]="item.iconPaths" class="text-lg"></ng-icon>
+                </span>
+                <span class="text-sm">{{ item.label }}</span>
+              </div>
+            </a>
+          </li>
+          }
+        </ul>
 
-      <div class="" data-tip="Open">
+        <div class="px-6 pb-8">
+          <div class="card border border-base-200/70 bg-base-200/60 shadow-xl shadow-primary/10">
+            <div class="card-body gap-3 p-5">
+              <h3 class="card-title text-sm font-semibold text-base-content">Need help?</h3>
+              <p class="text-sm text-base-content/70">
+                Visit the resource center or reach out to our support team for guidance.
+              </p>
+              <div class="flex gap-2">
+                <button class="btn btn-outline btn-sm flex-1" type="button">Docs</button>
+                <button class="btn btn-primary btn-sm flex-1" type="button">Support</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
+    </aside>
   </div>
 </div>
