@@ -7,3 +7,21 @@
 }
 
 @plugin "@tailwindcss/typography";
+
+@layer components {
+  .card-container {
+    @apply card bg-base-100 border border-base-300;
+  }
+
+  .header-container {
+    @apply flex flex-wrap items-center gap-3 justify-between mb-4;
+  }
+
+  .header {
+    @apply text-2xl lg:text-3xl font-semibold;
+  }
+
+  .main-column {
+    @apply xl:col-span-2 space-y-4 sm:space-y-6;
+  }
+}

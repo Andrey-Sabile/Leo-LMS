@@ -1,75 +1,48 @@
-<div class="drawer drawer-open h-full">
-  <input id="sidebar-drawer" type="checkbox" class="drawer-toggle">
+<div class="drawer lg:drawer-open min-h-screen bg-base-200">
+  <!-- Drawer toggle for mobile -->
+  <input id="app-drawer" type="checkbox" class="drawer-toggle" aria-label="Toggle navigation" />
 
-  <div class="drawer-content bg-base-200">
-    <main class="container mx-auto px-6 py-8">
-      <router-outlet></router-outlet>
+  <div class="drawer-content flex flex-col min-h-screen">
+    <main class="flex-1">
+      <div class="mx-auto w-full max-w-screen-2xl p-8 sm:p-6 lg:p-8">
+        <router-outlet></router-outlet>
+      </div>
     </main>
+
+    <footer class="mx-auto w-full max-w-screen-2xl p-4 sm:p-6 text-sm text-center">
+      © 2025 LeoLMS — Built with Tailwind & DaisyUI
+    </footer>
   </div>
 
-  <div class="drawer-side">
-    <label for="sidebar-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
-    <aside class="min-h-full w-72 bg-base-100/95 backdrop-blur border-r border-base-200/70 shadow-xl">
-      <div class="flex h-full flex-col">
-        <div class="px-6 pt-8 pb-6">
-          <div
-            class="flex items-center gap-4 rounded-2xl bg-gradient-to-r from-primary/10 via-primary/5 to-transparent px-4 py-5">
-            <div class="avatar placeholder ring ring-primary/60 ring-offset-base-100 ring-offset-2">
-              <div class="bg-primary/15 text-primary font-semibold rounded-full w-12">
-                <span class="text-base">LL</span>
-              </div>
-            </div>
-            <div class="space-y-1">
-              <p class="text-xs font-semibold uppercase tracking-[0.3em] text-primary">LeoLMS</p>
-              <h1 class="text-xl font-semibold text-base-content">Learning Hub</h1>
-              <p class="text-sm text-base-content/60">Navigate your courses with style.</p>
-            </div>
-          </div>
+  <!-- Sidebar Drawer -->
+  <div class="drawer-side" id="app-sidebar">
+    <label for="app-drawer" class="drawer-overlay" aria-label="Close sidebar"></label>
 
-          <div class="mt-6 rounded-2xl border border-base-200/80 bg-base-100 px-5 py-4 shadow-lg shadow-primary/5">
-            <p class="text-xs font-semibold uppercase tracking-wide text-base-content/50">Today&apos;s tip</p>
-            <p class="mt-2 text-sm text-base-content/70">
-              Keep the momentum going—explore a new module or revisit saved lessons.
-            </p>
-            <button class="btn btn-primary btn-sm mt-4 w-full" type="button">
-              Browse Catalog
-            </button>
-          </div>
-        </div>
+    <aside class="w-58 bg-base-100 border-base-300 rounded-r-4xl h-full flex flex-col">
+      <div class="p-4 self-center">
+        <a routerLink="/" class="btn btn-ghost text-xl font-bold" aria-label="Home">Leo</a>
+      </div>
 
-        <ul class="menu menu-lg px-4 flex-1 pb-6">
-          <li class="menu-title text-xs font-semibold uppercase tracking-wider text-base-content/50">
-            Navigation
-          </li>
+      <nav class="menu flex-1 overflow-y-auto w-full">
+        <ul>
           @for (item of navLinks; track item.route) {
           <li>
-            <a [routerLink]="item.route" routerLinkActive="active bg-primary/15 text-primary font-semibold shadow-sm"
-              [routerLinkActiveOptions]="{ exact: true }"
-              class="rounded-xl px-4 py-3 transition duration-200 ease-out hover:bg-primary/10 hover:text-primary">
-              <div class="flex items-center gap-3">
-                <span class="flex h-9 w-9 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                  <ng-icon [name]="item.iconPaths" class="text-lg"></ng-icon>
-                </span>
-                <span class="text-sm">{{ item.label }}</span>
-              </div>
+            <a [routerLink]="item.route" routerLinkActive="active bg-base-200"
+              [routerLinkActiveOptions]="{ exact: true }" class="hover:bg-base-300 transition-colors">
+              <span class="flex justify-items-start h-9 w-9 items-center justify-center">
+                <ng-icon [name]="item.iconPaths" class="text-lg"></ng-icon>
+              </span>
+              <span class="text-sm font-medium">{{ item.label }}</span>
             </a>
           </li>
           }
         </ul>
+      </nav>
 
-        <div class="px-6 pb-8">
-          <div class="card border border-base-200/70 bg-base-200/60 shadow-xl shadow-primary/10">
-            <div class="card-body gap-3 p-5">
-              <h3 class="card-title text-sm font-semibold text-base-content">Need help?</h3>
-              <p class="text-sm text-base-content/70">
-                Visit the resource center or reach out to our support team for guidance.
-              </p>
-              <div class="flex gap-2">
-                <button class="btn btn-outline btn-sm flex-1" type="button">Docs</button>
-                <button class="btn btn-primary btn-sm flex-1" type="button">Support</button>
-              </div>
-            </div>
-          </div>
+      <!-- Sidebar Footer -->
+      <div class="p-4">
+        <div class="alert alert-info text-sm">
+          <span>Quick tip: Press <kbd>⌘</kbd><kbd>K</kbd> to search</span>
         </div>
       </div>
     </aside>

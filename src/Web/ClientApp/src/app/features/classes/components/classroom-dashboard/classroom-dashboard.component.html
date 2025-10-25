@@ -1,26 +1,26 @@
-<div class="p-4 flex flex-col gap-6">
-  <h1 class="text-3xl font-semibold">{{ classroomName() }}</h1>
+<div class="header-container">
+  <h1 class="header">{{ classroomName() }}</h1>
+</div>
 
-  <div class="tabs tabs-lift">
-    <input type="radio" name="classroom_dashboard_tabs" class="tab" aria-label="People" checked />
-    <div class="tab-content bg-base-100 border-base-300 p-6">
-      @if (classroomId(); as id) {
-      <app-classroom-dashboard-people [teachers]="teachers()" [students]="students()" [classroomId]="id"
-        (teacherAdded)="handleUpdate()" (studentAdded)="handleUpdate()" (studentRemovedFromClassroom)="handleUpdate()"
-        (teacherRemovedFromClassroom)="handleUpdate()">
-      </app-classroom-dashboard-people>
-      }
-    </div>
+<div class="tabs tabs-lift">
+  <input type="radio" name="classroom_dashboard_tabs" class="tab" aria-label="People" checked />
+  <div class="tab-content bg-base-100 border-base-300 p-6">
+    @if (classroomId(); as id) {
+    <app-classroom-dashboard-people [teachers]="teachers()" [students]="students()" [classroomId]="id"
+      (teacherAdded)="handleUpdate()" (studentAdded)="handleUpdate()" (studentRemovedFromClassroom)="handleUpdate()"
+      (teacherRemovedFromClassroom)="handleUpdate()">
+    </app-classroom-dashboard-people>
+    }
+  </div>
 
-    <input type="radio" name="classroom_dashboard_tabs" class="tab" aria-label="Classwork" />
-    <div class="tab-content bg-base-100 border-base-300 p-6">
-      <p class="text-sm text-base-content/60">Classwork content will appear here.</p>
-    </div>
+  <input type="radio" name="classroom_dashboard_tabs" class="tab" aria-label="Classwork" />
+  <div class="tab-content bg-base-100 border-base-300 p-6">
+    <p class="text-sm text-base-content/60">Classwork content will appear here.</p>
+  </div>
 
-    <input type="radio" name="classroom_dashboard_tabs" class="tab" aria-label="Marks" />
-    <div class="tab-content bg-base-100 border-base-300 p-6">
-      <h2 class="text-xl font-semibold mb-2">Marks</h2>
-      <p class="text-sm text-base-content/60">Marks content will appear here.</p>
-    </div>
+  <input type="radio" name="classroom_dashboard_tabs" class="tab" aria-label="Marks" />
+  <div class="tab-content bg-base-100 border-base-300 p-6">
+    <h2 class="text-xl font-semibold mb-2">Marks</h2>
+    <p class="text-sm text-base-content/60">Marks content will appear here.</p>
   </div>
 </div>

@@ -1,0 +1,70 @@
+<!-- Page header -->
+<!-- <div class="breadcrumbs text-sm mb-4">
+    <ul>
+        <li><a>Home</a></li>
+        <li><a>Section</a></li>
+        <li>Current Page</li>
+    </ul>
+</div> -->
+
+<!-- Page title & actions -->
+<div class="header-container">
+    <h1 class="header">Page Title</h1>
+    <div class="flex flex-wrap gap-2">
+        <button class="btn btn-outline">Secondary</button>
+        <button class="btn btn-primary">Primary action</button>
+    </div>
+</div>
+
+<!-- Content grid that won’t break when items grow -->
+<section class="grid gap-4 sm:gap-6 lg:gap-8 grid-cols-1 xl:grid-cols-3">
+    <!-- Main column (stretches) -->
+    <div class="xl:col-span-2 space-y-4 sm:space-y-6">
+        <article class="card-container">
+            <div class="card-body">
+                <h2 class="card-title">Primary content block</h2>
+                <p>Content grows naturally. Use <code>prose</code> for rich text </p>
+            </div>
+        </article>
+
+        <article class="card-container">
+            <div class="card-body">
+                <h3 class="card-title">Another block</h3>
+                <div class="overflow-auto">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Col</th>
+                                <th>Col</th>
+                                <th>Col</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Rows ... -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </article>
+    </div>
+
+    <!-- Aside column (fixed width feel via min/max, still responsive) -->
+    <aside class="space-y-4 sm:space-y-6" aria-label="Complementary">
+        <div class="card-container">
+            <div class="card-body">
+                <h3 class="card-title">Summary</h3>
+                <p class="text-sm text-base-content/70">Key metrics and quick info </p>
+            </div>
+        </div>
+
+        <div class="card-container">
+            <div class="card-body">
+                <h3 class="card-title">Filters</h3>
+                <div class="form-control gap-2">
+                    <input type="text" placeholder="Search" class="input input-bordered">
+                    <button class=" btn btn-primary">Apply</button>
+                </div>
+            </div>
+        </div>
+    </aside>
+</section>

@@ -1,14 +1,12 @@
-<div class="p-4 flex flex-col gap-4">
-  <header class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-    <div>
-      <h1 class="text-3xl font-semibold">Student Directory</h1>
-    </div>
-  </header>
+<header class="header-container">
+  <h1 class="header">Student Directory</h1>
+</header>
 
-  <label class="input w-full">
-    <input type="search" placeholder="Search students" [value]="searchQuery()"
-      (input)="onSearchChange(($any($event.target)).value ?? '')">
-  </label>
+<div class="space-y-4">
+
+  <input type="search"
+    class="w-full rounded-xl border border-base-300 bg-base-100 px-4 py-3 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
+    placeholder="Search students" [value]="searchQuery()" (input)="onSearchChange(($any($event.target)).value ?? '')">
 
   <div class="grid gap-6 md:grid-cols-2">
     <div class="card bg-base-100 card-border border-base-300 max-h-[32rem] overflow-y-auto">
