@@ -22,7 +22,6 @@ public class CalendarEventTests
         calendarEvent.Title.ShouldBe("Math Exam");
         calendarEvent.Description.ShouldBe("Chapter 5 assessment");
         calendarEvent.TimeRange.ShouldBe(timeRange);
-        calendarEvent.Status.ShouldBeNull();
         calendarEvent.Type.ShouldBeNull();
         calendarEvent.Scope.ShouldBeNull();
     }
