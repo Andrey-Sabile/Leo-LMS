@@ -1,6 +1,26 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
-import type { DayVm, EventVm } from '../calendar-view.models';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  input,
+  output,
+  signal,
+} from '@angular/core';
+import {
+  CdkDrag,
+  CdkDragDrop,
+  CdkDragEnd,
+  CdkDragStart,
+  CdkDropList,
+  CdkDropListGroup,
+} from '@angular/cdk/drag-drop';
+import type {
+  DayVm,
+  EventVm,
+  CalendarDateRange,
+  CalendarEventDropPayload,
+} from '../calendar-view.models';
 
 type HourSlotEventVm = {
   event: EventVm;
@@ -20,16 +40,19 @@ type HourSlotVm = {
 @Component({
   selector: 'app-calendar-day-view',
 
-  imports: [CommonModule],
+  imports: [CommonModule, CdkDropListGroup, CdkDropList, CdkDrag],
   templateUrl: './calendar-day-view.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CalendarDayViewComponent {
   vm = input.required<DayVm>();
+  readonly eventDropped = output<CalendarEventDropPayload>();
+  readonly timeSlotSelected = output<CalendarDateRange>();
 
   private readonly hourLabelFormatter = new Intl.DateTimeFormat('en-US', {
     hour: 'numeric',
   });
+  private readonly isDragging = signal(false);
 
   readonly hourSlots = computed<HourSlotVm[]>(() => {
     const vm = this.vm();
@@ -66,9 +89,67 @@ export class CalendarDayViewComponent {
     });
   });
 
+  handleDrop(
+    targetSlot: HourSlotVm,
+    event: CdkDragDrop<HourSlotVm, HourSlotVm, EventVm>
+  ): void {
+    const draggedEvent = event.item.data;
+    if (!draggedEvent) {
+      return;
+    }
+
+    const fromStart = draggedEvent.start;
+    const fromEnd = draggedEvent.end;
+    const durationMs = Math.max(fromEnd.getTime() - fromStart.getTime(), 60 * 60 * 1000);
+    const dayStart = this.toStartOfDay(targetSlot.start);
+    const dayEnd = this.toEndOfDay(dayStart).getTime();
+    const nextStart = new Date(targetSlot.start);
+    const proposedEnd = nextStart.getTime() + durationMs;
+    const nextEnd = new Date(Math.min(proposedEnd, dayEnd));
+
+    if (
+      fromStart.getTime() === nextStart.getTime() &&
+      fromEnd.getTime() === nextEnd.getTime()
+    ) {
+      this.isDragging.set(false);
+      return;
+    }
+
+    this.isDragging.set(false);
+    this.eventDropped.emit({
+      eventId: draggedEvent.id,
+      fromStart,
+      fromEnd,
+      targetStart: nextStart,
+      targetEnd: nextEnd,
+    });
+  }
+
+  emitSlotSelection(slot: HourSlotVm): void {
+    if (this.isDragging()) {
+      return;
+    }
+
+    this.timeSlotSelected.emit({ start: slot.start, end: slot.end });
+  }
+
+  onDragStarted(_event: CdkDragStart<EventVm>): void {
+    this.isDragging.set(true);
+  }
+
+  onDragEnded(_event: CdkDragEnd<EventVm>): void {
+    this.isDragging.set(false);
+  }
+
   private toStartOfDay(date: Date): Date {
     const result = new Date(date);
     result.setHours(0, 0, 0, 0);
+    return result;
+  }
+
+  private toEndOfDay(date: Date): Date {
+    const result = new Date(date);
+    result.setHours(23, 59, 59, 999);
     return result;
   }
 

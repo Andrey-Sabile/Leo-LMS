@@ -1,0 +1,10 @@
+<div class="card-body flex flex-col">
+    <header class="text-lg font-bold">{{ dayOfTheWeek() }}</header>
+
+    @for (timeslot of timeSlots(); track timeslot.index) {
+    <div class="card-title">{{ timeslot.label }}</div>
+    @for (event of timeslot.events; track event) {
+    <p>{{ event.title }}</p>
+    }
+    }
+</div>

@@ -1,3 +1,13 @@
+export type CalendarDateRange = { start: Date; end: Date };
+
+export type CalendarEventDropPayload = {
+  eventId: string;
+  fromStart: Date;
+  fromEnd: Date;
+  targetStart: Date;
+  targetEnd: Date;
+};
+
 export interface WeekViewVm {
   days: DayVm[];
 }

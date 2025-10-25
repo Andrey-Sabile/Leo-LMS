@@ -12,17 +12,19 @@
     <div class="join">
       <button type="button" class="join-item btn bg-base-100" (click)="goToPreviousRange()">«</button>
       <button type="button" class="join-item btn bg-base-100" (click)="goToToday()">
-        {{ currentRangeLabel() }}
+        Today
       </button>
       <button type="button" class="join-item btn bg-base-100" (click)="goToNextRange()">»</button>
     </div>
   </header>
 
-  <div class="card bg-base-100 card-border border-base-300">
+  <div class="card bg-base-100 card-border border-base-300 overflow-y-auto">
     <div class="card-body">
       @switch (viewMode()) {
       @case ('day') {
-      <app-calendar-day-view [vm]="dayVm()"></app-calendar-day-view>
+
+      <app-calendar-day-view [vm]="dayVm()" (eventDropped)="onEventDropped($event)"
+        (timeSlotSelected)="onTimeSlotSelected($event)"></app-calendar-day-view>
       }
       @case ('week') {
       <app-calendar-week-view [vm]="weekVm()"></app-calendar-week-view>
@@ -37,5 +39,5 @@
 
 </div>
 
-<app-create-calendar-event-modal [open]="isCreateEventModalOpen()" [initialRange]="currentDateRange()"
+<app-create-calendar-event-modal [open]="isCreateEventModalOpen()" [initialRange]="selectedCreateRange()"
   (eventCreated)="handleEventCreated($event)" (dismissed)="closeCreateEventModal()"></app-create-calendar-event-modal>

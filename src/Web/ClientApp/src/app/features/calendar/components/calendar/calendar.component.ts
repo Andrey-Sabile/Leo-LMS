@@ -3,11 +3,21 @@ import { CalendarDayViewComponent } from './day-view/calendar-day-view.component
 import { CalendarWeekViewComponent } from './week-view/calendar-week-view.component';
 import { CalendarMonthViewComponent } from './month-view/calendar-month-view.component';
 import { CreateCalendarEventModalComponent } from './create-calendar-event-modal.component';
-import type { WeekViewVm, DayVm, EventVm, MonthViewVm } from './calendar-view.models';
-import { CalendarEventBriefDto, CalendarEventsClient } from '@app/data-access/api/api-client';
+import type {
+  WeekViewVm,
+  DayVm,
+  EventVm,
+  MonthViewVm,
+  CalendarDateRange,
+  CalendarEventDropPayload,
+} from './calendar-view.models';
+import {
+  CalendarEventBriefDto,
+  CalendarEventsClient,
+  UpdateCalendarEventCommand,
+} from '@app/data-access/api/api-client';
 
 type CalendarViewMode = 'day' | 'week' | 'month';
-export type CalendarDateRange = { start: Date; end: Date };
 
 @Component({
   selector: 'app-calendar',
@@ -65,6 +75,7 @@ export class CalendarComponent {
   readonly currentDateRange = computed(() =>
     this.resolveDateRange(this.viewMode(), this.referenceDate())
   );
+  readonly selectedCreateRange = signal<CalendarDateRange>(this.currentDateRange());
 
   private resolveDateRange(mode: CalendarViewMode, reference: Date): CalendarDateRange {
     switch (mode) {
@@ -149,12 +160,70 @@ export class CalendarComponent {
     this.resetReferenceDate();
   }
 
-  openCreateEventModal(): void {
+  openCreateEventModal(range?: CalendarDateRange): void {
+    const initialRange = range ?? this.currentDateRange();
+    this.selectedCreateRange.set(initialRange);
     this.isCreateEventModalOpen.set(true);
   }
 
   closeCreateEventModal(): void {
     this.isCreateEventModalOpen.set(false);
+    this.selectedCreateRange.set(this.currentDateRange());
+  }
+
+  onTimeSlotSelected(range: CalendarDateRange): void {
+    this.openCreateEventModal(range);
+  }
+
+  onEventDropped(payload: CalendarEventDropPayload): void {
+    const targetEvent = this.calendarEvents().find(existing => {
+      if (existing.id == null) {
+        return false;
+      }
+
+      return String(existing.id) === payload.eventId;
+    });
+
+    if (!targetEvent || targetEvent.id == null) {
+      return;
+    }
+
+    const command = new UpdateCalendarEventCommand({
+      id: targetEvent.id,
+      title: targetEvent.title,
+      description: targetEvent.description,
+      status: targetEvent.status,
+      type: targetEvent.type,
+      scope: targetEvent.scope,
+      classId: targetEvent.classId ?? undefined,
+      subjectId: targetEvent.subjectId ?? undefined,
+      start: payload.targetStart,
+      end: payload.targetEnd,
+    });
+
+    this.calendarEventsClient.updateCalendarEvent(targetEvent.id, command).subscribe({
+      next: () => {
+        this.calendarEvents.update(events => {
+          const updated = events.map(existing => {
+            if (existing.id !== targetEvent.id) {
+              return existing;
+            }
+
+            return new CalendarEventBriefDto({
+              ...existing,
+              start: payload.targetStart,
+              end: payload.targetEnd,
+            });
+          });
+
+          return this.sortEventsByStart(updated);
+        });
+      },
+      error: error => {
+        console.error(error);
+        this.loadCalendarEvents(this.currentDateRange());
+      },
+    });
   }
 
   handleEventCreated(event: CalendarEventBriefDto): void {

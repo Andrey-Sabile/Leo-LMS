@@ -1,0 +1,38 @@
+<div class="p-4 flex flex-col gap-4">
+    <header class="flex flex-row items-center justify-between">
+        <h1 class="text-3xl font-semibold">Simple Calendar</h1>
+
+        <div class="tabs tabs-box">
+            @for (tab of viewTabs; track tab.mode) {
+            <input type="radio" class="tab" name="view_mode_tabs" [ariaLabel]="tab.label"
+                [class.tab-active]="tab.mode === activeViewMode()" (click)="setActiveView(tab.mode)">
+            }
+        </div>
+
+        <div class="join">
+            <button type="button" class="join-item btn bg-base-100" (click)="goToPreviousRange()">«</button>
+            <button type="button" class="join-item btn bg-base-100" (click)="goToToday()"> Today </button>
+            <button type="button" class="join-item btn bg-base-100" (click)="goToNextRange()">»</button>
+        </div>
+
+    </header>
+
+
+    <div class="card bg-base-100 card-border border-base-300 overflow-y-auto">
+        @switch (activeViewMode()) {
+        @case ("day") {
+        <app-simple-calendar-day [calendarEvents]="calendarEvents()" [dateRange]="currentDateRange()">
+        </app-simple-calendar-day>
+        }
+        @case ("week") {
+        <app-simple-calendar-week></app-simple-calendar-week>
+
+        }
+        @case ("month") {
+        <p>Month: {{ this.currentDateRange().start }} + {{ this.currentDateRange().end }}</p>
+        <app-simple-calendar-month></app-simple-calendar-month>
+
+        }
+        }
+    </div>
+</div>

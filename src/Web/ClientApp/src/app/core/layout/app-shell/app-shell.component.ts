@@ -38,6 +38,14 @@ export class AppShellComponent {
 
     },
     {
+      label: 'Simple Calendar',
+      route: '/simple-calendar',
+      exact: true,
+      iconPaths: 'heroCalendar'
+
+    },
+
+    {
       label: 'Student Directory',
       route: '/student-directory',
       exact: true,
