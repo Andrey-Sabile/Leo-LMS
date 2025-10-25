@@ -1,10 +1,17 @@
 <div class="card-body flex flex-col">
-    <header class="text-lg font-bold">{{ dayOfTheWeek() }}</header>
+    <header class="card-title text-md font-semibold">{{ dayOfTheWeek() }}</header>
 
-    @for (timeslot of timeSlots(); track timeslot.index) {
-    <div class="card-title">{{ timeslot.label }}</div>
-    @for (event of timeslot.events; track event) {
-    <p>{{ event.title }}</p>
-    }
-    }
+    <div>
+        @for (timeslot of timeSlots(); track timeslot.index) {
+        <div class="flex flex-row border border-base-200 p-3 gap-4">
+            <div class="text-sm">{{ timeslot.label }}</div>
+            <div class="flex-1 flex gap-1">
+                @for (event of timeslot.events; track event) {
+                <p class="bg-base-200 p-2">{{ event.title }}</p>
+                }
+            </div>
+        </div>
+        }
+
+    </div>
 </div>

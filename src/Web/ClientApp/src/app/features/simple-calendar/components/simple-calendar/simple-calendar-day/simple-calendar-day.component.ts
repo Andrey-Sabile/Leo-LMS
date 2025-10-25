@@ -68,23 +68,31 @@ export class SimpleCalendarDayComponent {
     const slots = new Map<number, CalendarEventBriefDto[]>();
 
     for (const event of this.calendarEvents()) {
-      const start = event.start;
-      if (!start || start < dayStart || start >= dayEnd) {
-        continue;
-      }
+      const evStart = event.start;
+      if (!evStart) continue;
 
-      const eventMinutes = this.toMinutesFromMidnight(start);
-      const slotIndex = Math.floor(eventMinutes / SimpleCalendarDayComponent.SlotMinutes);
+      const evEnd = event.end ?? evStart;
 
-      if (slotIndex < 0 || slotIndex >= SimpleCalendarDayComponent.SlotsPerDay) {
-        continue;
-      }
+      if (evEnd <= dayStart || evStart >= dayEnd) continue;
 
-      const bucket = slots.get(slotIndex);
-      if (bucket) {
-        bucket.push(event);
-      } else {
-        slots.set(slotIndex, [event]);
+      const clampedStart = evStart < dayStart ? new Date(dayStart) : new Date(evStart);
+      const clampedEnd = evEnd > dayEnd ? new Date(dayEnd) : new Date(evEnd);
+
+      const startMinutes = this.toMinutesFromMidnight(clampedStart);
+      const endMinutes = Math.min(this.toMinutesFromMidnight(clampedEnd) + (clampedEnd.getSeconds() > 0 || clampedEnd.getMilliseconds() > 0 ? 0 : 0), SimpleCalendarDayComponent.MinutesPerDay);
+
+      const firstSlot = Math.floor(startMinutes / SimpleCalendarDayComponent.SlotMinutes);
+      const lastSlot = Math.floor(Math.max(0, Math.min(SimpleCalendarDayComponent.MinutesPerDay - 1, endMinutes - 1)) / SimpleCalendarDayComponent.SlotMinutes);
+
+      for (let slotIndex = firstSlot; slotIndex <= lastSlot; slotIndex++) {
+        if (slotIndex < 0 || slotIndex >= SimpleCalendarDayComponent.SlotsPerDay) continue;
+
+        const bucket = slots.get(slotIndex);
+        if (bucket) {
+          bucket.push(event);
+        } else {
+          slots.set(slotIndex, [event]);
+        }
       }
     }
 

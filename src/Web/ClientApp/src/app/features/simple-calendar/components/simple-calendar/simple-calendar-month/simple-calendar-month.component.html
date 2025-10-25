@@ -1,1 +1,6 @@
-<p>simple-calendar-month works!</p>
+<div class="card-body flex flex-col">
+    @for (dayRange of dayRanges(); track dayRange.start; let id = $index) {
+    <app-simple-calendar-day [dateRange]="dayRange"
+        [calendarEvents]="calendarEventsByDay()[id]"></app-simple-calendar-day>
+    }
+</div>
